@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>_04_Train_The_Trainers</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Demo-Sum-Prime-Non-Prime\Demo-Sum-Prime-Non-Prime.csproj" />
+  </ItemGroup>
+
+</Project>
