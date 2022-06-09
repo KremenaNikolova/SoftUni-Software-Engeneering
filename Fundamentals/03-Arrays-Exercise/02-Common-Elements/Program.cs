@@ -15,7 +15,7 @@ namespace _02_Common_Elements
                 {
                     if (firstArray[i] == secondArray[j])
                     {
-                        Console.WriteLine(firstArray);
+                        Console.Write(firstArray[i] + " ");
                         break;
                     }
                 }
