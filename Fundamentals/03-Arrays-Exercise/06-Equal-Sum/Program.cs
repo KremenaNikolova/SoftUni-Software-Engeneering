@@ -12,45 +12,33 @@ namespace _06_Equal_Sum
             int leftSum = 0;
             int rightSum = 0;
 
+            bool isEqual = false;
+
             for (int i = 0; i < numbers.Length; i++)
             {
-                if (numbers.Length==1)
-                {
-                    Console.WriteLine(0);
-                    return;
-                }
-
                 leftSum = 0;
-                for (int leftNumbers = i; leftNumbers > 0; leftNumbers--)  // 1 2 3 3 
+                for (int leftToRight = 0; leftToRight < i; leftToRight++)
                 {
-                    int currLeftElePosition = leftNumbers - 1;
-                    if (currLeftElePosition > 0)
-                    {
-                        leftSum += numbers[currLeftElePosition];
-                    }
-                    
+                    leftSum += numbers[leftToRight];
                 }
 
                 rightSum = 0;
-
-                for (int rightNumbers = 0; rightNumbers < numbers.Length; rightNumbers++) //1 2 3 3
+                for (int rightToLeft = numbers.Length-1; rightToLeft > i; rightToLeft--)
                 {
-                    int currRightElePosition = rightNumbers + 1;
-                    if (currRightElePosition<numbers.Length-1)
-                    {
-                        rightSum += numbers[currRightElePosition];
-                    }
-                    
+                    rightSum += numbers[rightToLeft];
                 }
 
-                if (leftSum==rightSum)
+                if (leftSum==rightSum && !isEqual)
                 {
                     Console.WriteLine(i);
-                    return;
+                    isEqual = true;
                 }
             }
 
-            Console.WriteLine("no");
+            if (!isEqual)
+            {
+                Console.WriteLine("no");
+            }
         }
     }
 }
