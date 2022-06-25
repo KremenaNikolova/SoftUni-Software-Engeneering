@@ -28,12 +28,19 @@ namespace _04_List_Operations
                 {
                     int numberForInsert = int.Parse(token[1]);
                     int indexWhereToInsert = int.Parse(token[2]);
-                    input.Insert(indexWhereToInsert, numberForInsert);
+                    if (indexWhereToInsert>=input.Count || indexWhereToInsert<0)
+                    {
+                        Console.WriteLine("Invalid index");
+                    }
+                    else
+                    {
+                        input.Insert(indexWhereToInsert, numberForInsert);
+                    }
                 }
                 else if (token[0]=="Remove")
                 {
                     int removeNumberAtThisIndex = int.Parse(token[1]);
-                    if (removeNumberAtThisIndex>input.Count)
+                    if (removeNumberAtThisIndex>=input.Count || removeNumberAtThisIndex < 0)
                     {
                         Console.WriteLine("Invalid index");
                     }
@@ -59,7 +66,6 @@ namespace _04_List_Operations
                     {
                         int numberForMoveToRight = input[input.Count-1];
                         input.RemoveAt(input.Count-1);
-                        //int position = input[0];
                         input.Insert(0, numberForMoveToRight);
                     }
                 }
