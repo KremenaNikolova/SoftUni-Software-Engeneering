@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32519.379
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01-Count-Chars-in-a-String", "01-Count-Chars-in-a-String\01-Count-Chars-in-a-String.csproj", "{A67F2F82-7496-437C-B0A1-02B551BBA87B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02-A-Miner-Task", "02-A-Miner-Task\02-A-Miner-Task.csproj", "{799BEF19-0A26-4812-B370-72B0EB1C4DCC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A67F2F82-7496-437C-B0A1-02B551BBA87B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A67F2F82-7496-437C-B0A1-02B551BBA87B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A67F2F82-7496-437C-B0A1-02B551BBA87B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A67F2F82-7496-437C-B0A1-02B551BBA87B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{799BEF19-0A26-4812-B370-72B0EB1C4DCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{799BEF19-0A26-4812-B370-72B0EB1C4DCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{799BEF19-0A26-4812-B370-72B0EB1C4DCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{799BEF19-0A26-4812-B370-72B0EB1C4DCC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9E282EFD-2A2C-46A4-A73B-9145BA13540D}
+	EndGlobalSection
+EndGlobal
