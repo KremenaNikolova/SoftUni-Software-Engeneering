@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32519.379
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01-Count-Chars-in-a-String", "01-Count-Chars-in-a-String\01-Count-Chars-in-a-String.csproj", "{A67F2F82-7496-437C-B0A1-02B551BBA87B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01-Count-Chars-in-a-String", "01-Count-Chars-in-a-String\01-Count-Chars-in-a-String.csproj", "{A67F2F82-7496-437C-B0A1-02B551BBA87B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02-A-Miner-Task", "02-A-Miner-Task\02-A-Miner-Task.csproj", "{799BEF19-0A26-4812-B370-72B0EB1C4DCC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02-A-Miner-Task", "02-A-Miner-Task\02-A-Miner-Task.csproj", "{799BEF19-0A26-4812-B370-72B0EB1C4DCC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03-Orders", "03-Orders\03-Orders.csproj", "{79F29045-9A40-4A71-9D10-09EC574AA77E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03-Orders", "03-Orders\03-Orders.csproj", "{79F29045-9A40-4A71-9D10-09EC574AA77E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04-SoftUni-Parking", "04-SoftUni-Parking\04-SoftUni-Parking.csproj", "{FA700196-2C06-405A-AE27-6C3B63377B23}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "04-SoftUni-Parking", "04-SoftUni-Parking\04-SoftUni-Parking.csproj", "{FA700196-2C06-405A-AE27-6C3B63377B23}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05-Courses", "05-Courses\05-Courses.csproj", "{634D2D84-5FA2-4AD3-98E9-B590194D01A5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{FA700196-2C06-405A-AE27-6C3B63377B23}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA700196-2C06-405A-AE27-6C3B63377B23}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA700196-2C06-405A-AE27-6C3B63377B23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{634D2D84-5FA2-4AD3-98E9-B590194D01A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{634D2D84-5FA2-4AD3-98E9-B590194D01A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{634D2D84-5FA2-4AD3-98E9-B590194D01A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{634D2D84-5FA2-4AD3-98E9-B590194D01A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
