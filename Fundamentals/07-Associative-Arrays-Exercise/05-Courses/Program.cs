@@ -41,7 +41,6 @@ namespace _05_Courses
                         {
                             Console.WriteLine($"-- {students.Value[i]}");
                         }
-                        //Console.WriteLine($"-- {students.Value}");
                     }
                 }
             }
