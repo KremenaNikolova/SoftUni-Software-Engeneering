@@ -10,13 +10,9 @@ namespace _08_Letters_Change_Numbers
             //2.First, you start with the letter before the number. 
             
             //3.Then you move to the letter after the number
-            
-            
-
             //Write a program that calculates the sum of all numbers after the operations on each number have been done.
 
             //Example: "A12b s17G"
-            //
 
             string[] input = Console.ReadLine().Split(" ", StringSplitOptions.RemoveEmptyEntries);
 
