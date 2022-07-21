@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06-Replace-Repeating-Chars"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "07-String-Explosion", "07-String-Explosion\07-String-Explosion.csproj", "{6ED4C3B0-D319-4042-8B86-48B23181F3AA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "08-Letters-Change-Numbers", "08-Letters-Change-Numbers\08-Letters-Change-Numbers.csproj", "{DCFF59E2-87BE-4F35-ACBC-7B098E49C36A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{6ED4C3B0-D319-4042-8B86-48B23181F3AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6ED4C3B0-D319-4042-8B86-48B23181F3AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6ED4C3B0-D319-4042-8B86-48B23181F3AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCFF59E2-87BE-4F35-ACBC-7B098E49C36A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCFF59E2-87BE-4F35-ACBC-7B098E49C36A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCFF59E2-87BE-4F35-ACBC-7B098E49C36A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCFF59E2-87BE-4F35-ACBC-7B098E49C36A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
