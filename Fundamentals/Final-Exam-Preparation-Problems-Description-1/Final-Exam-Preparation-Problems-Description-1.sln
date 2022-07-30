@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32519.379
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01-Secret-Chat", "01-Secret-Chat\01-Secret-Chat.csproj", "{E6C40E11-911B-41C6-919F-FE219D194FC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01-Secret-Chat", "01-Secret-Chat\01-Secret-Chat.csproj", "{E6C40E11-911B-41C6-919F-FE219D194FC0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02-Fancy-Barcodes", "02-Fancy-Barcodes\02-Fancy-Barcodes.csproj", "{B82EA8B6-8254-4D0F-9A5B-3404A00E2A53}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03-The-Pianist", "03-The-Pianist\03-The-Pianist.csproj", "{4B7EFC3E-B37A-4E1F-88E1-C1147293FD8D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{E6C40E11-911B-41C6-919F-FE219D194FC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E6C40E11-911B-41C6-919F-FE219D194FC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E6C40E11-911B-41C6-919F-FE219D194FC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B82EA8B6-8254-4D0F-9A5B-3404A00E2A53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B82EA8B6-8254-4D0F-9A5B-3404A00E2A53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B82EA8B6-8254-4D0F-9A5B-3404A00E2A53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B82EA8B6-8254-4D0F-9A5B-3404A00E2A53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B7EFC3E-B37A-4E1F-88E1-C1147293FD8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B7EFC3E-B37A-4E1F-88E1-C1147293FD8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B7EFC3E-B37A-4E1F-88E1-C1147293FD8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B7EFC3E-B37A-4E1F-88E1-C1147293FD8D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
