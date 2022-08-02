@@ -82,20 +82,25 @@ namespace _03_Pirates
 
         private static void Recharge(string heroName, int amount, Dictionary<string, List<int>> heroInformation)
         {
+            int amountOfRecharge = 200 - heroInformation[heroName][1];
             heroInformation[heroName][1] += amount;
             if (heroInformation[heroName][1]>200)
             {
                 heroInformation[heroName][1] = 200;
+                amount = amountOfRecharge;
             }
             Console.WriteLine($"{heroName} recharged for {amount} MP!");
         }
 
         private static void Heal(string heroName, int amount, Dictionary<string, List<int>> heroInformation)
         {
-            heroInformation[heroName][0] += amount;
+            int amountOfHeal = 100 - heroInformation[heroName][0];
+            heroInformation[heroName][0] += amount; //heal 70 //amount 50
+           
             if (heroInformation[heroName][0] > 100)
             {
                 heroInformation[heroName][0] = 100;
+                amount = amountOfHeal;
             }
             Console.WriteLine($"{heroName} healed for {amount} HP!");
         }
