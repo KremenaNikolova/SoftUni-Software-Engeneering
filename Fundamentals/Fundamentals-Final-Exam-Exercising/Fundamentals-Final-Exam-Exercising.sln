@@ -5,17 +5,21 @@ VisualStudioVersion = 17.2.32519.379
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01-Secret-Chat", "01-Secret-Chat\01-Secret-Chat.csproj", "{A2915179-070D-49AE-BE93-E9E16B1AECCF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02-Mirror-Words", "02-Mirror-Words\02-Mirror-Words.csproj", "{B411D05F-6C86-4D7C-9D94-A8B1AAC658D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02-Mirror-Words", "02-Mirror-Words\02-Mirror-Words.csproj", "{B411D05F-6C86-4D7C-9D94-A8B1AAC658D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03-Need-for-Speed-III", "03-Need-for-Speed-III\03-Need-for-Speed-III.csproj", "{256A7A71-1157-4C04-B632-A41BCD8431D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03-Need-for-Speed-III", "03-Need-for-Speed-III\03-Need-for-Speed-III.csproj", "{256A7A71-1157-4C04-B632-A41BCD8431D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04-The-Imitation-Game", "04-The-Imitation-Game\04-The-Imitation-Game.csproj", "{0FDBAC1E-2019-4F7B-8250-24DD1CB46449}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "04-The-Imitation-Game", "04-The-Imitation-Game\04-The-Imitation-Game.csproj", "{0FDBAC1E-2019-4F7B-8250-24DD1CB46449}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05-Ad-Astra", "05-Ad-Astra\05-Ad-Astra.csproj", "{7C7B8EEF-CEF2-44D3-A9C2-7E118DD00BC6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "05-Ad-Astra", "05-Ad-Astra\05-Ad-Astra.csproj", "{7C7B8EEF-CEF2-44D3-A9C2-7E118DD00BC6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06-The-Pianist", "06-The-Pianist\06-The-Pianist.csproj", "{500EF1E6-12A8-4BA0-8C96-24514ABBB78C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "06-The-Pianist", "06-The-Pianist\06-The-Pianist.csproj", "{500EF1E6-12A8-4BA0-8C96-24514ABBB78C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "07-World-Tour", "07-World-Tour\07-World-Tour.csproj", "{67F10583-B62F-4BAB-A024-52E051ACC8CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "07-World-Tour", "07-World-Tour\07-World-Tour.csproj", "{67F10583-B62F-4BAB-A024-52E051ACC8CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10-Destination-Mapper", "10-Destination-Mapper\10-Destination-Mapper.csproj", "{2C30B9A2-7603-4A75-97E5-1A2D698D3681}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "11-Plant-Discovery", "11-Plant-Discovery\11-Plant-Discovery.csproj", "{17F67608-3F9A-4326-A4AD-AED31658D934}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +55,14 @@ Global
 		{67F10583-B62F-4BAB-A024-52E051ACC8CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67F10583-B62F-4BAB-A024-52E051ACC8CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67F10583-B62F-4BAB-A024-52E051ACC8CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C30B9A2-7603-4A75-97E5-1A2D698D3681}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C30B9A2-7603-4A75-97E5-1A2D698D3681}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C30B9A2-7603-4A75-97E5-1A2D698D3681}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C30B9A2-7603-4A75-97E5-1A2D698D3681}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17F67608-3F9A-4326-A4AD-AED31658D934}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17F67608-3F9A-4326-A4AD-AED31658D934}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17F67608-3F9A-4326-A4AD-AED31658D934}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17F67608-3F9A-4326-A4AD-AED31658D934}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
