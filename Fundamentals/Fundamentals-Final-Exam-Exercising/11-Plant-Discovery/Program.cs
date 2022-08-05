@@ -29,22 +29,22 @@ namespace _11_Plant_Discovery
 
             }
 
-            string[] command = Console.ReadLine().Split(":", StringSplitOptions.RemoveEmptyEntries);
+            string[] command = Console.ReadLine().Split(": ", StringSplitOptions.RemoveEmptyEntries);
             while (command[0] != "Exhibition")
             {
                 string action = command[0];
-                string[] tokens = command[1].Split("-", StringSplitOptions.RemoveEmptyEntries);
+                string[] tokens = command[1].Split(" - ", StringSplitOptions.RemoveEmptyEntries);
 
                 switch (action)
                 {
                     case "Rate":
-                        Rate(tokens[0], double.Parse(tokens[1]), plantInformation);
+                        Rate(tokens[0].Trim(), double.Parse(tokens[1]), plantInformation);
                         break;
                     case "Update":
-                        Update(tokens[0], int.Parse(tokens[1]), plantInformation);
+                        Update(tokens[0].Trim(), int.Parse(tokens[1]), plantInformation);
                         break;
                     case "Reset":
-                        Reset(tokens[0], plantInformation);
+                        Reset(tokens[0].Trim(), plantInformation);
                         break;
                 }
 
@@ -55,8 +55,16 @@ namespace _11_Plant_Discovery
             Console.WriteLine("Plants for the exhibition:");
             foreach (var plant in plantInformation)
             {
-                double avarageRate = plant.Value.Rating / plant.Value.Counter;
-                Console.WriteLine($"- {plant.Key}; Rarity: {plant.Value.Rarity}; Rating: {(avarageRate):f2}");
+                if (plant.Value.Counter>0)
+                {
+                    double avarageRate = plant.Value.Rating / plant.Value.Counter;
+                    Console.WriteLine($"- {plant.Key}; Rarity: {plant.Value.Rarity}; Rating: {(avarageRate):f2}");
+                }
+                else
+                {
+                    Console.WriteLine($"- {plant.Key}; Rarity: {plant.Value.Rarity}; Rating: 0.00");
+                }
+                
             }
         }
 
@@ -64,7 +72,7 @@ namespace _11_Plant_Discovery
         {
             if (plantInformation.ContainsKey(plantName))
             {
-                plantInformation[plantName].Rating = rating;
+                plantInformation[plantName].Rating += rating;
                 plantInformation[plantName].Counter++;
             }
             else
