@@ -9,88 +9,110 @@ namespace _11_Plant_Discovery
         static void Main(string[] args)
         {
             int counter = int.Parse(Console.ReadLine());
-
-
-            SortedDictionary<string, int> plants = new SortedDictionary<string, int>();
-            SortedDictionary<string, List<double>> plantsRating = new SortedDictionary<string, List<double>>();
+            Dictionary<string, Plant> plantInformation = new Dictionary<string, Plant>();
 
             for (int i = 0; i < counter; i++)
             {
-                string[] plantInformation = Console.ReadLine().Split("<->");
-                string key = plantInformation[0];
-                int value = int.Parse(plantInformation[1]);
-                if (!plants.ContainsKey(key))
+                string[] plantInfo = Console.ReadLine().Split("<->");
+
+                string plant = plantInfo[0];
+                int rarity = int.Parse(plantInfo[1]);
+                Plant plantsinfo = new Plant(rarity, 0, 0);
+                if (!plantInformation.ContainsKey(plant))
                 {
-                    plants.Add(key, value);
-                    plantsRating.Add(key, new List<double>{0, 0 });
+                    plantInformation.Add(plant, plantsinfo);
                 }
                 else
                 {
-                    plants[key] = value;
+                    plantInformation[plant] = plantsinfo;
                 }
+
             }
 
-            string[] command = Console.ReadLine().Split(new char[] { ' ', '-' }, StringSplitOptions.RemoveEmptyEntries);
-
+            string[] command = Console.ReadLine().Split(":", StringSplitOptions.RemoveEmptyEntries);
             while (command[0] != "Exhibition")
             {
                 string action = command[0];
-                if (!plants.ContainsKey(command[1]))
-                {
-                    Console.WriteLine("error");
-                    command = Console.ReadLine().Split(new char[] { ' ', '-' }, StringSplitOptions.RemoveEmptyEntries);
-                    continue;
-                }
+                string[] tokens = command[1].Split("-", StringSplitOptions.RemoveEmptyEntries);
+
                 switch (action)
                 {
-                    case "Rate:":
-                        Rate(command[1], double.Parse(command[2]), plants, plantsRating);
+                    case "Rate":
+                        Rate(tokens[0], double.Parse(tokens[1]), plantInformation);
                         break;
-                    case "Update:":
-                        Update(command[1], int.Parse(command[2]), plants, plantsRating);
+                    case "Update":
+                        Update(tokens[0], int.Parse(tokens[1]), plantInformation);
                         break;
-                    case "Reset:":
-                        Reset(command[1], plants, plantsRating);
+                    case "Reset":
+                        Reset(tokens[0], plantInformation);
                         break;
                 }
 
-                command = Console.ReadLine().Split(new char[] { ' ', '-' }, StringSplitOptions.RemoveEmptyEntries);
+
+                command = Console.ReadLine().Split(":", StringSplitOptions.RemoveEmptyEntries);
             }
+
             Console.WriteLine("Plants for the exhibition:");
-
-            var sorted = plantsRating
-                .OrderByDescending(x => x.Value[0])
-                .ThenByDescending(x => plantsRating[x.Key].Count > 0
-                    ? plantsRating[x.Key].Sum() / plantsRating[x.Key].Count
-                    : 0.0);
-
-            foreach (var rating in sorted)
+            foreach (var plant in plantInformation)
             {
-                foreach (var plant in plants)
-                {
-                    if (rating.Key==plant.Key)
-                    {
-                        Console.WriteLine($"- {plant.Key}; Rarity: {plant.Value}; Rating: {rating.Value}");
-                    }
-                }
+                double avarageRate = plant.Value.Rating / plant.Value.Counter;
+                Console.WriteLine($"- {plant.Key}; Rarity: {plant.Value.Rarity}; Rating: {(avarageRate):f2}");
             }
         }
 
-        private static void Rate(string plant, double rating, SortedDictionary<string, int> plants, SortedDictionary<string, List<double>> plantsRating)
+        private static void Rate(string plantName, double rating, Dictionary<string, Plant> plantInformation)
         {
-
-            plantsRating[plant][0] += rating;
-            plantsRating[plant][1]++;
+            if (plantInformation.ContainsKey(plantName))
+            {
+                plantInformation[plantName].Rating = rating;
+                plantInformation[plantName].Counter++;
+            }
+            else
+            {
+                Console.WriteLine("error");
+            }
         }
 
-        private static void Update(string plant, int rarity, SortedDictionary<string, int> plants, SortedDictionary<string, List<double>> plantsRating)
+        private static void Update(string plantName, int newRarity, Dictionary<string, Plant> plantInformation)
         {
-            plants[plant] = rarity;
+            if (plantInformation.ContainsKey(plantName))
+            {
+                plantInformation[plantName].Rarity = newRarity;
+            }
+            else
+            {
+                Console.WriteLine("error");
+            }
         }
 
-        private static void Reset(string plant, SortedDictionary<string, int> plants, SortedDictionary<string, List<double>> plantsRating)
+        private static void Reset(string plantName, Dictionary<string, Plant> plantInformation)
         {
-            plantsRating[plant][0] = 0;
+            if (plantInformation.ContainsKey(plantName))
+            {
+                plantInformation[plantName].Rating = 0;
+                plantInformation[plantName].Counter = 0;
+            }
+            else
+            {
+                Console.WriteLine("error");
+            }
         }
     }
+
+    class Plant
+    {
+        public Plant(int rarity, double rating, int counter)
+        {
+            //this.PlantName = plantName;
+            this.Rarity = rarity;
+            this.Rating = rating;
+            this.Counter = counter;
+        }
+
+        //public string PlantName { get; set; }
+        public int Rarity { get; set; }
+        public double Rating { get; set; }
+        public int Counter { get; set; }
+    }
 }
+

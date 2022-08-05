@@ -1,77 +1,90 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
-namespace _06_The_Pianist
+namespace _11_Plant_Discovery
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            int numberOfPieces = int.Parse(Console.ReadLine());
-            Dictionary<string, List<string>> composers = new Dictionary<string, List<string>>();
+            int counter = int.Parse(Console.ReadLine());
 
-            for (int i = 0; i < numberOfPieces; i++)
+
+            Dictionary<string, List<int>> plants = new Dictionary<string, List<int>>();
+            Dictionary<string, double> plantsRating = new Dictionary<string, double>();
+
+            for (int i = 0; i < counter; i++)
             {
-                string[] composersInfo = Console.ReadLine().Split("|");
-                composers.Add(composersInfo[0], new List<string> { composersInfo[1], composersInfo[2] });
+                string[] plantInformation = Console.ReadLine().Split("<->");
+                string key = plantInformation[0];
+                if (!plants.ContainsKey(key))
+                {
+                    plants.Add(key, new List<int> { int.Parse(plantInformation[1]), 0 });
+                    plantsRating.Add(key, 0);
+                }
+                else
+                {
+                    plants[key] = new List<int> { int.Parse(plantInformation[1]) };
+                }
             }
 
-            string[] command = Console.ReadLine().Split("|");
-            while (command[0]!="Stop")
+            string[] command = Console.ReadLine().Split(new char[] { ' ', '-' }, StringSplitOptions.RemoveEmptyEntries);
+
+            while (command[0] != "Exhibition")
             {
                 string action = command[0];
+                if (!plants.ContainsKey(command[1]))
+                {
+                    Console.WriteLine("error");
+                    command = Console.ReadLine().Split(new char[] { ' ', '-' }, StringSplitOptions.RemoveEmptyEntries);
+                    continue;
+                }
                 switch (action)
                 {
-                    case "Add":
-                        Add(command[1], command[2], command[3], composers);
+                    case "Rate:":
+                        Rate(command[1], double.Parse(command[2]), plants, plantsRating);
                         break;
-                    case "Remove":
-                        Remove(command[1], composers);
+                    case "Update:":
+                        Update(command[1], int.Parse(command[2]), plants, plantsRating);
                         break;
-                    case "ChangeKey":
-                        ChangeKey(command[1], command[2], composers);
+                    case "Reset:":
+                        Reset(command[1], plants, plantsRating);
                         break;
                 }
 
-                command = Console.ReadLine().Split("|");
+                command = Console.ReadLine().Split(new char[] { ' ', '-' }, StringSplitOptions.RemoveEmptyEntries);
             }
-            foreach (var composer in composers)
+            Console.WriteLine("Plants for the exhibition:");
+            foreach (var plant in plants)
             {
-                Console.WriteLine($"{composer.Key} -> Composer: {composer.Value[0]}, Key: {composer.Value[1]}");
+                foreach (var rating in plantsRating)
+                {
+                    if (plant.Key == rating.Key)
+                    {
+                        Console.WriteLine($"- {plant.Key}; Rarity: {plant.Value[0]}; Rating: {(rating.Value / plant.Value[1]):f2}");
+                        break;
+                    }
+
+                }
             }
+
         }
 
-        private static void Add(string piece, string composer, string key, Dictionary<string, List<string>> composers)
+        private static void Rate(string plant, double rating, Dictionary<string, List<int>> plants, Dictionary<string, double> plantsRating)
         {
-            if (composers.ContainsKey(piece))
-            {
-                Console.WriteLine($"{piece} is already in the collection!");
-                return;
-            }
-            composers.Add(piece,new List<string>{ composer, key});
-            Console.WriteLine($"{piece} by {composer} in {key} added to the collection!");
+            plants[plant][1]++;
+            plantsRating[plant] += rating;
         }
 
-        private static void Remove(string piece, Dictionary<string, List<string>> composers)
+        private static void Update(string plant, int rarity, Dictionary<string, List<int>> plants, Dictionary<string, double> plantsRating)
         {
-            if (composers.ContainsKey(piece))
-            {
-                composers.Remove(piece);
-                Console.WriteLine($"Successfully removed {piece}!");
-                return;
-            }
-            Console.WriteLine($"Invalid operation! {piece} does not exist in the collection.");
+            plants[plant][0] = rarity;
         }
 
-        private static void ChangeKey(string piece, string newKey, Dictionary<string, List<string>> composers)
+        private static void Reset(string plant, Dictionary<string, List<int>> plants, Dictionary<string, double> plantsRating)
         {
-            if (composers.ContainsKey(piece))
-            {
-                composers[piece][1]=newKey;
-                Console.WriteLine($"Changed the key of {piece} to {newKey}!");
-                return;
-            }
-            Console.WriteLine($"Invalid operation! {piece} does not exist in the collection.");
+            plantsRating[plant] = 0;
         }
     }
 }
