@@ -111,13 +111,11 @@ namespace _11_Plant_Discovery
     {
         public Plant(int rarity, double rating, int counter)
         {
-            //this.PlantName = plantName;
             this.Rarity = rarity;
             this.Rating = rating;
             this.Counter = counter;
         }
 
-        //public string PlantName { get; set; }
         public int Rarity { get; set; }
         public double Rating { get; set; }
         public int Counter { get; set; }
