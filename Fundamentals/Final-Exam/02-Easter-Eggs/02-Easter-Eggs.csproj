@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
-    <RootNamespace>_01_The_Imitation_Game</RootNamespace>
+    <RootNamespace>_02_Easter_Eggs</RootNamespace>
   </PropertyGroup>
 
 </Project>

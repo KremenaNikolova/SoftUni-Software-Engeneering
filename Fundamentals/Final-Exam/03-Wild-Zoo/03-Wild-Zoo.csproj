@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
-    <RootNamespace>_02_Fancy_Barcodes</RootNamespace>
+    <RootNamespace>_03_Wild_Zoo</RootNamespace>
   </PropertyGroup>
 
 </Project>

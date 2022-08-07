@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
-    <RootNamespace>_02_Emoji_Detector</RootNamespace>
+    <RootNamespace>_01_Decrypting_Commands</RootNamespace>
   </PropertyGroup>
 
 </Project>
