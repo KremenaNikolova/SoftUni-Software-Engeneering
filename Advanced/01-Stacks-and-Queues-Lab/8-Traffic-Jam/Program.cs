@@ -18,12 +18,13 @@ namespace _8_Traffic_Jam
                 {
                     for (int i = 0; i < carsCanPass; i++)
                     {
-                        Console.WriteLine($"{queue.Dequeue()} passed!");
-                        counter++;
-                        if (queue.Count==0)
+                        if (queue.Count == 0)
                         {
                             break;
                         }
+                        Console.WriteLine($"{queue.Dequeue()} passed!");
+                        counter++;
+                        
                     }
                     command = Console.ReadLine();
                     continue;
