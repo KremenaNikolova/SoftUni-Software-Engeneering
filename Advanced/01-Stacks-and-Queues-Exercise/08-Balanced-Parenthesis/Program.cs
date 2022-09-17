@@ -8,51 +8,33 @@ namespace _08_Balanced_Parenthesis
         static void Main(string[] args)
         {
             string input = Console.ReadLine();
-            Queue<char> parentheses = new Queue<char>();
+            Stack<char> parentheses = new Stack<char>();
             bool isBalancedParentheses = true;
-            for (int i = 0; i < input.Length; i++)
+
+            foreach (var parenthese in input)
             {
-                if (input[i] == '{' || input[i] == '(' || input[i] == '[')
+                if (parenthese=='{' || parenthese=='[' || parenthese == '(')
                 {
-                    parentheses.Enqueue(input[i]);
+                    parentheses.Push(parenthese);
+                    continue;
                 }
-                else if(input[i] == ' ')
-                {
-                    Console.WriteLine("NO");
-                    return;
-                }
-            }
-            if (input.Length% parentheses.Count!=0)
-            {
-                isBalancedParentheses = false;
-            }
-            for (int h = input.Length - 1; h >= 0; h--)
-            {
-                if (parentheses.Count == 0 || isBalancedParentheses == false)
-                {
-                    break;
-                }
-                if (input[h] == '}' && parentheses.Peek() == '{')
-                {
-                    parentheses.Dequeue();
-                }
-                else if (input[h] == ')' && parentheses.Peek() == '(')
-                {
-                    parentheses.Dequeue();
-                }
-                else if (input[h] == ']' && parentheses.Peek() == '[')
-                {
-                    parentheses.Dequeue();
-                }
-                else if (input[h] == ' ' && parentheses.Peek() == ' ')
-                {
-                    parentheses.Dequeue();
-                }
-                else
+                else if (parentheses.Count == 0)
                 {
                     isBalancedParentheses = false;
+                    break;
                 }
-                
+                else if (parentheses.Peek()=='{' && parenthese == '}')
+                {
+                    parentheses.Pop();
+                }
+                else if (parentheses.Peek() == '[' && parenthese == ']')
+                {
+                    parentheses.Pop();
+                }
+                else if (parentheses.Peek() == '(' && parenthese == ')')
+                {
+                    parentheses.Pop();
+                }
             }
             if (isBalancedParentheses == false || parentheses.Count>0)
             {
@@ -62,9 +44,6 @@ namespace _08_Balanced_Parenthesis
             {
                 Console.WriteLine("YES");
             }
-
-
-
         }
     }
 }
