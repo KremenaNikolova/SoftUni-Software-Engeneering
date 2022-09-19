@@ -9,19 +9,23 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02-Basic-Queue-Operations",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03-Maximum-and-Minimum-Element", "03-Maximum-and-Minimum-Element\03-Maximum-and-Minimum-Element.csproj", "{6FDFEF8B-0983-4CAB-9ECB-A7438868C2E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04-Fast-Food", "04-Fast-Food\04-Fast-Food.csproj", "{282C43D0-78DE-48C9-88A8-78985FF13280}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "04-Fast-Food", "04-Fast-Food\04-Fast-Food.csproj", "{282C43D0-78DE-48C9-88A8-78985FF13280}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05-Fashion-Boutique", "05-Fashion-Boutique\05-Fashion-Boutique.csproj", "{745D4E3F-3BE2-4A21-B3CE-8658275B0D8A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "05-Fashion-Boutique", "05-Fashion-Boutique\05-Fashion-Boutique.csproj", "{745D4E3F-3BE2-4A21-B3CE-8658275B0D8A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06-Songs-Queue", "06-Songs-Queue\06-Songs-Queue.csproj", "{1C47F39B-E8CD-4732-8B8C-AC4430940490}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "06-Songs-Queue", "06-Songs-Queue\06-Songs-Queue.csproj", "{1C47F39B-E8CD-4732-8B8C-AC4430940490}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "07-Truck-Tour", "07-Truck-Tour\07-Truck-Tour.csproj", "{6C6DD2FA-65BE-449C-B3C8-BBC4A67FF13D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "07-Truck-Tour", "07-Truck-Tour\07-Truck-Tour.csproj", "{6C6DD2FA-65BE-449C-B3C8-BBC4A67FF13D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo", "Demo\Demo.csproj", "{7ECA1418-12D9-4117-BA48-4E12390C69AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo", "Demo\Demo.csproj", "{7ECA1418-12D9-4117-BA48-4E12390C69AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "08-Balanced-Parenthesis", "08-Balanced-Parenthesis\08-Balanced-Parenthesis.csproj", "{A31419CD-8742-44BA-B125-539E397D7FD6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "08-Balanced-Parenthesis", "08-Balanced-Parenthesis\08-Balanced-Parenthesis.csproj", "{A31419CD-8742-44BA-B125-539E397D7FD6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "09-Simple-Text-Editor", "09-Simple-Text-Editor\09-Simple-Text-Editor.csproj", "{C84BA441-E147-447C-88D7-65637DFA700D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "09-Simple-Text-Editor", "09-Simple-Text-Editor\09-Simple-Text-Editor.csproj", "{C84BA441-E147-447C-88D7-65637DFA700D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "10-Crossroads", "10-Crossroads\10-Crossroads.csproj", "{9FB65C1C-E02F-426B-9758-ED63D3F2ACC7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "11-Key-Revolver", "11-Key-Revolver\11-Key-Revolver.csproj", "{1F845696-5728-485F-8932-4A86F4E1E44B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +73,14 @@ Global
 		{C84BA441-E147-447C-88D7-65637DFA700D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C84BA441-E147-447C-88D7-65637DFA700D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C84BA441-E147-447C-88D7-65637DFA700D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FB65C1C-E02F-426B-9758-ED63D3F2ACC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FB65C1C-E02F-426B-9758-ED63D3F2ACC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FB65C1C-E02F-426B-9758-ED63D3F2ACC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FB65C1C-E02F-426B-9758-ED63D3F2ACC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F845696-5728-485F-8932-4A86F4E1E44B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F845696-5728-485F-8932-4A86F4E1E44B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F845696-5728-485F-8932-4A86F4E1E44B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F845696-5728-485F-8932-4A86F4E1E44B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
