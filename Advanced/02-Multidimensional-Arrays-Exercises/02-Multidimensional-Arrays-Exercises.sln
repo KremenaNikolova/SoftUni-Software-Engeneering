@@ -3,11 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32519.379
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "1-Diagonal-Difference", "1-Diagonal-Difference\1-Diagonal-Difference.csproj", "{CE480E0E-CB1F-40F6-825C-94A7A21844E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "1-Diagonal-Difference", "1-Diagonal-Difference\1-Diagonal-Difference.csproj", "{CE480E0E-CB1F-40F6-825C-94A7A21844E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2-Squares-in-Matrix", "2-Squares-in-Matrix\2-Squares-in-Matrix.csproj", "{6C3ACA03-EA29-415F-92AB-B205772719EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2-Squares-in-Matrix", "2-Squares-in-Matrix\2-Squares-in-Matrix.csproj", "{6C3ACA03-EA29-415F-92AB-B205772719EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3-Maximal-Sum", "3-Maximal-Sum\3-Maximal-Sum.csproj", "{ED3D4483-EE8E-421E-9CA4-A5F17AC474A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "3-Maximal-Sum", "3-Maximal-Sum\3-Maximal-Sum.csproj", "{ED3D4483-EE8E-421E-9CA4-A5F17AC474A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "4-Matrix-Shuffling", "4-Matrix-Shuffling\4-Matrix-Shuffling.csproj", "{88F91F8D-3ECB-4C4A-94C1-2180EF3FD52D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "5.-Snake-Moves", "5.-Snake-Moves\5.-Snake-Moves.csproj", "{36B142D1-AD92-4706-B5FD-38A0062D153E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "6-Jagged-Array-Manipulator", "6-Jagged-Array-Manipulator\6-Jagged-Array-Manipulator.csproj", "{D9690823-50D5-42EE-863D-961B678F7DBD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "7-Knight-Game", "7-Knight-Game\7-Knight-Game.csproj", "{56512C84-4316-42DB-9229-5C45C70566D4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +35,22 @@ Global
 		{ED3D4483-EE8E-421E-9CA4-A5F17AC474A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED3D4483-EE8E-421E-9CA4-A5F17AC474A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED3D4483-EE8E-421E-9CA4-A5F17AC474A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88F91F8D-3ECB-4C4A-94C1-2180EF3FD52D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88F91F8D-3ECB-4C4A-94C1-2180EF3FD52D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88F91F8D-3ECB-4C4A-94C1-2180EF3FD52D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88F91F8D-3ECB-4C4A-94C1-2180EF3FD52D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36B142D1-AD92-4706-B5FD-38A0062D153E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36B142D1-AD92-4706-B5FD-38A0062D153E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36B142D1-AD92-4706-B5FD-38A0062D153E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36B142D1-AD92-4706-B5FD-38A0062D153E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9690823-50D5-42EE-863D-961B678F7DBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9690823-50D5-42EE-863D-961B678F7DBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9690823-50D5-42EE-863D-961B678F7DBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9690823-50D5-42EE-863D-961B678F7DBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56512C84-4316-42DB-9229-5C45C70566D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56512C84-4316-42DB-9229-5C45C70566D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56512C84-4316-42DB-9229-5C45C70566D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56512C84-4316-42DB-9229-5C45C70566D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
