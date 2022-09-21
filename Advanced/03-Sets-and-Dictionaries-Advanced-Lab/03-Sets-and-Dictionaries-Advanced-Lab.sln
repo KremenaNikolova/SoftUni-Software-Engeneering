@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05-Cities-by-Continent-and-
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06-Record-Unique-Names", "06-Record-Unique-Names\06-Record-Unique-Names.csproj", "{617E9774-D732-464B-A330-8C63DA538014}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "07-Parking-Lot", "07-Parking-Lot\07-Parking-Lot.csproj", "{2406747C-B736-4406-9515-6A038E54755C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "08-SoftUni-Party", "08-SoftUni-Party\08-SoftUni-Party.csproj", "{34D88022-BDBE-4D18-9F71-FB524F5BA177}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +49,14 @@ Global
 		{617E9774-D732-464B-A330-8C63DA538014}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{617E9774-D732-464B-A330-8C63DA538014}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{617E9774-D732-464B-A330-8C63DA538014}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2406747C-B736-4406-9515-6A038E54755C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2406747C-B736-4406-9515-6A038E54755C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2406747C-B736-4406-9515-6A038E54755C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2406747C-B736-4406-9515-6A038E54755C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34D88022-BDBE-4D18-9F71-FB524F5BA177}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34D88022-BDBE-4D18-9F71-FB524F5BA177}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34D88022-BDBE-4D18-9F71-FB524F5BA177}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34D88022-BDBE-4D18-9F71-FB524F5BA177}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
