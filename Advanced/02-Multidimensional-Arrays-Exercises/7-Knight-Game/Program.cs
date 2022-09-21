@@ -23,6 +23,11 @@ namespace _7_Knight_Game
                     chessBoard[row, col] = inputChars[col];
                 }
             }
+            if (dimensions<3)
+            {
+                Console.WriteLine('0');
+                return;
+            }
 
             while (true)
             {
@@ -65,7 +70,7 @@ namespace _7_Knight_Game
                     attacksKnights++;
                 }
             }
-            if (row - 2 >= 0 && chessBoard.GetLength(1) < col + 1) //top right side
+            if (row - 2 >= 0 && chessBoard.GetLength(1) > col + 1) //top right side
             {
                 if (chessBoard[row - 2, col + 1] == 'K')
                 {
@@ -79,9 +84,9 @@ namespace _7_Knight_Game
                     attacksKnights++;
                 }
             }
-            if (row - 1 >= 0 && chessBoard.GetLength(1) > col + 2)//horizontal left side down
+            if (row + 1 <chessBoard.GetLength(0) && col - 2 >= 0)//horizontal left side down
             {
-                if (chessBoard[row - 1, col + 2] == 'K')
+                if (chessBoard[row + 1, col - 2] == 'K')
                 {
                     attacksKnights++;
                 }
