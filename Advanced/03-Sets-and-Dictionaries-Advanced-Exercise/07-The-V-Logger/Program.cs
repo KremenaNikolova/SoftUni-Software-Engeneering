@@ -59,26 +59,20 @@ namespace _07_The_V_Logger
             }
             Console.WriteLine($"The V-Logger has a total of {vloggers.Keys.Count} vloggers in its logs.");
 
-            vloggers = vloggers.OrderByDescending(x => x.Value.Count).ToDictionary(x => x.Key, x => x.Value);
-            //Console.WriteLine($"1. {vloggers.Keys.First()} : {vloggers.Keys.First().Count()} followers, {followingCounter[vloggers.Keys.First()]} following");
-            string mostFamousVloger = vloggers.Keys.First();
-            foreach (var vlogger in vloggers) //vloggerKey - string, vlogger.Value - List<string>
+            followingCounter = followingCounter.OrderByDescending(x=>x.Value).ToDictionary(x=>x.Key, x=> x.Value);
+
+            int counter = 1;
+            foreach (var vlogger in vloggers.OrderByDescending(x => x.Value.Count).ThenBy(x => followingCounter[x.Key])) //vloggerKey - string, vlogger.Value - List<string>
             {
-                Console.Write($"1. {vlogger.Key} : {vlogger.Value.Count} followers");
-                foreach (var samePerson in followingCounter) //samePersonKey = string, samePerson.Value = int
+                Console.WriteLine($"{counter++}. {vlogger.Key} : {vlogger.Value.Count} followers, {followingCounter[vlogger.Key]} following");
+                if (counter==2)
                 {
-                    if (vlogger.Key == samePerson.Key) //vlogger.Key - string, samePerson.Key - string
+                    foreach (var person in vlogger.Value.OrderBy(x=>x))
                     {
-                        Console.WriteLine($", {samePerson.Value} following");
+                        Console.WriteLine($"*  {person}");
                     }
                 }
-                if (mostFamousVloger == vlogger.Key)
-                {
-                    foreach (var follower in vlogger.Value) 
-                    {
-                        Console.WriteLine($"*  {follower}");
-                    }
-                }
+
             }
 
 
