@@ -13,6 +13,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace _08_Ranking
 {
@@ -20,7 +21,7 @@ namespace _08_Ranking
     {
         static void Main(string[] args)
         {
-            Dictionary<string, Dictionary<List<string>, int>> personInfomartion = new Dictionary<string, Dictionary<List<string>, int>>(); //username, List<contests>, points
+            Dictionary<string, Dictionary<string, int>> personInfomartion = new Dictionary<string, Dictionary<string, int>>(); //username, contests, points
             Dictionary<string, string> contests = new Dictionary<string, string>(); //contest, paswword
 
             string interview = string.Empty;
@@ -43,11 +44,24 @@ namespace _08_Ranking
                 string username = token[2];
                 int points = int.Parse(token[3]);
 
-                if (!personInfomartion.ContainsKey(username) && contests.ContainsKey(contest))
+                if (contests.ContainsKey(contest) && contests[contest]==password)
                 {
-
+                    if (!personInfomartion.ContainsKey(username))
+                    {
+                        personInfomartion.Add(username, new Dictionary<string, int>());
+                        
+                    }
+                     else if (personInfomartion.ContainsKey(username) && personInfomartion[username].ContainsKey(contest) && personInfomartion[username][contest]<points)
+                    {
+                        personInfomartion[username][contest] = points;
+                    }
+                    else 
+                    {
+                        personInfomartion[username].Add(contest, points);
+                    }
                 }
             }
+            Console.WriteLine($"Best candidate is {personInfomartion.OrderByDescending(x=>x.Value.Values)} with total 1350 points.");
         }
     }
 }
