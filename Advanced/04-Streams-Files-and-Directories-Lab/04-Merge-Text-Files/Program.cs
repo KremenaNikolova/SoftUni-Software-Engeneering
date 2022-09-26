@@ -7,6 +7,9 @@
 //If some of the files have more lines than the other, append at the end of the output the lines, which cannot be matched with the other file.
 
 
+using System.IO;
+using System.Linq;
+
 namespace MergeFiles
 {
     public class MergeFiles
@@ -22,7 +25,30 @@ namespace MergeFiles
 
         public static void MergeTextFiles(string firstInputFilePath, string secondInputFilePath, string outputFilePath)
         {
-            // TODO: write your code here…
+            using (StreamReader firstInput = new StreamReader(firstInputFilePath))
+            {
+                using (StreamReader secondInput = new StreamReader(secondInputFilePath))
+                {
+                    using (StreamWriter output = new StreamWriter(outputFilePath))
+                    {
+                        while (!firstInput.EndOfStream || !secondInput.EndOfStream)
+                        {
+                            if (!firstInput.EndOfStream)
+                            {
+                                string first = firstInput.ReadLine();
+                                output.WriteLine(first);
+                            }
+                            if (!secondInput.EndOfStream)
+                            {
+                                string second = secondInput.ReadLine();
+                                output.WriteLine(second);
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
+
+
