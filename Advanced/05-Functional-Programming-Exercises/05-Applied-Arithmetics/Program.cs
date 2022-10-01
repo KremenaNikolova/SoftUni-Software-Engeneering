@@ -14,41 +14,37 @@ namespace _05_Applied_Arithmetics
 {
     internal class Program
     {
-        static Func<int[], int[]> add =
-                action => action.Select(x => ++x).ToArray();
-        static Func<int[], int[]> subtract =
-            action => action.Select(x => --x).ToArray();
-        static Func<int[], int[]> multiply =
-            action => action.Select(x => x * 2).ToArray();
-        static Action<int[]> print =
-            nums => Console.WriteLine(string.Join(" ", nums));
+
         static void Main(string[] args)
         {
-            int[] input = Console.ReadLine().Split(" ", StringSplitOptions.RemoveEmptyEntries).Select(x=>int.Parse(x)).ToArray();
-            Result(Console.ReadLine(), input);
-            
-        }
+            int[] input = Console.ReadLine().Split(" ", StringSplitOptions.RemoveEmptyEntries).Select(x => int.Parse(x)).ToArray();
+            string command = Console.ReadLine();
 
-        static void Result(string command, int[] input)
-        {
-            switch (command)
+            Func<int[], int[]> add = nums => nums.Select(x => x + 1).ToArray();
+            Func<int[], int[]> multiply = nums => nums.Select(x => x * 2).ToArray();
+            Func<int[], int[]> subtract = nums => nums.Select(x => x - 1).ToArray();
+            Action<int[]> print = nums => Console.WriteLine(string.Join(" ", input));
+
+            while (command != "end")
             {
-                case "add":
-                    input = add(input);
-                    break;
-                case "substract":
-                    input = subtract(input);
-                    break;
-                case "multiply":
-                    input = multiply(input);
-                    break;
-                case "print":
-                    print(input);
-                    break;
-                case "end":
-                    return;
+                switch (command)
+                {
+                    case "add":
+                        input = add(input);
+                        break;
+                    case "subtract":
+                        input = subtract(input);
+                        break;
+                    case "multiply":
+                        input = multiply(input);
+                        break;
+                    case "print":
+                        print(input);
+                        break;
+                }
+                command = Console.ReadLine();
             }
-            Result(Console.ReadLine(), input);
+
         }
 
 
