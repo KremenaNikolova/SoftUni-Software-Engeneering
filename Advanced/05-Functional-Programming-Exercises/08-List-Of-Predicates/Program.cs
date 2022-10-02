@@ -15,25 +15,27 @@ namespace _08_List_Of_Predicates
         {
             int endRange = int.Parse(Console.ReadLine());
             int[] dividers = Console.ReadLine().Split(" ", StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
-            List<int> list = new List<int>();
-            
+            Stack<int> divisibles = new Stack<int>();
+            Action<Stack<int>> print = stack => Console.WriteLine(string.Join(" ", stack.Reverse()));
+
             for (int i = 1; i <= endRange; i++)
             {
-                bool isDivisible = true;
+                Predicate<int> isDivisible = x => i % x == 0;
+                divisibles.Push(i);
                 for (int j = 0; j < dividers.Length; j++)
                 {
-                    if (i % dividers[j]!=0)
+                    if (!isDivisible(dividers[j]))
                     {
-                        isDivisible = false;
+                        divisibles.Pop();
+                        break;
                     }
-                }
-                if (isDivisible)
-                {
-                    list.Add(i);
                 }
             }
 
-            Console.WriteLine(string.Join(" ", list));
+            print(divisibles);
+
         }
+
+
     }
 }
