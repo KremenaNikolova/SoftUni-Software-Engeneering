@@ -3,7 +3,7 @@ using System.Text;
 
 namespace CarManufacturer
 {
-    internal class Car
+    public class Car
     {
         private string make;
         private string model;
@@ -48,7 +48,7 @@ namespace CarManufacturer
             carsInformation.AppendLine($"Year: {this.Year}");
             carsInformation.AppendLine($"HorsePowers: {this.Engine.HorsePower}");
             carsInformation.AppendLine($"FuelQuantity: {this.FuelQuantity}");
-            return carsInformation.ToString();
+            return carsInformation.ToString().TrimEnd();
         }
     }
 

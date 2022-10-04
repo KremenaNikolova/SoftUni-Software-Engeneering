@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace CarManufacturer
 {
-    internal class StartUp
+    public class StartUp
     {
         static void Main(string[] args)
         {
@@ -65,15 +65,6 @@ namespace CarManufacturer
                 && x.Engine.HorsePower > 330
                 && x.Tires.Select(y => y.Pressure).Sum() > 9
                 && x.Tires.Select(y => y.Pressure).Sum() < 10);
-
-            //List<Car> specialCars = carsesList = carsesList
-            //    .Where(car =>
-            //    car.Year >= 2017 &&
-            //    car.Engine.HorsePower > 300 &&
-            //    car.Tires.Sum(x => x.Pressure) >= 9 &&
-            //    car.Tires.Sum(x => x.Pressure) <= 10)
-            //    .ToList();
-
 
             foreach (Car car in specialCars)
             {
