@@ -6,6 +6,8 @@ namespace CustomDoublyLinkedList
     {
         static void Main(string[] args)
         {
+            DoublyLinkedList list = new DoublyLinkedList();
+
         }
     }
 }
