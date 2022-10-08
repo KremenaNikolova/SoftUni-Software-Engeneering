@@ -55,14 +55,92 @@ namespace CustomList_Class
             }
         }
 
-
+        public int RemoveAt(int index) //remove an item on the given index and return the item
+        {
+            if (this.Counter <= index)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+            int removedItem = this.items[index];
+            this.items[index] = default(int);
+            this.ShiftLeft(index);
+            this.Counter--;
+            if (this.items.Length / 4 >= this.Counter)
+            {
+                this.Shrink();
+            }
+            return removedItem;
+        }
         public void Shrink() //help us to decrease the internal collection's length twice.
         {
-
+            int[] copyOfArray = new int[items.Length / 2];
+            for (int i = 0; i < copyOfArray.Length; i++)
+            {
+                copyOfArray[i] = items[i];
+            }
+            this.items = copyOfArray;
         }
-        public void Shift() //help us to rearrange the internal collection's elements after removing one.
+        public void ShiftLeft(int index) //help us to rearrange the internal collection's elements after removing one.
         {
+            for (int i = index; i < this.Counter - 1; i++)
+            {
+                items[i] = items[i + 1];
+            }
+        }
 
+        public void ShiftRight(int index)
+        {
+            for (int i = this.Counter; i > index; i--)
+            {
+                items[i] = items[i - 1];
+            }
+        }
+        public void Insert(int index, int item)
+        {
+            if (index >= this.Counter)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+            if (this.Items.Length == Counter)
+            {
+                this.Resize();
+            }
+            this.ShiftRight(index);
+            this.items[index] = item;
+            this.Counter++;
+        }
+
+        public bool Contains(int item)
+        {
+            for (int i = 0; i < this.Counter; i++)
+            {
+                if (this.items[i] == item)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public void Swap(int firstIndex, int secondIndex)
+        {
+            if (firstIndex < 0 || this.Counter <= secondIndex)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+            int copyOfFirstIndexItem = this.items[firstIndex];
+            int copyOfSecondIndexItem = this.items[secondIndex];
+            this.items[firstIndex] = copyOfSecondIndexItem;
+            this.items[secondIndex] = copyOfFirstIndexItem;
+        }
+
+        public void ForEachPrint(Action<int> action)
+        {
+            for (int i = 0; i < Counter; i++)
+            {
+                int currElement = this.items[i];
+                action(currElement);
+            }
         }
     }
 }
