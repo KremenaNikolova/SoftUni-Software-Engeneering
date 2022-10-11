@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace GenericSwapMethodString
+namespace GenericSwapMethodInteger
 {
     public class Box<T>
     {
