@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32519.379
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Libary", "Library\Libary.csproj", "{75AEFD8D-F246-4EF6-9182-64C31EEA55B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Libary", "Library\Libary.csproj", "{75AEFD8D-F246-4EF6-9182-64C31EEA55B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IteratorsAndComparators", "LibraryIterator\IteratorsAndComparators.csproj", "{89576717-942E-473C-8B44-D57B317F4982}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IteratorsAndComparators", "LibraryIterator\IteratorsAndComparators.csproj", "{89576717-942E-473C-8B44-D57B317F4982}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComparableBook", "ComparableBook\ComparableBook.csproj", "{31BCC12C-35BD-4F8A-8CD6-7E10FDA825D7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookComparator", "BookComparator\BookComparator.csproj", "{DC4B5800-1738-4DE3-8B33-05FD08C2904A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{89576717-942E-473C-8B44-D57B317F4982}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89576717-942E-473C-8B44-D57B317F4982}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89576717-942E-473C-8B44-D57B317F4982}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31BCC12C-35BD-4F8A-8CD6-7E10FDA825D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31BCC12C-35BD-4F8A-8CD6-7E10FDA825D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31BCC12C-35BD-4F8A-8CD6-7E10FDA825D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31BCC12C-35BD-4F8A-8CD6-7E10FDA825D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC4B5800-1738-4DE3-8B33-05FD08C2904A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC4B5800-1738-4DE3-8B33-05FD08C2904A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC4B5800-1738-4DE3-8B33-05FD08C2904A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC4B5800-1738-4DE3-8B33-05FD08C2904A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

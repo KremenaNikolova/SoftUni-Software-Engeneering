@@ -11,6 +11,7 @@ namespace IteratorsAndComparators
         public Library(params Book[] books)
         {
             this.books = new List<Book>(books);
+            this.books.Sort();
         }
         //public List<Book> Books { get; set; }
 
@@ -24,7 +25,7 @@ namespace IteratorsAndComparators
         public class LibraryIterator : IEnumerator<Book>
         {
 
-            private readonly List<Book> books;
+            private List<Book> books;
             private int currentIndex;
 
             public LibraryIterator(IEnumerable<Book> books)
