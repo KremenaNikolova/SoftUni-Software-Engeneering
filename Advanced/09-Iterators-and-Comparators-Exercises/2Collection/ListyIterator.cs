@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
 namespace _1ListyIterator
 {
-    public class ListyIterator<T>
+    public class ListyIterator<T> : IEnumerable<T>
     {
         private List<T> items;
         private int index = 0;
@@ -36,5 +37,23 @@ namespace _1ListyIterator
             }
             Console.WriteLine(items[index]);
         }
+        public void PrintAll()
+        {
+            if (items.Count==0)
+            {
+                throw new InvalidOperationException("Invalid operation!");
+            }
+            Console.WriteLine(string.Join(" ", items));
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            for (int i = 0; i < items.Count; i++)
+            {
+                yield return items[i];
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }

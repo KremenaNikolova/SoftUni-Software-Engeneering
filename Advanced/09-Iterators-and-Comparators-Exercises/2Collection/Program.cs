@@ -8,14 +8,14 @@ namespace _1ListyIterator
     {
         static void Main(string[] args)
         {
-            
+
             List<string> input = Console.ReadLine().Split(" ", StringSplitOptions.RemoveEmptyEntries).Skip(1).ToList();
 
             ListyIterator<string> elements = new ListyIterator<string>(input);
 
             string command = Console.ReadLine();
 
-            while (command!="END")
+            while (command != "END")
             {
                 switch (command)
                 {
@@ -29,6 +29,16 @@ namespace _1ListyIterator
                         try
                         {
                             elements.Print();
+                        }
+                        catch (InvalidOperationException exception)
+                        {
+                            Console.WriteLine(exception.Message);
+                        }
+                        break;
+                    case "PrintAll":
+                        try
+                        {
+                            elements.PrintAll();
                         }
                         catch (InvalidOperationException exception)
                         {

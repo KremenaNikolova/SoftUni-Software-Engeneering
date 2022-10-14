@@ -21,7 +21,7 @@ namespace IteratorsAndComparators
 
         IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
 
-        public class LibraryIterator : IEnumerator<Book>
+        class LibraryIterator : IEnumerator<Book>
         {
 
             private readonly List<Book> books;

@@ -5,7 +5,7 @@ VisualStudioVersion = 17.2.32519.379
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Libary", "Library\Libary.csproj", "{75AEFD8D-F246-4EF6-9182-64C31EEA55B2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IteratorsAndComparators", "LibraryIterator\IteratorsAndComparators.csproj", "{89576717-942E-473C-8B44-D57B317F4982}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryIterator", "LibraryIterator\LibraryIterator.csproj", "{89576717-942E-473C-8B44-D57B317F4982}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComparableBook", "ComparableBook\ComparableBook.csproj", "{31BCC12C-35BD-4F8A-8CD6-7E10FDA825D7}"
 EndProject
