@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3Stack", "3Stack\3Stack.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "4Froggy", "4Froggy\4Froggy.csproj", "{8D5B445E-4FDA-4B77-8776-4D9CB9CF8B17}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "5ComparingObjects", "5ComparingObjects\5ComparingObjects.csproj", "{35C15CD3-5611-4099-B7BC-2DBF09B33B0B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{8D5B445E-4FDA-4B77-8776-4D9CB9CF8B17}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D5B445E-4FDA-4B77-8776-4D9CB9CF8B17}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D5B445E-4FDA-4B77-8776-4D9CB9CF8B17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35C15CD3-5611-4099-B7BC-2DBF09B33B0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35C15CD3-5611-4099-B7BC-2DBF09B33B0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35C15CD3-5611-4099-B7BC-2DBF09B33B0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35C15CD3-5611-4099-B7BC-2DBF09B33B0B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
