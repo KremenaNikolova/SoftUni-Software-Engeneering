@@ -10,113 +10,108 @@ namespace Help_A_Mole
             int matrixSize = int.Parse(Console.ReadLine());
 
             char[,] matrix = new char[matrixSize, matrixSize];
+
+            int rowPosition = 0;
+            int colPosition = 0;
             int points = 0;
 
             for (int row = 0; row < matrixSize; row++)
             {
                 string input = Console.ReadLine();
-                char[] charrs = input.ToCharArray();
                 for (int col = 0; col < matrixSize; col++)
                 {
-                    matrix[row, col] = charrs[col];
+                    matrix[row, col] = input[col];
+                    if (input[col]=='M')
+                    {
+                        rowPosition = row;
+                        colPosition = col;
+                    }
                 }
             }
-            int rowIndex=0;
-            int columnIndex=0;
-            char specialChar = 'M';
+            matrix[rowPosition, colPosition] = '-';
 
-            SpecialSymbolIndex(matrix, rowIndex, columnIndex, specialChar);
 
             string command = Console.ReadLine();
-
-            while (command!="End")
+            while (command !="End" && points<=25)
             {
+                int oldRowPosition = rowPosition;
+                int oldColPosition = colPosition;
                 switch (command)
                 {
                     case "up":
-                        Up(matrix, rowIndex, columnIndex);
+                        rowPosition--;
                         break;
                     case "down":
-                        break;
-                    case "right":
+                        rowPosition++;
                         break;
                     case "left":
+                        colPosition--;
+                        break;
+                    case "right":
+                        colPosition++;
                         break;
                     default:
                         break;
                 }
+                if (rowPosition<0||colPosition<0 || rowPosition>=matrixSize || colPosition>=matrixSize)
+                {
+                    Console.WriteLine("Don't try to escape the playing field!");
+                    rowPosition = oldRowPosition;
+                    colPosition = oldColPosition;
+                }
 
+                else if (matrix[rowPosition,colPosition]=='S')
+                {
+                    matrix[rowPosition, colPosition] = '-';
+                    points -= 3;
+                    for (int row = 0; row < matrixSize; row++)
+                    {
+                        for (int col = 0; col < matrixSize; col++)
+                        {
+                            if (matrix[row, col] == 'S')
+                            {
+                                rowPosition = row;
+                                colPosition = col;
+                                matrix[row, col] = '-';
+                                break; 
+                            }
+                        }
+                    }
+                }
+                else if (char.IsDigit(matrix[rowPosition, colPosition]))
+                {
+                    points +=int.Parse(matrix[rowPosition, colPosition].ToString());
+                    matrix[rowPosition, colPosition] = '-';
+                }
+
+                //if the M is out of matrix print "Don't try to escape the playing field!" and continue with command
+                // if 'M' is at position 'S' remove 3 points and remove all 'S'
                 command = Console.ReadLine();
             }
-            static void SpecialSymbolIndex(char[,] matrix, int rowIndex, int columnIndex, char specialChar)
+            matrix[rowPosition, colPosition] = 'M';
+
+            if (points>=25)
             {
-                for (int row = 0; row < matrix.GetLength(0); row++)
+                Console.WriteLine("Yay! The Mole survived another game!");
+                Console.WriteLine($"The Mole managed to survive with a total of {points} points.");
+            }
+            else
+            {
+                Console.WriteLine("Too bad! The Mole lost this battle!");
+                Console.WriteLine($"The Mole lost the game with a total of {points} points.");
+            }
+            for (int row = 0; row < matrixSize; row++)
+            {
+                for (int col = 0; col < matrixSize; col++)
                 {
-                    for (int cow = 0; cow < matrix.GetLength(1); cow++)
-                    {
-                        if (matrix[row, cow] == specialChar)
-                        {
-                            rowIndex = row;
-                            columnIndex = cow;
-                        }
-                    }
+                    Console.Write(matrix[row,col]);
                 }
+                Console.WriteLine();
             }
 
-            static void Up(char[,] matrix, int rowIndex, int columnIndex)
-            {
-                if (rowIndex-1>=0)
-                {
-                    matrix[rowIndex, columnIndex] = '-';
-                    rowIndex--;
-                    if (matrix[rowIndex, columnIndex]=='S')
-                    {
-                        ReplaceS(matrix);
-                    }
-                    matrix[rowIndex, columnIndex] = 'M';
 
-                }
-            }
-            static void Down(char[,] matrix, int rowIndex, int columnIndex)
-            {
-                if (rowIndex + 1 >= matrix.GetLength(1))
-                {
-                    matrix[rowIndex, columnIndex] = '-';
-                    rowIndex--;
-                    if (matrix[rowIndex, columnIndex] == 'S')
-                    {
-                        ReplaceS(matrix);
-                    }
-                    matrix[rowIndex, columnIndex] = 'M';
-
-                }
-            }
-
-            static void ReplaceS(char[,] matrix)
-            {
-                for (int row = 0; row < matrix.GetLength(0); row++)
-                {
-                    for (int col = 0; col < matrix.GetLength(1); col++)
-                    {
-                        if (matrix[row, col] == 'S')
-                        {
-                            matrix[row, col] = '-';
-                        }
-                    }
-                }
-            }
-
-            static void CheckChar(char[,]matrix, int rowIndex, int columnIndex, int points)
-            {
-                if (char.IsDigit(matrix[rowIndex, columnIndex]))
-                {
-                    points+=(int)matrix[rowIndex, columnIndex];
-                }
-                else if (true)
-                {
-
-                }
-            }
+           
+            
         }
     }
 }
