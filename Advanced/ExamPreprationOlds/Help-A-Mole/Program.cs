@@ -32,7 +32,7 @@ namespace Help_A_Mole
 
 
             string command = Console.ReadLine();
-            while (command !="End" && points<=25)
+            while (command !="End" && points<25)
             {
                 int oldRowPosition = rowPosition;
                 int oldColPosition = colPosition;
