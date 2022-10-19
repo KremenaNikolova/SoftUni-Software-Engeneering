@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32510.428
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32519.379
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01BaristaContest", "BaristaContest\01BaristaContest.csproj", "{A43E3E88-C2DB-4D8A-A105-A71603BCD584}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02WallDestroyer", "WallDestroyer\02WallDestroyer.csproj", "{E9DC110E-CC23-40EE-A18F-4085E5C01D17}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Renovators", "Renovators\Renovators.csproj", "{BDC7F710-E984-4DEC-9998-E8D5FF1E2B88}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MealPlan", "MealPlan\MealPlan.csproj", "{2A46F712-B515-45D8-869E-69425E65F251}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{BDC7F710-E984-4DEC-9998-E8D5FF1E2B88}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BDC7F710-E984-4DEC-9998-E8D5FF1E2B88}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BDC7F710-E984-4DEC-9998-E8D5FF1E2B88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A46F712-B515-45D8-869E-69425E65F251}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A46F712-B515-45D8-869E-69425E65F251}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A46F712-B515-45D8-869E-69425E65F251}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A46F712-B515-45D8-869E-69425E65F251}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
