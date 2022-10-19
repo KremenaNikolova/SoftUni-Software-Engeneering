@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Help-A-Mole", "Help-A-Mole\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Basketball", "BasketBall\Basketball.csproj", "{43790FBC-206B-4180-B59C-58096BCE69FB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TilesMaster", "TilesMaster\TilesMaster.csproj", "{BEE8F857-8912-4858-AFC3-7B097570726E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{43790FBC-206B-4180-B59C-58096BCE69FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43790FBC-206B-4180-B59C-58096BCE69FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43790FBC-206B-4180-B59C-58096BCE69FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEE8F857-8912-4858-AFC3-7B097570726E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEE8F857-8912-4858-AFC3-7B097570726E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEE8F857-8912-4858-AFC3-7B097570726E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEE8F857-8912-4858-AFC3-7B097570726E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
