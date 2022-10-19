@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.2.32519.379
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32510.428
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01BaristaContest", "BaristaContest\01BaristaContest.csproj", "{A43E3E88-C2DB-4D8A-A105-A71603BCD584}"
 EndProject
@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02Help-A-Mole", "Help-A-Mol
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03Basketball", "BasketBall\03Basketball.csproj", "{43790FBC-206B-4180-B59C-58096BCE69FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01TilesMaster", "TilesMaster\01TilesMaster.csproj", "{BEE8F857-8912-4858-AFC3-7B097570726E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01TilesMaster", "TilesMaster\01TilesMaster.csproj", "{BEE8F857-8912-4858-AFC3-7B097570726E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02WallDestroyer", "WallDestroyer\02WallDestroyer.csproj", "{E9DC110E-CC23-40EE-A18F-4085E5C01D17}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02WallDestroyer", "WallDestroyer\02WallDestroyer.csproj", "{E9DC110E-CC23-40EE-A18F-4085E5C01D17}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Renovators", "Renovators\Renovators.csproj", "{BDC7F710-E984-4DEC-9998-E8D5FF1E2B88}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{E9DC110E-CC23-40EE-A18F-4085E5C01D17}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E9DC110E-CC23-40EE-A18F-4085E5C01D17}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E9DC110E-CC23-40EE-A18F-4085E5C01D17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDC7F710-E984-4DEC-9998-E8D5FF1E2B88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDC7F710-E984-4DEC-9998-E8D5FF1E2B88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDC7F710-E984-4DEC-9998-E8D5FF1E2B88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDC7F710-E984-4DEC-9998-E8D5FF1E2B88}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
