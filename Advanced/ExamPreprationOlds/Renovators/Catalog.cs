@@ -84,7 +84,7 @@ namespace Renovators
 
         public string Report() // returns a string with information about the catalog and renovators who are not hired in the following format:
         {
-            return $"Renovators available for Project {Project}" + Environment.NewLine + string.Join(Environment.NewLine, renovators.Where(r=>!r.Hired)).Trim();
+            return $"Renovators available for Project {Project}:" + Environment.NewLine + string.Join(Environment.NewLine, renovators.Where(r=>!r.Hired)).Trim();
             //"Renovators available for Project {project}:
             //{Renovator1}
             //{Renovator2}
