@@ -17,7 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03Renovators", "Renovators\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01MealPlan", "MealPlan\01MealPlan.csproj", "{2A46F712-B515-45D8-869E-69425E65F251}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TruffleHunter", "TruffleHunter\TruffleHunter.csproj", "{71BD5CF7-F27B-45CF-BD2A-457E3D5C1B74}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02TruffleHunter", "TruffleHunter\02TruffleHunter.csproj", "{71BD5CF7-F27B-45CF-BD2A-457E3D5C1B74}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zoo", "Zoo\Zoo.csproj", "{1BF264E8-628E-4A40-9B4F-7D473C14764A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{71BD5CF7-F27B-45CF-BD2A-457E3D5C1B74}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71BD5CF7-F27B-45CF-BD2A-457E3D5C1B74}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71BD5CF7-F27B-45CF-BD2A-457E3D5C1B74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BF264E8-628E-4A40-9B4F-7D473C14764A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BF264E8-628E-4A40-9B4F-7D473C14764A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BF264E8-628E-4A40-9B4F-7D473C14764A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BF264E8-628E-4A40-9B4F-7D473C14764A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
