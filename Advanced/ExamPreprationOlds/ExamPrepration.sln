@@ -21,7 +21,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02TruffleHunter", "TruffleH
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03Zoo", "Zoo\03Zoo.csproj", "{1BF264E8-628E-4A40-9B4F-7D473C14764A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BakeryShop", "BakeryShop\BakeryShop.csproj", "{8C882B04-9AA4-45D1-8970-3984F74D0709}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01BakeryShop", "BakeryShop\01BakeryShop.csproj", "{8C882B04-9AA4-45D1-8970-3984F74D0709}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeaverAtWork", "BeaverAtWork\BeaverAtWork.csproj", "{8F9048AA-60C8-4404-A11A-22A42FAC723C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FishingNet", "FishingNet\FishingNet.csproj", "{CEDD5207-7E52-4980-9533-4FCD9C72EE83}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +73,14 @@ Global
 		{8C882B04-9AA4-45D1-8970-3984F74D0709}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C882B04-9AA4-45D1-8970-3984F74D0709}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C882B04-9AA4-45D1-8970-3984F74D0709}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F9048AA-60C8-4404-A11A-22A42FAC723C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F9048AA-60C8-4404-A11A-22A42FAC723C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F9048AA-60C8-4404-A11A-22A42FAC723C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F9048AA-60C8-4404-A11A-22A42FAC723C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEDD5207-7E52-4980-9533-4FCD9C72EE83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEDD5207-7E52-4980-9533-4FCD9C72EE83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEDD5207-7E52-4980-9533-4FCD9C72EE83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEDD5207-7E52-4980-9533-4FCD9C72EE83}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
