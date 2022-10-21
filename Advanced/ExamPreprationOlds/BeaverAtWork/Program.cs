@@ -14,32 +14,28 @@ namespace BeaverAtWork
             int colPosition = 0;
             int branchesCount = 0;
             Stack<char> collectedBranch = new Stack<char>();
-            int collectedFish = 0;
 
             for (int row = 0; row < size; row++)
             {
                 char[] input = Console.ReadLine().Split(" ", StringSplitOptions.RemoveEmptyEntries).Select(char.Parse).ToArray();
                 for (int col = 0; col < size; col++)
                 {
-                    pond[row,col]=input[col];
-                    if (pond[row,col]=='B')
+                    pond[row, col] = input[col];
+                    if (pond[row, col] == 'B')
                     {
                         rowPosition = row;
                         colPosition = col;
                     }
-                    if (char.IsLetter(pond[row,col]) && char.IsLower(pond[row,col]))
+                    if (char.IsLetter(pond[row, col]) && char.IsLower(pond[row, col]))
                     {
                         branchesCount++;
                     }
                 }
             }
+            pond[rowPosition, colPosition] = '-';
 
-            string command = Console.ReadLine();    //- F e -
-                                                    //- B F y
-                                                    //- - - q
-                                                    //- - z x
-
-            while (command!="end")
+            string command = Console.ReadLine();
+            while (command != "end" && branchesCount>0)
             {
                 switch (command)
                 {
@@ -48,44 +44,50 @@ namespace BeaverAtWork
                         if (!isValidPosition(rowPosition, colPosition, pond))
                         {
                             rowPosition++;
-                            if (collectedBranch.Count>0)
+                            if (collectedBranch.Count > 0)
                             {
                                 collectedBranch.Pop();
                             }
                         }
-                        else if (char.IsLetter(pond[rowPosition, colPosition]) && char.IsLower(pond[rowPosition, colPosition]))
-                        {
-                            branchesCount--;
-                            collectedBranch.Push(pond[rowPosition,colPosition]);
-                            pond[rowPosition, colPosition] = '-';
-
-                        }
                         else if (pond[rowPosition, colPosition] == 'F')
                         {
-                            collectedFish++;
                             pond[rowPosition, colPosition] = '-';
-                            rowPosition = 0;
-
-                            if (pond[rowPosition,colPosition]=='F')
+                            if (rowPosition != 0)
                             {
-                                collectedFish++;
-                                pond[rowPosition, colPosition] = '-';
-                                rowPosition = pond.GetLength(0)-1;
-                                if (char.IsLetter(pond[rowPosition, colPosition]) && char.IsLower(pond[rowPosition, colPosition]))
+                                rowPosition = 0;
+                                if (pond[rowPosition, colPosition] == 'F')
                                 {
-                                    branchesCount--;
-                                    collectedBranch.Push(pond[rowPosition,colPosition]);
+                                    pond[rowPosition, colPosition] = '-';
+                                    rowPosition = pond.GetLength(0)-1;
+                                    if (pond[rowPosition, colPosition] == 'F')
+                                    {
+                                        pond[rowPosition, colPosition] = '-';
+                                        rowPosition = 0;
+                                    }
                                     pond[rowPosition, colPosition] = '-';
                                 }
-                                pond[rowPosition, colPosition] = '-';
+                                else
+                                {
+                                    MoveOnBranch(rowPosition, colPosition, pond, ref collectedBranch, ref branchesCount);
+                                }
                             }
-                            else if (char.IsLetter(pond[rowPosition, colPosition]) && char.IsLower(pond[rowPosition, colPosition]))
+                            else
                             {
-                                branchesCount--;
-                                collectedBranch.Push(pond[rowPosition, colPosition]);
-                                pond[rowPosition, colPosition] = '-';
-
+                                rowPosition = pond.GetLength(0)-1;
+                                if (pond[rowPosition, colPosition] == 'F')
+                                {
+                                    pond[rowPosition, colPosition] = '-';
+                                    rowPosition = 0;
+                                }
+                                else
+                                {
+                                    MoveOnBranch(rowPosition, colPosition, pond, ref collectedBranch, ref branchesCount);
+                                }
                             }
+                        }
+                        else
+                        {
+                            MoveOnBranch(rowPosition, colPosition, pond, ref collectedBranch, ref branchesCount);
                         }
                         break;
                     case "down":
@@ -98,39 +100,44 @@ namespace BeaverAtWork
                                 collectedBranch.Pop();
                             }
                         }
-                        else if (char.IsLetter(pond[rowPosition, colPosition]) && char.IsLower(pond[rowPosition, colPosition]))
-                        {
-                            branchesCount--;
-                            collectedBranch.Push(pond[rowPosition, colPosition]);
-                            pond[rowPosition, colPosition] = '-';
-
-                        }
                         else if (pond[rowPosition, colPosition] == 'F')
                         {
-                            collectedFish++;
                             pond[rowPosition, colPosition] = '-';
-                            rowPosition = pond.GetLength(0) - 1;
-
-                            if (pond[rowPosition, colPosition] == 'F')
+                            if (rowPosition != pond.GetLength(0)-1)
                             {
-                                collectedFish++;
-                                pond[rowPosition, colPosition] = '-';
-                                rowPosition = 0;
-                                if (char.IsLetter(pond[rowPosition, colPosition]) && char.IsLower(pond[rowPosition, colPosition]))
+                                rowPosition = pond.GetLength(0)-1;
+                                if (pond[rowPosition, colPosition] == 'F')
                                 {
-                                    branchesCount--;
-                                    collectedBranch.Push(pond[rowPosition, colPosition]);
                                     pond[rowPosition, colPosition] = '-';
+                                    rowPosition = 0;
+                                    if (pond[rowPosition, colPosition] == 'F')
+                                    {
+                                        pond[rowPosition, colPosition] = '-';
+                                        rowPosition = pond.GetLength(0)-1;
+                                    }
                                 }
-                                pond[rowPosition, colPosition] = '-';
+                                else
+                                {
+                                    MoveOnBranch(rowPosition, colPosition, pond, ref collectedBranch, ref branchesCount);
+                                }
                             }
-                            else if (char.IsLetter(pond[rowPosition, colPosition]) && char.IsLower(pond[rowPosition, colPosition]))
+                            else
                             {
-                                branchesCount--;
-                                collectedBranch.Push(pond[rowPosition, colPosition]);
-                                pond[rowPosition, colPosition] = '-';
-
+                                rowPosition = 0;
+                                if (pond[rowPosition, colPosition] == 'F')
+                                {
+                                    pond[rowPosition, colPosition] = '-';
+                                    rowPosition = pond.GetLength(0)-1;
+                                }
+                                else
+                                {
+                                    MoveOnBranch(rowPosition, colPosition, pond, ref collectedBranch, ref branchesCount);
+                                }
                             }
+                        }
+                        else
+                        {
+                            MoveOnBranch(rowPosition, colPosition, pond, ref collectedBranch, ref branchesCount);
                         }
                         break;
                     case "left":
@@ -143,39 +150,44 @@ namespace BeaverAtWork
                                 collectedBranch.Pop();
                             }
                         }
-                        else if (char.IsLetter(pond[rowPosition, colPosition]) && char.IsLower(pond[rowPosition, colPosition]))
-                        {
-                            branchesCount--;
-                            collectedBranch.Push(pond[rowPosition, colPosition]);
-                            pond[rowPosition, colPosition] = '-';
-
-                        }
                         else if (pond[rowPosition, colPosition] == 'F')
                         {
-                            collectedFish++;
                             pond[rowPosition, colPosition] = '-';
-                            colPosition = 0;
-
-                            if (pond[rowPosition, colPosition] == 'F')
+                            if (colPosition != 0)
                             {
-                                collectedFish++;
-                                pond[rowPosition, colPosition] = '-';
-                                colPosition = pond.GetLength(1)-1;
-                                if (char.IsLetter(pond[rowPosition, colPosition]) && char.IsLower(pond[rowPosition, colPosition]))
+                                colPosition = 0;
+                                if (pond[rowPosition, colPosition] == 'F')
                                 {
-                                    branchesCount--;
-                                    collectedBranch.Push(pond[rowPosition, colPosition]);
                                     pond[rowPosition, colPosition] = '-';
+                                    colPosition = pond.GetLength(1)-1;
+                                    if (pond[rowPosition, colPosition] == 'F')
+                                    {
+                                        pond[rowPosition, colPosition] = '-';
+                                        colPosition = 0;
+                                    }
                                 }
-                                pond[rowPosition, colPosition] = '-';
+                                else
+                                {
+                                    MoveOnBranch(rowPosition, colPosition, pond, ref collectedBranch, ref branchesCount);
+                                }
                             }
-                            else if (char.IsLetter(pond[rowPosition, colPosition]) && char.IsLower(pond[rowPosition, colPosition]))
+                            else
                             {
-                                branchesCount--;
-                                collectedBranch.Push(pond[rowPosition, colPosition]);
-                                pond[rowPosition, colPosition] = '-';
-
+                                colPosition = pond.GetLength(1)-1;
+                                if (pond[rowPosition, colPosition] == 'F')
+                                {
+                                    pond[rowPosition, colPosition] = '-';
+                                    colPosition = 0;
+                                }
+                                else
+                                {
+                                    MoveOnBranch(rowPosition, colPosition, pond, ref collectedBranch, ref branchesCount);
+                                }
                             }
+                        }
+                        else
+                        {
+                            MoveOnBranch(rowPosition, colPosition, pond, ref collectedBranch, ref branchesCount);
                         }
                         break;
                     case "right":
@@ -188,66 +200,72 @@ namespace BeaverAtWork
                                 collectedBranch.Pop();
                             }
                         }
-                        else if (char.IsLetter(pond[rowPosition, colPosition]) && char.IsLower(pond[rowPosition, colPosition]))
-                        {
-                            branchesCount--;
-                            collectedBranch.Push(pond[rowPosition, colPosition]);
-                            pond[rowPosition, colPosition] = '-';
-
-                        }
                         else if (pond[rowPosition, colPosition] == 'F')
                         {
-                            collectedFish++;
                             pond[rowPosition, colPosition] = '-';
-                            colPosition = pond.GetLength(1)-1;
-
-                            if (pond[rowPosition, colPosition] == 'F')
+                            if (colPosition != pond.GetLength(1)-1)
                             {
-                                collectedFish++;
-                                pond[rowPosition, colPosition] = '-';
-                                colPosition = 0;
-                                if (char.IsLetter(pond[rowPosition, colPosition]) && char.IsLower(pond[rowPosition, colPosition]))
+                                colPosition = pond.GetLength(1)-1;
+                                if (pond[rowPosition, colPosition] == 'F')
                                 {
-                                    branchesCount--;
-                                    collectedBranch.Push(pond[rowPosition, colPosition]);
+                                    pond[rowPosition, colPosition] = '-';
+                                    colPosition = 0;
+                                    if (pond[rowPosition, colPosition] == 'F')
+                                    {
+                                        pond[rowPosition, colPosition] = '-';
+                                        colPosition++;
+                                        colPosition = pond.GetLength(1)-1;
+                                    }
                                     pond[rowPosition, colPosition] = '-';
                                 }
-                                pond[rowPosition, colPosition] = '-';
+                                else
+                                {
+                                    MoveOnBranch(rowPosition, colPosition, pond, ref collectedBranch, ref branchesCount);
+                                }
                             }
-                            else if (char.IsLetter(pond[rowPosition, colPosition]) && char.IsLower(pond[rowPosition, colPosition]))
+                            else
                             {
-                                branchesCount--;
-                                collectedBranch.Push(pond[rowPosition, colPosition]);
-                                pond[rowPosition, colPosition] = '-';
-
+                                colPosition = 0;
+                                if (pond[rowPosition, colPosition] == 'F')
+                                {
+                                    pond[rowPosition, colPosition] = '-';
+                                    colPosition = pond.GetLength(1)-1;
+                                }
+                                else
+                                {
+                                    MoveOnBranch(rowPosition, colPosition, pond, ref collectedBranch, ref branchesCount);
+                                }
                             }
+                        }
+                        else
+                        {
+                            MoveOnBranch(rowPosition, colPosition, pond, ref collectedBranch, ref branchesCount);
                         }
                         break;
                 }
-
                 command = Console.ReadLine();
             }
-            pond[rowPosition, collectedFish] = 'B';
+
             if (branchesCount==0)
             {
-                Console.WriteLine($"The Beaver successfully collect {collectedBranch.Count} wood branches: {string.Join(", ", collectedBranch.Reverse())}");
+                Console.WriteLine($"The Beaver successfully collect {collectedBranch.Count} wood branches: {string.Join(", ",collectedBranch.Reverse())}.");
             }
             else
             {
                 Console.WriteLine($"The Beaver failed to collect every wood branch. There are {branchesCount} branches left.");
             }
 
+            pond[rowPosition, colPosition] = 'B';
 
             for (int row = 0; row < size; row++)
             {
                 for (int col = 0; col < size; col++)
                 {
-                    Console.Write(pond[rowPosition,col]+" ");
+                    Console.Write(pond[row,col] + " ");
                 }
                 Console.WriteLine();
             }
 
-            
 
         }
         static bool isValidPosition(int rowPosition, int colPosition, char[,] pond)
@@ -257,5 +275,17 @@ namespace BeaverAtWork
                 && colPosition >= 0
                 && colPosition < pond.GetLength(1);
         }
+
+        static void MoveOnBranch(int rowPosition, int colPosition, char[,] pond, ref Stack<char> branches, ref int branchesCount)
+        {
+            if (char.IsLetter(pond[rowPosition, colPosition]) && char.IsLower(pond[rowPosition, colPosition]))
+            {
+                branches.Push(pond[rowPosition, colPosition]);
+                pond[rowPosition, colPosition] = '-';
+                branchesCount--;
+            }
+        }
+
+
     }
 }

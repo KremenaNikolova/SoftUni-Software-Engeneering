@@ -43,21 +43,21 @@ namespace FishingNet
         }
         public bool ReleaseFish(double weight) // removes a fish by given weight, if such exists return true, otherwise false.
         {
-            return fish.Remove(fish.First(x => x.Weight == weight));
+            return fish.Remove(fish.Find(x => x.Weight == weight));
         }
 
         public Fish GetFish(string fishType) // search and returns a fish by given fish type.
         {
             return fish.FirstOrDefault(x=>x.FishType==fishType);
         }
-        public Fish GetBiggestFish()// search and returns the longest fish in the collection.{
+        public Fish GetBiggestFish()// search and returns the longest fish in the collection.
         {
-            return fish.OrderByDescending(x=>x.Weight).First();
+            return fish.OrderByDescending(x=>x.Length).First();
         }
         public string Report() // returns information about the Net and all fish that were not released, order by fish's length descending  in the following format:	
         {
             var orderedFishes = fish.OrderByDescending(x => x.Length);
-            return $"Into the {Material}:{Environment.NewLine}{string.Join(Environment.NewLine, orderedFishes)}.";
+            return $"Into the {Material}:{Environment.NewLine}{string.Join(Environment.NewLine, orderedFishes)}";
             
         }
     }
