@@ -49,7 +49,9 @@ namespace PawnWars
                     Console.WriteLine($"Game over! White capture on {(char)(97 + whiteColumnPosition)}{whiteRowPosition}.");
                     return;
                 }
+                chessBorad[whiteRowPosition, whiteColumnPosition] = '-';
                 whiteRowPosition--;
+                chessBorad[whiteRowPosition, whiteColumnPosition] = 'w';
                 if (whiteRowPosition == 0)
                 {
                     Console.WriteLine($"Game over! White pawn is promoted to a queen at {(char)(97 + whiteColumnPosition)}8.");
@@ -59,17 +61,17 @@ namespace PawnWars
                 {
                     if ((isValidPosition(blackRowPoisiton+1,blackColumnPoisiton-1,chessBorad) && chessBorad[blackRowPoisiton + 1, blackColumnPoisiton - 1] == 'w') || (isValidPosition(blackRowPoisiton + 1, blackColumnPoisiton + 1, chessBorad) && chessBorad[blackRowPoisiton + 1, blackColumnPoisiton + 1] == 'w'))
                     {
-                        //chessBorad[blackRowPoisiton, blackColumnPoisiton] = '-';
                         blackRowPoisiton = whiteRowPosition;
                         blackColumnPoisiton = whiteColumnPosition;
-                        //chessBorad[blackRowPoisiton, blackColumnPoisiton] = 'b';
                         Console.WriteLine($"Game over! Black capture on {(char)(97 + blackColumnPoisiton)}{8 - blackRowPoisiton}.");
                         return;
                     }
+                    chessBorad[blackRowPoisiton, blackColumnPoisiton] = '-';
                     blackRowPoisiton++;
-                    if (blackRowPoisiton == 0)
+                    chessBorad[blackRowPoisiton, blackColumnPoisiton] = 'b';
+                    if (blackRowPoisiton == 7)
                     {
-                        Console.WriteLine($"Game over! Black pawn is promoted to a queen at {(char)(97 + blackColumnPoisiton)}0.");
+                        Console.WriteLine($"Game over! Black pawn is promoted to a queen at {(char)(97 + blackColumnPoisiton)}1.");
                         return;
                     }
                 }
