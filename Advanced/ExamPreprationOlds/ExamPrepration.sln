@@ -31,7 +31,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01Blacksmith", "Blacksmith\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02Armory", "Armory\02Armory.csproj", "{1ABB0315-E579-479A-A1DF-B8567EE6423F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drones", "Drones\Drones.csproj", "{2C65EF82-88A5-48CD-B4E0-157E3B747F76}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03Drones", "Drones\03Drones.csproj", "{2C65EF82-88A5-48CD-B4E0-157E3B747F76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodFinder", "FoodFinder\FoodFinder.csproj", "{08263D4E-45F9-4A36-B0D2-956A1C0AE2AB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -99,6 +101,10 @@ Global
 		{2C65EF82-88A5-48CD-B4E0-157E3B747F76}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C65EF82-88A5-48CD-B4E0-157E3B747F76}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C65EF82-88A5-48CD-B4E0-157E3B747F76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08263D4E-45F9-4A36-B0D2-956A1C0AE2AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08263D4E-45F9-4A36-B0D2-956A1C0AE2AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08263D4E-45F9-4A36-B0D2-956A1C0AE2AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08263D4E-45F9-4A36-B0D2-956A1C0AE2AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
