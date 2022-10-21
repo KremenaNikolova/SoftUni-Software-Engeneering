@@ -45,18 +45,18 @@ namespace StockMarket
         {
             //If the company does not exist return: "{companyName} does not exist."
             
-            if (!Portfolio.Any(x=>x.CompanyName==companyName))
+            if (!this.Portfolio.Any(x=>x.CompanyName==companyName))
             {
                 return $"{companyName} does not exist.";
             }
             //If the selling price is smaller than the price per share return: "Cannot sell {companyName}."
-            Stock stock = Portfolio.First(x => x.CompanyName == companyName);
+            Stock stock = this.Portfolio.First(x => x.CompanyName == companyName);
             if (stock.PricePerShare>sellPrice)
             {
-                return $"Cannot sell{companyName}.";
+                return $"Cannot sell {companyName}.";
             }
             //Upon successful sell, you should remove the company from the portfolio, increase Money to Invest with the selling price, and return: "{companyName} was sold."
-            Portfolio.Remove(stock);
+            this.Portfolio.Remove(stock);
             MoneyToInvest += sellPrice;
             return $"{companyName} was sold.";
         }

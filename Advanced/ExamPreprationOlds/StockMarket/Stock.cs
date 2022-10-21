@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System;
 
 namespace StockMarket
 {
@@ -26,14 +27,10 @@ namespace StockMarket
 
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
-
-            sb.AppendLine($"Company: {CompanyName}");
-            sb.AppendLine($"Director: {Director}");
-            sb.AppendLine($"Price per share: ${PricePerShare}");
-            sb.Append($"Market capitalization: ${MarketCapitalization}");
-
-            return sb.ToString().TrimEnd();
+            return $"Company: {this.CompanyName}" + Environment.NewLine +
+               $"Director: {this.Director}" + Environment.NewLine +
+               $"Price per share: ${this.PricePerShare}" + Environment.NewLine +
+               $"Market capitalization: ${this.MarketCapitalization}";
         }
 
 
