@@ -37,7 +37,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01FoodFinder", "FoodFinder\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02PawnWars", "PawnWars\02PawnWars.csproj", "{38EC5C27-05B7-400E-BE26-56F3279AD1BF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockMarket", "StockMarket\StockMarket.csproj", "{A77723F9-E6B1-46CC-BF6A-1AD04E086F88}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03StockMarket", "StockMarket\03StockMarket.csproj", "{A77723F9-E6B1-46CC-BF6A-1AD04E086F88}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
