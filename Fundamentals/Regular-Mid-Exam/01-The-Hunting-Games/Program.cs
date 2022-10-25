@@ -6,55 +6,55 @@ namespace _01_The_Hunting_Games
     {
         static void Main(string[] args)
         {
-            int daysOfTheAdventure = int.Parse(Console.ReadLine());
-            int countOfThePlayers = int.Parse(Console.ReadLine());
-            double groupsEnergy = double.Parse(Console.ReadLine());
-            double waterPerDayForOnePerson = double.Parse(Console.ReadLine());
-            double foodPerDayForOnePerson = double.Parse(Console.ReadLine());
+            int days = int.Parse(Console.ReadLine());
+            int players  = int.Parse(Console.ReadLine());
+            double totalEnergy = double.Parse(Console.ReadLine());
+            double food = double.Parse(Console.ReadLine());
+            double water = double.Parse(Console.ReadLine());
 
-            double totalWater = daysOfTheAdventure * countOfThePlayers * waterPerDayForOnePerson;
-            double totalFood = daysOfTheAdventure * countOfThePlayers * foodPerDayForOnePerson;
+            double totalWater = days * players  * food;
+            double totalFood = days * players  * water;
 
             double loseEnergy = 0;
 
-            int countWaterDays = 0;
-            int countFoodDays = 0;
+            int waterDay = 0;
+            int foodDay = 0;
 
-            for (int i = 1; i <= daysOfTheAdventure; i++)
+            for (int i = 1; i <= days; i++)
             {
                 loseEnergy = double.Parse(Console.ReadLine());
-                groupsEnergy = groupsEnergy - loseEnergy;
+                totalEnergy = totalEnergy - loseEnergy;
 
-                if (groupsEnergy <= 0.0)
+                if (totalEnergy <= 0.0)
                 {
                     break;
                 }
-                countWaterDays++;
-                countFoodDays++;
+                waterDay++;
+                foodDay++;
 
-                if (countWaterDays == 2)
+                if (waterDay == 2)
                 {
-                    groupsEnergy = groupsEnergy + (groupsEnergy * 0.05);
+                    totalEnergy = totalEnergy + (totalEnergy * 0.05);
                     totalWater = totalWater - (totalWater * 0.3);
-                    countWaterDays = 0;
+                    waterDay = 0;
                 }
 
 
-                if (countFoodDays == 3)
+                if (foodDay == 3)
                 {
-                    totalFood = totalFood - (totalFood / countOfThePlayers);
-                    groupsEnergy = groupsEnergy + (groupsEnergy * 0.1);
-                    countFoodDays = 0;
+                    totalFood = totalFood - (totalFood / players );
+                    totalEnergy = totalEnergy + (totalEnergy * 0.1);
+                    foodDay = 0;
                 }
 
             }
-            if (groupsEnergy <= 0)
+            if (totalEnergy <= 0)
             {
                 Console.WriteLine($"You will run out of energy. You will be left with {totalFood:f2} food and {totalWater:f2} water.");
             }
             else
             {
-                Console.WriteLine($"You are ready for the quest. You will be left with - {groupsEnergy:f2} energy!");
+                Console.WriteLine($"You are ready for the quest. You will be left with - {totalEnergy:f2} energy!");
             }
 
         }
