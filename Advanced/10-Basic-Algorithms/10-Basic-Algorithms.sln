@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01-Recursive-Array-Sum", "0
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02-Recursive-Factorial", "02-Recursive-Factorial\02-Recursive-Factorial.csproj", "{8BDAD782-6854-410D-B8B4-57C34A3BB71A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03-Sum-of-Coins", "03-Sum-of-Coins\03-Sum-of-Coins.csproj", "{82E5597E-8C5D-4293-A754-BAF5833B93E0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{8BDAD782-6854-410D-B8B4-57C34A3BB71A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8BDAD782-6854-410D-B8B4-57C34A3BB71A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8BDAD782-6854-410D-B8B4-57C34A3BB71A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82E5597E-8C5D-4293-A754-BAF5833B93E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82E5597E-8C5D-4293-A754-BAF5833B93E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82E5597E-8C5D-4293-A754-BAF5833B93E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82E5597E-8C5D-4293-A754-BAF5833B93E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
