@@ -4,7 +4,7 @@
     {
         public static void Main(string[] args)
         {
-
+            Snake snake = new Snake("Melsandre");
         }
     }
 }
