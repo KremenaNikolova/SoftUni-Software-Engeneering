@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace Animals
@@ -7,7 +8,7 @@ namespace Animals
     {
         public static void Main(string[] args)
         {
-            StringBuilder print = new StringBuilder();
+            List<Animal> list = new List<Animal>();
             string typeOfAnimal = string.Empty;
             while ((typeOfAnimal = Console.ReadLine()) != "Beast!")
             {
@@ -17,51 +18,39 @@ namespace Animals
                 int age = int.Parse(tokens[1]);
                 string gender = string.Empty;
                 if (tokens.Length>2) gender = tokens[2];
-                if (age<0 || string.IsNullOrEmpty(name) || (gender!="Female" && gender!="Male"))
-                {
-                    Console.WriteLine("Invalid input!");
-                    continue;
-                }
-                if (typeOfAnimal == "Kitten")
-                {
-                    gender = "Female";
-                }
-                else if (typeOfAnimal == "Tomcat")
-                {
-                    gender = "Male";
-                }
-                print.AppendLine($"{typeOfAnimal}");
-                print.AppendLine($"{name} {age} {gender}");
 
+                Animal animal = new Animal(name, age, gender);
                 if (typeOfAnimal == "Dog")
                 {
-                    Dog dog = new Dog(name, age, gender);
-                    print.AppendLine($"{dog.ProduceSound()}");
+                    animal = new Dog(name, age, gender);
                 }
                 else if (typeOfAnimal == "Cat")
                 {
-                    Cat cat = new Cat(name, age, gender);
-                    print.AppendLine($"{cat.ProduceSound()}");
+                    animal = new Cat(name, age, gender);
                 }
                 else if (typeOfAnimal == "Frog")
                 {
-                    Frog frog = new Frog(name, age, gender);
-                    print.AppendLine($"{frog.ProduceSound()}");
+                    animal = new Frog(name, age, gender);
                 }
                 else if (typeOfAnimal == "Kitten")
                 {
-                    Kitten kittens = new Kitten(name, age, gender);
-                    print.AppendLine($"{kittens.ProduceSound()}");
+                    animal = new Kitten(name, age);
                 }
                 else if (typeOfAnimal == "Tomcat")
                 {
-                    Tomcat tomcat = new Tomcat(name, age,gender);
-                    print.AppendLine($"{tomcat.ProduceSound()}");
+                    animal = new Tomcat(name, age);
                 }
-                
+                else
+                {
+                    throw new ArgumentException("Invalid input!");
+                }
+                list.Add(animal);
             }
-            Console.WriteLine(print);
-            
+
+            foreach (var animal in list)
+            {
+                Console.WriteLine(animal);
+            }
         }
     }
 }

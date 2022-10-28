@@ -15,12 +15,44 @@ namespace Animals
             Age = age;
             Gender = gender;
         }
+        
 
-        public string Name { get; set; }
-        public int Age { get; set; }
-        public string Gender { get; set; }
+        public string Name
+        {
+            get { return name; }
+            private set
+            {
+                if (string.IsNullOrEmpty(value)) throw new ArgumentException("Invalid input!");
+                name = value;
+            }
+        }
+        public int Age
+        {
+            get { return age; }
+            private set
+            {
+                if (value <= 0) throw new ArgumentException("Invalid input!");
+                age = value;
+            }
+        }
+        public string Gender
+        {
+            get { return gender; }
+            private set
+            {
+                if (string.IsNullOrEmpty(value)) throw new ArgumentException("Invalid input!");
+                gender = value;
+            }
+        }
 
-        public virtual string ProduceSound() => "sounds";
+        public virtual string ProduceSound() => null;
+
+        public override string ToString()
+        {
+            return $"{GetType().Name}" + Environment.NewLine
+                + $"{Name} {Age} {Gender}" + Environment.NewLine
+                + ProduceSound();
+        }
 
     }
 }
