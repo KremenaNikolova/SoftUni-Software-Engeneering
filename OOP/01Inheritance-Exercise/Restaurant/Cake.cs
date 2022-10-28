@@ -4,16 +4,14 @@ using System.Text;
 
 namespace Restaurant
 {
-    internal class Cake:Dessert
+    public class Cake:Dessert
     {
-        public Cake(string name, decimal price, double grams, double calories, decimal cakePrice) : base(name, price, grams, calories)
+        private const decimal CAKE_PRICE = 5;
+        private const double GRAMS = 250;
+        private const double CALORIES = 1000;
+        public Cake(string name) : base(name, CAKE_PRICE, GRAMS, CALORIES)
         {
-            Price = cakePrice;
-            Grams = 250;
-            Calories = 1000;
-            CakePrice = 5M;
         }
-        public decimal CakePrice { get; set; }
 
     }
 }

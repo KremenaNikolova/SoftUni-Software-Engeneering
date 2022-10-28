@@ -6,15 +6,12 @@ namespace Restaurant
 {
     public class Coffee:HotBeverage
     {
-        public Coffee(string name, decimal price, double milliliters, double coffeeMilliliters, decimal coffeePrice, double caffeine):base(name, price, milliliters)
+        private const double COFFEE_MILLILITERS = 50;
+        private const decimal COFFEE_PRICE = 3.50m;
+        public Coffee(string name, double caffeine):base(name, COFFEE_PRICE, COFFEE_MILLILITERS)
         {
-            CoffeeMilliliters = 50;
-            CoffeePrice = 3.50M;
             Caffeine = caffeine;
-
         }
-        public double CoffeeMilliliters { get; set; }
-        public decimal CoffeePrice { get; set; }
         public double Caffeine { get; set; }
     }
 }
