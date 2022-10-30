@@ -22,11 +22,14 @@ namespace PersonsInfo
         public void IncreaseSalary(decimal percentage)
         {
             //Read the percentage of the bonus to every Person's salary. People younger than 30 get half the increase. 
-            if (Age<30)
+            if (Age < 30)
             {
                 Salary += Salary * (percentage / 200);
             }
-            Salary += Salary * percentage/100;
+            else
+            {
+                Salary += Salary * percentage / 100;
+            }
         }
 
         public override string ToString()
