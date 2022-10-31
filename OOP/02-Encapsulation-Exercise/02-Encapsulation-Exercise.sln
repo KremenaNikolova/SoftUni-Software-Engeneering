@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32519.379
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01-Class-Box-Data", "01-Class-Box-Data\01-Class-Box-Data.csproj", "{84A0D16E-87DD-47FC-8D83-893906D2418E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02-Animal-Farm", "02-Animal-Farm\02-Animal-Farm.csproj", "{6E119C69-2456-48AB-962A-D8CB38EA5965}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{84A0D16E-87DD-47FC-8D83-893906D2418E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84A0D16E-87DD-47FC-8D83-893906D2418E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84A0D16E-87DD-47FC-8D83-893906D2418E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84A0D16E-87DD-47FC-8D83-893906D2418E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E119C69-2456-48AB-962A-D8CB38EA5965}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E119C69-2456-48AB-962A-D8CB38EA5965}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E119C69-2456-48AB-962A-D8CB38EA5965}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E119C69-2456-48AB-962A-D8CB38EA5965}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2C598CCC-6D2C-4BB4-961F-948D2252D3CF}
+	EndGlobalSection
+EndGlobal
