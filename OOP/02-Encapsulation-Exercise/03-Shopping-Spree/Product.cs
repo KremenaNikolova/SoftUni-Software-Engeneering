@@ -15,24 +15,24 @@ namespace _03_Shopping_Spree
             Cost = cost;
         }
 
-        public string Name 
+        public string Name
         {
             get { return name; }
             private set
             {
-                if (string.IsNullOrEmpty(value))
+                if (string.IsNullOrWhiteSpace(value))
                 {
                     throw new Exception("Name cannot be empty");
                 }
                 name = value;
-            } 
+            }
         }
-        public decimal Cost 
+        public decimal Cost
         {
             get { return cost; }
             private set
             {
-                if (value<0)
+                if (value < 0)
                 {
                     throw new Exception("Money cannot be negative");
                 }
