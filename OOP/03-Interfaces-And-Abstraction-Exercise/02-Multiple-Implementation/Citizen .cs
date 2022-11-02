@@ -4,16 +4,22 @@ using System.Text;
 
 namespace PersonInfo
 {
-    public class Citizen : IPerson
+    public class Citizen : IPerson, IIdentifiable, IBirthable
     {
-        public Citizen(string name, int age)
+        public Citizen(string name, int age, string id, string birthdate)
         {
             Name = name;
             Age = age;
+            Id = id;
+            Birthdate = birthdate;
         }
 
         public string Name {get;private set;}
 
         public int Age { get; private set; }
+
+        public string Id { get; private set; }
+
+        public string Birthdate { get; private set; }
     }
 }

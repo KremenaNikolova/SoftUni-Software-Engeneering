@@ -5,6 +5,8 @@ VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01-Define-an-Interface-IPerson", "01-Define-an-Interface-IPerson\01-Define-an-Interface-IPerson.csproj", "{BFE75C9E-A2FB-4D42-A435-7A601D86889D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02-Multiple-Implementation", "02-Multiple-Implementation\02-Multiple-Implementation.csproj", "{0DD14F13-EFDE-4B52-82DD-73E3A8FA082A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{BFE75C9E-A2FB-4D42-A435-7A601D86889D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BFE75C9E-A2FB-4D42-A435-7A601D86889D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BFE75C9E-A2FB-4D42-A435-7A601D86889D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DD14F13-EFDE-4B52-82DD-73E3A8FA082A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DD14F13-EFDE-4B52-82DD-73E3A8FA082A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DD14F13-EFDE-4B52-82DD-73E3A8FA082A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DD14F13-EFDE-4B52-82DD-73E3A8FA082A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
