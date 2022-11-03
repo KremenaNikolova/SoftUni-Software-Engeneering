@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01-Define-an-Interface-IPer
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02-Multiple-Implementation", "02-Multiple-Implementation\02-Multiple-Implementation.csproj", "{0DD14F13-EFDE-4B52-82DD-73E3A8FA082A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03-Telephony", "03-Telephony\03-Telephony.csproj", "{120CA3AF-DB46-40DF-B8DB-321948892041}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{0DD14F13-EFDE-4B52-82DD-73E3A8FA082A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0DD14F13-EFDE-4B52-82DD-73E3A8FA082A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0DD14F13-EFDE-4B52-82DD-73E3A8FA082A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{120CA3AF-DB46-40DF-B8DB-321948892041}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{120CA3AF-DB46-40DF-B8DB-321948892041}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{120CA3AF-DB46-40DF-B8DB-321948892041}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{120CA3AF-DB46-40DF-B8DB-321948892041}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

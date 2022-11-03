@@ -4,7 +4,8 @@ using System.Text;
 
 namespace Telephony.Interfaces
 {
-    internal interface IBrowsable
+    public interface IBrowsable
     {
+        public void Browse(string website);
     }
 }

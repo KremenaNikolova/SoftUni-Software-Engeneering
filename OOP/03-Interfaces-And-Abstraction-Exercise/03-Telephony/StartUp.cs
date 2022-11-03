@@ -1,12 +1,34 @@
 ﻿using System;
+using Telephony.Interfaces;
 
-namespace _03_Telephony
+namespace Telephony
 {
-    internal class Program
+    public class StartUp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            string[] phoneNumbers = Console.ReadLine().Split(" ", StringSplitOptions.RemoveEmptyEntries);
+            string[] websites = Console.ReadLine().Split(" ", StringSplitOptions.RemoveEmptyEntries);
+
+            Smartphone smartPhone = new Smartphone();
+            StationaryPhone stationary = new StationaryPhone();
+
+            foreach (var number in phoneNumbers)
+            {
+                if (number.Length==10)
+                {
+                    smartPhone.Call(number);
+                }
+                else if (number.Length==7)
+                {
+                    stationary.Call(number);
+                }
+            }
+            
+            foreach (var website in websites)
+            {
+                smartPhone.Browse(website);
+            }
         }
     }
 }
