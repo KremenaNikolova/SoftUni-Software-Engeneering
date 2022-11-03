@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Telephony.Interfaces
+namespace Telephony
 {
     public interface IBrowsable
     {
