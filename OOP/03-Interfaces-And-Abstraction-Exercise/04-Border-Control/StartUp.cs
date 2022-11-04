@@ -14,7 +14,6 @@ namespace _04_Border_Control
             string command;
             while ((command = Console.ReadLine())!="End")
             {
-                //recieving information about citizen or robot who tries to enther the city in format: "{name} {age} {id}" for citizens and "{model} {id}" for robots. 
                 string[] tokens = command.Split(' ', StringSplitOptions.RemoveEmptyEntries);
                 string name = tokens[0];
                 if (tokens.Length==3)
@@ -37,13 +36,6 @@ namespace _04_Border_Control
                 citizen.ChechID(lastDigitID);
             }
 
-           //foreach (var robot in robots)
-           //{
-           //    robot.ChechID(lastDigitID);
-           //}
-            //after end command you will receive a single number representing the last digits of fake ids, all citizens or robots whose Id ends with the specified digits must be detained.
-
-            //The output of your program should consist of all detained Ids each on a separate line in the order of input.
         }
     }
 }

@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>_05_Birthday_Celebrations</RootNamespace>
+    <RootNamespace>Birthday</RootNamespace>
   </PropertyGroup>
 
 </Project>

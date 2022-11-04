@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace _04_Border_Control
+namespace Birthday
 {
     public interface IIdentify
     {
