@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Birthday
+namespace Birthday.Interfaces
 {
     public interface IIdentify
     {
-        string Name { get;}
-        string Id { get; }
+        string Name { get; }
+        int Age { get; }
+        int Food { get; }
 
-        public void ChechID(string checkID);
+        public void BuyFood(string name);
+
     }
 }

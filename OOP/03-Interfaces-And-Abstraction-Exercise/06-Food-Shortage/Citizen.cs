@@ -5,25 +5,28 @@ using System.Text;
 
 namespace Birthday
 {
-    public class Rebel : IGroup, IIdentify
+    public class Citizen : IIdentify, IBirthdate, IID
     {
-        public Rebel(string name, int age, string group)
+        public Citizen(string name, int age, string iD, string birthdate)
         {
             Name = name;
             Age = age;
-            Group = group;
+            ID = iD;
+            Birthdate = birthdate;
         }
 
         public string Name { get; private set; }
         public int Age { get; private set; }
-        public string Group { get; private set; }
+        public string ID { get; private set; }
+        public string Birthdate { get; private set; }
+        
         public int Food { get; private set; }
 
         public void BuyFood(string name)
         {
             if (name==Name)
             {
-                Food += 5;
+                Food += 10;
             }
         }
     }

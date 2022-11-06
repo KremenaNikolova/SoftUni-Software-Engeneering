@@ -4,7 +4,8 @@ using System.Text;
 
 namespace Birthday.Interfaces
 {
-    internal interface IBuyer
+    public interface IID :IIdentify
     {
+        string ID { get; }
     }
 }
