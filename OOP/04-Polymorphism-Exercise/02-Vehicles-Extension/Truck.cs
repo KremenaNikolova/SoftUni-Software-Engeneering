@@ -10,7 +10,6 @@ namespace _02_Vehicles_Extension
         private const double CONSUMPTION_INCREASE = 1.6;
         public Truck(double fuelQuantity, double fuelConsumption, double tankCapacity) : base(fuelQuantity, fuelConsumption + CONSUMPTION_INCREASE, tankCapacity) {}
 
-        public override double FuelQuantity { get => base.FuelQuantity; set => base.FuelQuantity = value; }
         public override void Driving(double distance)
         {
             base.Driving(distance);

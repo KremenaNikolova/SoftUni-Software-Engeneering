@@ -13,26 +13,15 @@ namespace _02_Vehicles_Extension
 
         protected Vehicles(double fuelQuantity, double fuelConsumption, double tankCapacity)
         {
-            this.FuelQuantity = fuelQuantity;
             this.fuelConsumption = fuelConsumption;
             this.tankCapacity = tankCapacity;
-        }
-        public virtual double FuelQuantity
-        {
-            get { return fuelQuantity; }
-            set
+
+            if (fuelQuantity <= tankCapacity)
             {
-                double startCapacity = fuelQuantity;
-                if (startCapacity>tankCapacity)
-                {
-                    fuelQuantity = 0;
-                }
-                else
-                {
-                    fuelQuantity=value;
-                }
+                this.fuelQuantity = fuelQuantity;
             }
         }
+       
 
         public virtual void Driving(double distance)
         {

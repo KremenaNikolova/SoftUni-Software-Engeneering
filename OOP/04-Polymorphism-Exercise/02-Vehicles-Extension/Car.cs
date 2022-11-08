@@ -10,6 +10,5 @@ namespace _02_Vehicles_Extension
 
         public Car(double fuelQuantity, double fuelConsumption, double tankCapacity) : base(fuelQuantity, fuelConsumption + CONSUMPTION_INCREASE, tankCapacity) { }
 
-        public override double FuelQuantity { get => base.FuelQuantity; set => base.FuelQuantity = value; }
     }
 }
