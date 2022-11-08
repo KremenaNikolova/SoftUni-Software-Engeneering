@@ -2,21 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace _01_Vehicles
+namespace _02_Vehicles_Extension
 {
     public class Car : Vehicles
     {
         private const double CONSUMPTION_INCREASE = 0.9;
 
-        public Car(double fuelQuantity, double fuelConsumption) : base(fuelQuantity, fuelConsumption + CONSUMPTION_INCREASE) { }
+        public Car(double fuelQuantity, double fuelConsumption, double tankCapacity) : base(fuelQuantity, fuelConsumption + CONSUMPTION_INCREASE, tankCapacity) { }
 
-        public override void Driving(double distance)
-        {
-            base.Driving(distance);
-        }
-        public override void Refueling(double amountOfFuel)
-        {
-            base.Refueling(amountOfFuel);
-        }
+        public override double FuelQuantity { get => base.FuelQuantity; set => base.FuelQuantity = value; }
     }
 }
