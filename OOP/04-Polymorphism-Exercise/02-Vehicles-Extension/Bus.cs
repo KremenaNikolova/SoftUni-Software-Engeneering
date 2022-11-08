@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
 namespace _02_Vehicles_Extension
@@ -19,7 +20,8 @@ namespace _02_Vehicles_Extension
 
         public void DriveEmty(double distance)
         {
-            FuelQuantity -= distance * fuelConsumption;
+            this.FuelConsumption = fuelConsumption;
+            Driving(distance);
         }
 
 

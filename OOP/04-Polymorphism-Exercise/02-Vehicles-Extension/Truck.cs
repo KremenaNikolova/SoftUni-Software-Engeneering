@@ -15,9 +15,20 @@ namespace _02_Vehicles_Extension
         {
             base.Driving(distance);
         }
-        public override void Refueling(double amountOfFuel)
+        public override void Refueling(double amountOfFuel, string type)
         {
-            base.Refueling(amountOfFuel * 0.95);
+            double truckRefueling = amountOfFuel * 0.95;
+            if (amountOfFuel < 0.1)
+            {
+                Console.WriteLine("Fuel must be a positive number");
+                return;
+            }
+            else if (truckRefueling>this.tankCapacity)
+            {
+                Console.WriteLine($"Cannot fit {amountOfFuel} fuel in the tank");
+                return;
+            }
+            fuelQuantity+=truckRefueling;
         }
     }
 }

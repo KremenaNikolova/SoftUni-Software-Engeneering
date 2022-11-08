@@ -7,9 +7,9 @@ namespace _02_Vehicles_Extension
 {
     public abstract class Vehicles
     {
-        private double fuelQuantity;
-        private double fuelConsumption;
-        private double tankCapacity;
+        protected double fuelQuantity;
+        protected double fuelConsumption;
+        protected double tankCapacity;
 
         protected Vehicles(double fuelQuantity, double fuelConsumption, double tankCapacity)
         {
@@ -45,15 +45,15 @@ namespace _02_Vehicles_Extension
             }
             Console.WriteLine($"{GetType().Name} needs refueling");
         }
-        public virtual void Refueling(double amountOfFuel)
+        public virtual void Refueling(double amountOfFuel, string type)
         {
             double refueling = fuelQuantity + amountOfFuel;
-            if (amountOfFuel < 0)
+            if (amountOfFuel < 0.1)
             {
                 Console.WriteLine("Fuel must be a positive number");
                 return;
             }
-            else if (refueling > tankCapacity)
+            else if (refueling >= tankCapacity)
             {
                 Console.WriteLine($"Cannot fit { amountOfFuel} fuel in the tank");
                 return;

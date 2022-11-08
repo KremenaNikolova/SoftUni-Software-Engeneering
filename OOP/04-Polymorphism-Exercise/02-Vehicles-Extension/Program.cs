@@ -45,15 +45,15 @@ namespace _02_Vehicles_Extension
                 {
                     if (type=="Car")
                     {
-                        car.Refueling(distanceOrLitters);
+                        car.Refueling(distanceOrLitters, type);
                     }
                     else if (type == "Truck")
                     {
-                        truck.Refueling(distanceOrLitters);
+                        truck.Refueling(distanceOrLitters, type);
                     }
                     else if (type == "Bus")
                     {
-                        bus.Refueling(distanceOrLitters);
+                        bus.Refueling(distanceOrLitters, type);
                     }
                 }
 
