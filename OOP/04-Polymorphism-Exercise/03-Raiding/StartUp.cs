@@ -10,34 +10,22 @@ namespace Raiding
         {
             int counter = int.Parse(Console.ReadLine());
             List<BaseHero> heroes = new List<BaseHero>();
-
-            for (int i = 0; i < counter; i++)
+         
+            while (heroes.Count!=counter)
             {
-                string name = Console.ReadLine();
-                string type = Console.ReadLine();
+                try
+                {
+                    string name = Console.ReadLine();
+                    string type = Console.ReadLine();
 
-                if (type == "Druid")
-                {
-                    heroes.Add(new Druid(name));
+                    heroes.Add(HeroFactory.GetHero(name, type));
                 }
-                else if (type =="Paladin")
+                catch (Exception exc)
                 {
-                    heroes.Add(new Paladin(name));
-                }
-                else if (type=="Rogue")
-                {
-                    heroes.Add(new Rogue(name));
-                }
-                else if (type == "Warrior")
-                {
-                    heroes.Add(new Warrior(name));
-                }
-                else
-                {
-                    Console.WriteLine("Invalid hero!");
+
+                    Console.WriteLine(exc.Message);
                 }
             }
-
             int bossPower = int.Parse(Console.ReadLine());
             foreach (var hero in heroes)
             {
