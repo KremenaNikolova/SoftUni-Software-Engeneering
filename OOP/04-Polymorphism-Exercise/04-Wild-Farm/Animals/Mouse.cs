@@ -4,7 +4,14 @@ using System.Text;
 
 namespace Wild_Farm.Animals
 {
-    internal class Mouse
+    public class Mouse : Mammal
     {
+        public Mouse(string name, double weight, int foodEaten, string livingRegion) : base(name, weight, foodEaten, livingRegion)
+        {}
+
+        public override string ProduceSound()
+        {
+            return "Squeak";
+        }
     }
 }

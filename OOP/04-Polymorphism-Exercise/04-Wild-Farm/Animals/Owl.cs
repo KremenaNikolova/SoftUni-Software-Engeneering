@@ -4,7 +4,13 @@ using System.Text;
 
 namespace Wild_Farm.Animals
 {
-    internal class Owl
+    public class Owl : Bird
     {
+        public Owl(string name, double weight, int foodEaten, double wingSize) : base(name, weight, foodEaten, wingSize)  {}
+
+        public override string ProduceSound()
+        {
+            return "Hoot Hoot";
+        }
     }
 }

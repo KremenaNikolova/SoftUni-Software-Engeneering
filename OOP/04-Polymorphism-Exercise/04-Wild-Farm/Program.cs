@@ -1,12 +1,15 @@
 ﻿using System;
+using Wild_Farm.Animals;
+using Wild_Farm.Food;
 
-namespace _04_Wild_Farm
+namespace Wild_Farm
 {
-    internal class Program
+    public class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+           Food
+             
         }
     }
 }

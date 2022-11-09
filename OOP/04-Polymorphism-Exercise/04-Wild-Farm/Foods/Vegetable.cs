@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Wild_Farm.Food
+namespace Wild_Farm.Foods
 {
-    internal class Seeds
+    internal class Vegetable
     {
     }
 }
