@@ -17,7 +17,7 @@ namespace _02_Enter_Numbers
                     int input = int.Parse(Console.ReadLine());
                     if (currBiggestNumber >= input || input>99)
                     {
-                        throw new ArgumentException($"Your number is not in range {input} - 100");
+                        throw new ArgumentException($"Your number is not in range {input} - 100!");
                     }
                     currBiggestNumber=input;
                     numbers.Add(input);
