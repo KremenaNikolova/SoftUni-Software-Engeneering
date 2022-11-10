@@ -4,7 +4,9 @@ using System.Text;
 
 namespace Wild_Farm.Foods
 {
-    internal class Seeds
+    public class Seeds : Food
     {
+        public Seeds(int quantity) : base(quantity)
+        {}
     }
 }

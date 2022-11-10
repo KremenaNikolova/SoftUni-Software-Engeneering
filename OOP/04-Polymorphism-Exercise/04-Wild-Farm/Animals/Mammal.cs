@@ -6,7 +6,8 @@ namespace Wild_Farm.Animals
 {
     public abstract class Mammal : Animal
     {
-        protected Mammal(string name, double weight, int foodEaten, string livingRegion) : base(name, weight, foodEaten)
+       
+        protected Mammal(string name, double weight, string livingRegion) : base(name, weight)
         {
             LivingRegion = livingRegion;
         }
