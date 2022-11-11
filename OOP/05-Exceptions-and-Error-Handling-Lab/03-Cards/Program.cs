@@ -28,9 +28,7 @@ namespace _03_Cards
                 }
             }
 
-            Console.WriteLine(string.Join(", ",cards));
-
-
+            Console.WriteLine(string.Join(" ",cards));
 
         }
         static Card ValidadeCards(string face, string suit)
@@ -55,10 +53,6 @@ namespace _03_Cards
             return new Card(face, UTF);
         }
 
-
-
-
-
     }
 
     public class Card
@@ -69,18 +63,12 @@ namespace _03_Cards
             Suit = suit;
         }
 
-        //hold card's fase and suit
-        //Valid card faces are: 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K, A
-        //Valid card suits are: S (♠), H (♥), D (♦), C (♣)
-
-
         public string Face { get; set; }
         public string Suit { get; set; }
 
         public override string ToString()
         {
             return $"[{Face}{Suit}]";
-            //"[{face}{suit}]" – example: [A♠] [5♣] [10♦]
         }
     }
 
