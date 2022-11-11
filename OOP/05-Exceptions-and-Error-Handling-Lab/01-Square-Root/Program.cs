@@ -7,18 +7,18 @@ namespace _01_Square_Root
     {
         static void Main(string[] args)
         {
-            
+
 
             try
             {
                 double input = double.Parse(Console.ReadLine());
-                if (input<0)
+                if (input < 0)
                 {
                     throw new ArgumentException("Invalid number.");
                 }
                 Console.WriteLine(Math.Sqrt(input));
             }
-            catch(ArgumentException ex)
+            catch (ArgumentException ex)
             {
                 Console.WriteLine(ex.Message);
             }

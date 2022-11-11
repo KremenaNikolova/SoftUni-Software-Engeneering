@@ -8,26 +8,21 @@ namespace _02_Enter_Numbers
         static void Main(string[] args)
         {
             List<int> numbers = new List<int>();
-            int start = 1;
-            int end = 100;
-            int counter = 0;
-            int currBiggestNumber = start;
-
-            while (counter<10)
+            int counter = 10;
+            int currBiggestNumber = 1;
+            for (int i = 0; i != counter;)
             {
                 try
                 {
-                    int number = int.Parse(Console.ReadLine());
-                    if (number>currBiggestNumber && number<end)
+                    int input = int.Parse(Console.ReadLine());
+                    if (currBiggestNumber >= input || input > 99)
                     {
-                        currBiggestNumber = number;
-                        numbers.Add(number);
-                        counter++;
+                        throw new ArgumentException($"Your number is not in range {input} - 100!");
                     }
-                    else
-                    {
-                        throw new ArgumentException($"Your number is not in range {currBiggestNumber} - 100!");
-                    }
+                    currBiggestNumber = input;
+                    numbers.Add(input);
+                    counter--;
+
                 }
                 catch (ArgumentException ae)
                 {
@@ -38,13 +33,9 @@ namespace _02_Enter_Numbers
                 {
                     Console.WriteLine("Invalid Number!");
                 }
-                
-                
-
             }
-            
 
-            Console.WriteLine(string.Join(", ",numbers));
+            Console.WriteLine(string.Join(", ", numbers));
         }
     }
 }
