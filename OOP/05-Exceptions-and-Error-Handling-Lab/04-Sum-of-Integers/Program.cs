@@ -6,7 +6,7 @@ namespace _04_Sum_of_Integers
     {
         static void Main(string[] args)
         {
-            string[] input = Console.ReadLine().Split(" ", StringSplitOptions.RemoveEmptyEntries);
+            string[] input = Console.ReadLine().Split(" ");
             int sum = 0;
 
             for (int i = 0; i < input.Length; i++)
