@@ -9,12 +9,12 @@ namespace _05_Play_Catch
     {
         static void Main(string[] args)
         {
-            int[] intergers = Console.ReadLine().Split(" ", StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
+            int[] intergers = Console.ReadLine().Split(" ").Select(int.Parse).ToArray();
             int exceptionsCounter = 0;
 
             while (exceptionsCounter != 3)
             {
-                string[] arguments = Console.ReadLine().Split(" ", StringSplitOptions.RemoveEmptyEntries);
+                string[] arguments = Console.ReadLine().Split(" ");
                 string command = arguments[0];
                 try
                 {
