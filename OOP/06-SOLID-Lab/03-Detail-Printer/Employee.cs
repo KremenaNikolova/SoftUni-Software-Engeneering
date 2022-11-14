@@ -1,10 +1,11 @@
-﻿using System;
+﻿using P03.DetailPrinter.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace P03.DetailPrinter
 {
-    public class Employee
+    public class Employee: IEmployee
     {
         public Employee(string name)
         {
@@ -12,5 +13,10 @@ namespace P03.DetailPrinter
         }
 
         public string Name { get; set; }
+
+        public virtual string Print()
+        {
+            return $"{Name}";
+        }
     }
 }

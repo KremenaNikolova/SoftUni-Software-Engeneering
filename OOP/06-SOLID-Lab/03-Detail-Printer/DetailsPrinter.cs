@@ -1,10 +1,13 @@
-﻿using System;
+﻿using P03.DetailPrinter.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace P03.DetailPrinter
 {
-    public class DetailsPrinter
+    public class DetailsPrinter //този Detail Printer не трябва да пита какъв служител му е даден.
+                                //Detail Printer needs to just print details for all kinds of employees. 
+                                //When a new kind of employee is added, you will only need to add a new class and nothing more.
     {
         private IList<Employee> employees;
 
@@ -15,28 +18,10 @@ namespace P03.DetailPrinter
 
         public void PrintDetails()
         {
-            foreach (Employee employee in this.employees)
+            foreach (var employee in employees)
             {
-                if (employee is Manager)
-                {
-                    this.PrintManager((Manager)employee);
-                }
-                else
-                {
-                    this.PrintEmployee(employee);
-                }
+                Console.WriteLine(employee.Print());
             }
-        }
-
-        private void PrintEmployee(Employee employee)
-        {
-            Console.WriteLine(employee.Name);
-        }
-
-        private void PrintManager(Manager manager)
-        {
-            Console.WriteLine(manager.Name);
-            Console.WriteLine(string.Join(Environment.NewLine, manager.Documents));
         }
     }
 }
