@@ -8,6 +8,7 @@ namespace P01.Stream_Progress
     {
         private string artist;
         private string album;
+        private IStreamable streamable;
 
         public Music(string artist, string album, int length, int bytesSent)
         {

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo", "Demo\Demo.csproj", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01-Stream-Progress", "01-Stream-Progress\01-Stream-Progress.csproj", "{660E37DE-5BAA-41CC-B407-0E26D242B25D}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02-Graphic-Editor", "02-Graphic-Editor\02-Graphic-Editor.csproj", "{30E74B86-BCDC-4724-806B-E3979058D726}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{660E37DE-5BAA-41CC-B407-0E26D242B25D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{660E37DE-5BAA-41CC-B407-0E26D242B25D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{660E37DE-5BAA-41CC-B407-0E26D242B25D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30E74B86-BCDC-4724-806B-E3979058D726}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30E74B86-BCDC-4724-806B-E3979058D726}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30E74B86-BCDC-4724-806B-E3979058D726}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30E74B86-BCDC-4724-806B-E3979058D726}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

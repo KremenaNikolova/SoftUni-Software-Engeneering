@@ -6,6 +6,7 @@ namespace P01.Stream_Progress
     {
         static void Main()
         {
+            IStreamable stremas = new IStreamable();
             IStreamable file = new File("Example", 2000, 200);
             IStreamable music = new Music("2pac", "All eyes on me", 3000, 420);
 

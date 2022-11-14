@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace P02.Graphic_Editor
+namespace Models
 {
     public interface IShape
     {
+        abstract void Draw();
 
     }
 }
