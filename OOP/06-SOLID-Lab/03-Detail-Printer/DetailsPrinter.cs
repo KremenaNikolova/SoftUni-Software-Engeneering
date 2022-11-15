@@ -5,9 +5,7 @@ using System.Text;
 
 namespace P03.DetailPrinter
 {
-    public class DetailsPrinter //този Detail Printer не трябва да пита какъв служител му е даден.
-                                //Detail Printer needs to just print details for all kinds of employees. 
-                                //When a new kind of employee is added, you will only need to add a new class and nothing more.
+    public class DetailsPrinter 
     {
         private IList<Employee> employees;
 
