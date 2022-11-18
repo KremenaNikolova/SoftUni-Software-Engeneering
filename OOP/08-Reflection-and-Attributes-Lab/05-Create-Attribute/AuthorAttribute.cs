@@ -4,9 +4,10 @@ using System.Text;
 
 namespace AuthorProblem
 {
-    public class Author : Attribute
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method , AllowMultiple = true)]
+    public class AuthorAttribute : Attribute
     {
-        public Author(string name)
+        public AuthorAttribute(string name)
         {
             Name = name;
         }
