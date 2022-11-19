@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28803.452
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandPattern", "CommandPattern\CommandPattern.csproj", "{43D01CAD-5F3E-4393-BCDA-8373A35CED49}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommandPattern", "CommandPattern\CommandPattern.csproj", "{43D01CAD-5F3E-4393-BCDA-8373A35CED49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValidationAttributes", "ValidationAttributes\ValidationAttributes.csproj", "{F6434B66-8D22-4B97-9153-5F4360B5C278}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValidationAttributes", "ValidationAttributes\ValidationAttributes.csproj", "{F6434B66-8D22-4B97-9153-5F4360B5C278}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandPatterForJudge", "CommandPatterForJudge\CommandPatterForJudge.csproj", "{ACFB87A1-2FE1-4C7B-AD03-DDA824F2B39E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{F6434B66-8D22-4B97-9153-5F4360B5C278}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6434B66-8D22-4B97-9153-5F4360B5C278}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6434B66-8D22-4B97-9153-5F4360B5C278}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACFB87A1-2FE1-4C7B-AD03-DDA824F2B39E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACFB87A1-2FE1-4C7B-AD03-DDA824F2B39E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACFB87A1-2FE1-4C7B-AD03-DDA824F2B39E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACFB87A1-2FE1-4C7B-AD03-DDA824F2B39E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

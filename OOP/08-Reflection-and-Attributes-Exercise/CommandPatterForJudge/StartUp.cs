@@ -1,7 +1,6 @@
-﻿using CommandPattern.Core;
+﻿using CommandPatterForJudge;
+using CommandPatterForJudge.Core;
 using CommandPattern.Core.Contracts;
-using CommandPattern.Utilities;
-using CommandPattern.Utilities.Contracts;
 using System;
 
 namespace CommandPattern

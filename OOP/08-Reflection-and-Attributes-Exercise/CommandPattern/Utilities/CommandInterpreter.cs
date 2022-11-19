@@ -1,10 +1,7 @@
 ﻿using CommandPattern.Utilities.Contracts;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
 
 namespace CommandPattern.Utilities
 {
@@ -17,7 +14,13 @@ namespace CommandPattern.Utilities
             string[] commandArgs = cmdArgs.Skip(1).ToArray();
 
             Assembly assembly = Assembly.GetEntryAssembly();
-            Type commandType = assembly.GetTypes().FirstOrDefault(x=>x.Name==commandName);
+            Type commandType = assembly.GetTypes().FirstOrDefault(x=>x.Name==$"{commandName}Command");
+            MethodInfo commandArgsInfo = commandType.GetMethods(BindingFlags.Public | BindingFlags.Instance).FirstOrDefault(x=>x.Name=="Execute");
+
+            object commandInstance = Activator.CreateInstance(commandType);
+            string result = (string)commandArgsInfo.Invoke(commandInstance, new object[] { commandArgs });
+
+            return result;
         }
     }
 }
