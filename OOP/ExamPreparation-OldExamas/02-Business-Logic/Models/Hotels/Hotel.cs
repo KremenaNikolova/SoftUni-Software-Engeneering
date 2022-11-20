@@ -2,6 +2,7 @@
 using BookingApp.Models.Hotels.Contacts;
 using BookingApp.Models.Rooms;
 using BookingApp.Models.Rooms.Contracts;
+using BookingApp.Repositories;
 using BookingApp.Repositories.Contracts;
 using BookingApp.Utilities.Messages;
 using System;
@@ -18,15 +19,18 @@ namespace BookingApp.Models.Hotels
 
         public Hotel(string fullName, int category)
         {
-            FullName= fullName;
-            Category= category;
+            FullName = fullName;
+            Category = category;
+
+            rooms = new RoomRepository();
+            bookings = new BookingRepository();
         }
         public string FullName
         {
             get => fullName;
             private set
             {
-                if (string.IsNullOrWhiteSpace(fullName))
+                if (string.IsNullOrWhiteSpace(value))
                 {
                     throw new ArgumentException(ExceptionMessages.HotelNameNullOrEmpty);
                 }
@@ -34,12 +38,12 @@ namespace BookingApp.Models.Hotels
             }
         }
 
-        public int Category 
+        public int Category
         {
             get => category;
             private set
             {
-                if (value<1 || value>5)
+                if (value < 1 || value > 5)
                 {
                     throw new ArgumentException(ExceptionMessages.InvalidCategory);
                 }
@@ -47,7 +51,7 @@ namespace BookingApp.Models.Hotels
             }
         }
 
-        public double Turnover 
+        public double Turnover
         {
             get
             {

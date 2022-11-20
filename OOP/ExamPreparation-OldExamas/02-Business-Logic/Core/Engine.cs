@@ -1,5 +1,6 @@
 ﻿namespace BookingApp.Core
 {
+    using _02_Business_Logic.Core;
     using BookingApp.Core.Contracts;
     using BookingApp.IO;
     using BookingApp.IO.Contracts;
@@ -16,7 +17,7 @@
         {
             this.writer = new Writer();
             this.reader = new Reader();
-            //this.controller = new Controller();
+            this.controller = new Controller();
         }
 
         public void Run()
