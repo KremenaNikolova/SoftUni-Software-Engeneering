@@ -13,7 +13,7 @@ namespace BookingApp.Models.Rooms
         public Room(int bedCapacity)
         {
             this.bedCapacity = bedCapacity;
-            pricePerNight = 0;
+            this.pricePerNight = 0;
         }
 
         public int BedCapacity => bedCapacity;

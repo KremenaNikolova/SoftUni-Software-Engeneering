@@ -26,7 +26,7 @@ namespace BookingApp.Repositories
 
         public IHotel Select(string criteria)
         {
-            return hotels.Find(x=>x.GetType().Name== criteria);
+            return hotels.Find(x=>x.FullName== criteria);
         }
     }
 }

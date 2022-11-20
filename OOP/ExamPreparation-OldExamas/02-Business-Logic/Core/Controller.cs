@@ -26,13 +26,14 @@ namespace _02_Business_Logic.Core
 
         public string AddHotel(string hotelName, int category)
         {
-            Hotel hotel = new Hotel(hotelName, category);
+            
             if (hotels.All().Any(x=>x.FullName==hotelName))
             {
                 return string.Format(OutputMessages.HotelAlreadyRegistered, hotelName);
             }
             else
             {
+                Hotel hotel = new Hotel(hotelName, category);
                 hotels.AddNew(hotel);
                 return string.Format(OutputMessages.HotelSuccessfullyRegistered, category, hotelName);
             }
@@ -64,7 +65,7 @@ namespace _02_Business_Logic.Core
             
             foreach (var room in availibleRooms.OrderBy(x=>x.Key.BedCapacity))
             {
-                if (room.Key.BedCapacity>allGuests)
+                if (room.Key.BedCapacity>=allGuests)
                 {
                     booking = room.Key;
                     hotelNameBooking = room.Value;
@@ -96,12 +97,12 @@ namespace _02_Business_Logic.Core
             }
 
             sb.AppendLine($"Hotel name: {hotelName}");
-            sb.AppendLine($"--{hotel.Category}");
-            sb.AppendLine($"--Turnover: {hotel.Turnover:f2}$");
+            sb.AppendLine($"--{hotel.Category} star hotel");
+            sb.AppendLine($"--Turnover: {hotel.Turnover:f2} $");
             sb.AppendLine($"--Bookings:");
             sb.AppendLine();
 
-            if (hotel.Bookings==null)
+            if (hotel.Bookings.All().Count==0)
             {
                 sb.AppendLine("none");
                 return sb.ToString().TrimEnd();
