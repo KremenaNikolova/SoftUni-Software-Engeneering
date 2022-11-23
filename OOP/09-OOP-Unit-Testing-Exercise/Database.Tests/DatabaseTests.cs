@@ -30,6 +30,28 @@ namespace Database.Tests
             }, "Array's capacity must be exactly 16 integers!");
 
         }
+        [Test]
+        public void TestAddMethodShouldWorkPropertly()
+        {
+            Database db = new Database();
+
+            db.Add(3);
+
+            int expectedCount = 1;
+            Assert.AreEqual(expectedCount, db.Count);
+        }
+
+        [Test]
+        public void TestAddMethodShouldThrowExceptionIfCountIs16()
+        {
+            int[] data = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 };
+            Database db = new Database(data);
+
+            Assert.Throws<InvalidOperationException>(() =>
+            {
+                db.Add(3);
+            }, "Array's capacity must be exactly 16 integers!");
+        }
 
         [Test]
         public void TestRemoveShouldRemoveItemsPropetly()
@@ -55,5 +77,16 @@ namespace Database.Tests
                 db.Remove();
             }, "The collection is empty!");
         }
+
+        [Test]
+        public void TestFetchMethodShouldCopyData()
+        {
+            int[] data = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 };
+            Database db = new Database(data);
+            int[] copyData = db.Fetch();
+
+            Assert.AreEqual(data, copyData);
+        }
+
     }
 }
