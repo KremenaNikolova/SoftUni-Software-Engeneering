@@ -53,14 +53,11 @@ namespace DatabaseExtended.Tests
             {
                 Database db = new Database(persons);
             }, "Provided data length should be in range [0..16]!");
-
-            
-
         }
+
         [Test]
         public void TestAddShouldCanNotBeAbove16()
         {
-            //db.Add(new Person(311, "Petar"));
             db.Add(new Person(312, "Ivan"));
 
             Assert.Throws<InvalidOperationException>(() =>
@@ -180,9 +177,7 @@ namespace DatabaseExtended.Tests
         public void TestFindByUserNameShouldReturnRightUsername()
         {
             Person myPerson = new Person(365, "Kremena");
-            Person[] person = new Person[1];
-            person[0] = myPerson;
-            Database database = new Database(person);
+            Database database = new Database(myPerson);
 
             Person actualPerson = database.FindByUsername("Kremena");
 
@@ -202,18 +197,17 @@ namespace DatabaseExtended.Tests
         public void TestFindByIdMethodShouldThrowExceptionIfIdDoesntExist()
         {
             Person myPerson = new Person(365, "Kremena");
-            Person[] person = new Person[1] {myPerson};
-            Database database = new Database(person);
+            Database database = new Database(myPerson);
 
             Assert.Throws<InvalidOperationException>(() => { database.FindById(123); }, "No user is present by this ID!");
+            
         }
 
         [Test]
         public void TestFindByIdMethodShouldFindTheRightPerson()
         {
             Person myPerson = new Person(365, "Kremena");
-            Person[] person = new Person[1] { myPerson };
-            Database database = new Database(person);
+            Database database = new Database(myPerson);
 
             Person expectedPerson = database.FindById(365);
 
