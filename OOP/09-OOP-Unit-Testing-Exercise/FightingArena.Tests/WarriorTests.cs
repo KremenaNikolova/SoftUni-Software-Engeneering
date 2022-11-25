@@ -96,8 +96,8 @@ namespace FightingArena.Tests
         [Test]
         public void Test_AttackShouldThrowExceptionIfDefenderIsStronger()
         {
-            Warrior attacker = new Warrior("Aradia", 100, 1);
-            Warrior defender = new Warrior("Petar", 250, 1250);
+            Warrior attacker = new Warrior("Aradia", 250, 1);
+            Warrior defender = new Warrior("Petar", 100, 1250);
 
             Assert.Throws<InvalidOperationException>(() =>
             {
@@ -111,10 +111,12 @@ namespace FightingArena.Tests
             Warrior attacker = new Warrior("Aradia", 100, 1000);
             Warrior defender = new Warrior("Petar", 250, 1250);
 
-            int expectedHP = defender.HP - attacker.Damage;
+            int expectedDefenderHP = defender.HP - attacker.Damage;
+            int expectedAttackerHP = attacker.HP - defender.Damage;
             attacker.Attack(defender);
 
-            Assert.AreEqual(expectedHP, defender.HP);
+            Assert.AreEqual(expectedDefenderHP, defender.HP);
+            Assert.AreEqual(expectedAttackerHP, attacker.HP);
         }
 
         [Test]
@@ -124,9 +126,11 @@ namespace FightingArena.Tests
             Warrior defender = new Warrior("Petar", 250, 99);
 
             int expectedHP = 0;
+            int attackerHP = attacker.HP - defender.Damage;
             attacker.Attack(defender);
 
             Assert.AreEqual(expectedHP, defender.HP);
+            Assert.AreEqual(attackerHP, attacker.HP);
         }
 
 
