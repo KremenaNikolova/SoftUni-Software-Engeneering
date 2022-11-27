@@ -160,6 +160,7 @@ namespace BookigApp.Tests
         [Test]
         public void Test_HotelTurnover()
         {
+            hotel.AddRoom(room);
             hotel.BookRoom(2, 0, 5, 1000);
 
             int expectedTurnOver = 5 * 45;
@@ -167,16 +168,33 @@ namespace BookigApp.Tests
             Assert.AreEqual(expectedTurnOver, hotel.Turnover);
         }
 
+        [Test]
+        public void Test_RoomsCollection()
+        {
+            hotel.AddRoom(room);
+            hotel.AddRoom(room);
+            hotel.AddRoom(room);
 
-        // foreach (var room in this.Rooms.OrderBy(x => x.BedCapacity))
-        //    {
-        //        if (room.BedCapacity >= bedsNeeded)
-        //        {
-        //            if (budget >= residenceDuration* room.PricePerNight)
-        //{
-        //    var booking = new Booking(this.bookings.Count + 1, room, residenceDuration);
-        //    this.bookings.Add(booking);
-        //    this.turnover += residenceDuration * room.PricePerNight;
-        //}
+            int expectedCount = 3;
+
+            Assert.AreEqual(expectedCount, hotel.Rooms.Count);
+        }
+
+        [Test]
+        public void Test_BookingCollection()
+        {
+            hotel.AddRoom(room);
+            hotel.AddRoom(room);
+            hotel.AddRoom(room);
+
+            hotel.BookRoom(2, 0, 5, 1000);
+            hotel.BookRoom(2, 0, 5, 1000);
+            hotel.BookRoom(2, 0, 5, 1000);
+
+            int expectedBookingCount = 3;
+
+            Assert.AreEqual(expectedBookingCount, hotel.Bookings.Count);
+        }
+
     }
 }
