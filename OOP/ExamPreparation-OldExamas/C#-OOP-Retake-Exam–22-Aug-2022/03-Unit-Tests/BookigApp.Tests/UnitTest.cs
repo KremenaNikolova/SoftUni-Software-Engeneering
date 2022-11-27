@@ -169,7 +169,7 @@ namespace BookigApp.Tests
         }
 
         [Test]
-        public void Test_RoomsCollection()
+        public void Test_HotelRoomsCollection()
         {
             hotel.AddRoom(room);
             hotel.AddRoom(room);
@@ -181,20 +181,68 @@ namespace BookigApp.Tests
         }
 
         [Test]
-        public void Test_BookingCollection()
+        public void Test_HotelBookingCollection()
         {
             hotel.AddRoom(room);
-            hotel.AddRoom(room);
-            hotel.AddRoom(room);
 
             hotel.BookRoom(2, 0, 5, 1000);
-            hotel.BookRoom(2, 0, 5, 1000);
-            hotel.BookRoom(2, 0, 5, 1000);
 
-            int expectedBookingCount = 3;
+            int expectedBookingCount = 1;
 
             Assert.AreEqual(expectedBookingCount, hotel.Bookings.Count);
         }
 
+        [Test]
+        public void Test_HotelAddRoom()
+        {
+            hotel.AddRoom(room);
+
+            int expectedRoomsCount = 1;
+
+            Assert.AreEqual(expectedRoomsCount, hotel.Rooms.Count);
+        }
+
+        [Test]
+        public void Test_HotelBookRoom()
+        {
+            hotel.AddRoom(room);
+            hotel.BookRoom(2,0,2, 1000);
+
+            int expectedRoomsCount = 1;
+
+            Assert.AreEqual(expectedRoomsCount, hotel.Bookings.Count);
+        }
+
+        [TestCase(0)]
+        [TestCase(-1)]
+        [TestCase(-1000)]
+        public void Test_HotelBookRoomShouldThrowExceptionIfAdultsAreZeroOrBelow(int adults)
+        {
+            Assert.Throws<ArgumentException>(() =>
+            {
+                hotel.BookRoom(adults, 0, 2, 1000);
+            });
+        }
+
+        [TestCase(-1)]
+        [TestCase(-1000)]
+        public void Test_HotelBookRoomShouldThrowExceptionIfChildrenAreBelow(int children)
+        {
+            Assert.Throws<ArgumentException>(() =>
+            {
+                hotel.BookRoom(2, children, 2, 1000);
+            });
+        }
+
+        [TestCase(0)]
+        [TestCase(-1)]
+        [TestCase(-1000)]
+        public void Test_HotelBookRoomShouldThrowExceptionIfResidenceDurationIsZeroOrBelow(int residenceDuration)
+        {
+            Assert.Throws<ArgumentException>(() =>
+            {
+                hotel.BookRoom(2, 0, residenceDuration, 1000);
+            });
+        }
     }
 }
