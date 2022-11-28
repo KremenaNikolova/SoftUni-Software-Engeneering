@@ -22,7 +22,7 @@ namespace PlanetWars.Models.Weapons
         public int DestructionLevel
         {
             get { return destructionLevel; }
-            set
+            private set
             {
                 if (value<1)
                 {

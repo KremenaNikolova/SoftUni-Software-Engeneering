@@ -16,7 +16,7 @@ namespace PlanetWars.Repositories
             models= new List<IPlanet>();
         }
 
-        public IReadOnlyCollection<IPlanet> Models => models;
+        public IReadOnlyCollection<IPlanet> Models => models.AsReadOnly();
 
         public void AddItem(IPlanet model)
         {
@@ -25,12 +25,12 @@ namespace PlanetWars.Repositories
 
         public IPlanet FindByName(string name)
         {
-            return models.FirstOrDefault(x=>x.GetType().Name == name);  
+            return models.FirstOrDefault(x=>x.Name == name);  
         }
 
         public bool RemoveItem(string name)
         {
-            return models.Remove(models.Find(x=>x.GetType().Name == name));
+            return models.Remove(models.Find(x=>x.Name == name));
         }
     }
 }

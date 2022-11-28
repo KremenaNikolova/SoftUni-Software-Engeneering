@@ -14,22 +14,22 @@ using System.Text;
 
 namespace PlanetWars.Models.Planets
 {
-    public abstract class Planet : IPlanet
+    public class Planet : IPlanet
     {
         private string name;
         private double budget;
-        private double militaryPower;
+        //private double militaryPower;
 
-        private UnitRepository units;
-        private WeaponRepository weps;
+        private IRepository<IMilitaryUnit> units;
+        private IRepository<IWeapon> weps;
 
-        protected Planet(string name, double budget)
+        public Planet(string name, double budget)
         {
             Name = name;
             Budget = budget;
 
-            units= new UnitRepository();
-            weps=new WeaponRepository();
+            units = new UnitRepository();
+            weps = new WeaponRepository();
 
         }
 
@@ -80,10 +80,10 @@ namespace PlanetWars.Models.Planets
             StringBuilder sb = new StringBuilder();
 
             sb.AppendLine($"Planet: {name}");
-            sb.AppendLine($"--Budget: {budget}");
-            sb.AppendLine($"--Forces: {string. Join(", ", Army.GetType().Name)}");
-            sb.AppendLine($"--Combat equipment: {string.Join(", ", Weapons.GetType().Name)}");
-            sb.AppendLine($"--Military Power: {militaryPower}");
+            sb.AppendLine($"--Budget: {budget} billion QUID");
+            sb.AppendLine(units.Models.Any() ? $"--Forces: {string.Join(", ", Army.Select(x=>x.GetType().Name))}" : "--Forces: No units");
+            sb.AppendLine(weps.Models.Any() ? $"--Combat equipment: {string.Join(", ", Weapons.Select(x=>x.GetType().Name))}" : "--Combat equipment: No weapons");
+            sb.AppendLine($"--Military Power: {MilitaryPower}");
 
             return sb.ToString().TrimEnd();
 
@@ -114,15 +114,15 @@ namespace PlanetWars.Models.Planets
 
         public double CalculateMilitaryPower()
         {
-            double totalAmount = Army.Select(x=>x.EnduranceLevel).Sum() + Weapons.Select(x=>x.DestructionLevel).Sum();
+            double totalAmount = Army.Sum(x=>x.EnduranceLevel) + Weapons.Sum(x=>x.DestructionLevel);
 
             if (Army.Any(x=>x.GetType().Name== "AnonymousImpactUnit"))
             {
-                totalAmount += totalAmount * 0.3;
+                totalAmount += totalAmount*0.3;
             }
-            else if(Army.Any(x=>x.GetType().Name== "NuclearWeapon "))
+            else if(Weapons.Any(x=>x.GetType().Name== "NuclearWeapon"))
             {
-                totalAmount += totalAmount * 0.45;
+                totalAmount += totalAmount*0.45;
             }
 
             return Math.Round(totalAmount, 3);

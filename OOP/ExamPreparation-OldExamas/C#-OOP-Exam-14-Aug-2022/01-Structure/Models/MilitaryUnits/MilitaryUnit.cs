@@ -13,29 +13,21 @@ namespace PlanetWars.Models.MilitaryUnits
 
         public MilitaryUnit(double cost)
         {
-            enduranceLevel = 1;
-            Cost= cost;
+            Cost = cost;
+
+            EnduranceLevel = 1;
         }
 
         public double Cost { get; private set; }
 
-        public int EnduranceLevel
-        {
-            get { return enduranceLevel; }
-            private set
-            {
-                if (enduranceLevel>20)
-                {
-                    enduranceLevel = 20;
-                    throw new ArgumentException(ExceptionMessages.EnduranceLevelExceeded);
-                }
-                enduranceLevel= value;
-            }
-        }
+        public int EnduranceLevel { get; private set; }
 
         public void IncreaseEndurance()
         {
-            enduranceLevel++;
+            if (EnduranceLevel == 20)
+                throw new ArgumentException(ExceptionMessages.EnduranceLevelExceeded);
+            else
+                EnduranceLevel++;
         }
     }
 }

@@ -17,7 +17,7 @@ namespace PlanetWars.Repositories
             models= new List<IWeapon>();
         }
 
-        public IReadOnlyCollection<IWeapon> Models => models;
+        public IReadOnlyCollection<IWeapon> Models => models.AsReadOnly();
 
         public void AddItem(IWeapon model)
         {

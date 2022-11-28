@@ -16,7 +16,7 @@ namespace PlanetWars.Repositories
             models= new List<IMilitaryUnit>();
         }
 
-        public IReadOnlyCollection<IMilitaryUnit> Models => models;
+        public IReadOnlyCollection<IMilitaryUnit> Models => models.AsReadOnly();
 
         public void AddItem(IMilitaryUnit model)
         {
