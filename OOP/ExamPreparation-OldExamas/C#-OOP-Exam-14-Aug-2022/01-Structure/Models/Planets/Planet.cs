@@ -18,7 +18,6 @@ namespace PlanetWars.Models.Planets
     {
         private string name;
         private double budget;
-        //private double militaryPower;
 
         private IRepository<IMilitaryUnit> units;
         private IRepository<IWeapon> weps;
