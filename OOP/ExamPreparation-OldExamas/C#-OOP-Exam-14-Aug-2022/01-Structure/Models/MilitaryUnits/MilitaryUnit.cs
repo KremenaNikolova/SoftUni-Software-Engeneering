@@ -18,16 +18,32 @@ namespace PlanetWars.Models.MilitaryUnits
             EnduranceLevel = 1;
         }
 
-        public double Cost { get; private set; }
+        public double Cost 
+        { 
+            get { return cost; }
+            private set
+            {
+                this.cost = value;
+            }
+        }
 
-        public int EnduranceLevel { get; private set; }
+
+        public int EnduranceLevel 
+        { 
+            get { return enduranceLevel; } 
+            private set
+            {
+                this.enduranceLevel = value;
+            }
+        }
 
         public void IncreaseEndurance()
         {
             if (EnduranceLevel == 20)
+            {
                 throw new ArgumentException(ExceptionMessages.EnduranceLevelExceeded);
-            else
-                EnduranceLevel++;
+            }
+            EnduranceLevel++;
         }
     }
 }

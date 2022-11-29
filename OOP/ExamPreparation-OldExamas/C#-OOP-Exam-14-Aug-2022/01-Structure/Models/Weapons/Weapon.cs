@@ -13,11 +13,18 @@ namespace PlanetWars.Models.Weapons
 
         public Weapon(int desctructionLevel, double price)
         {
-            DestructionLevel= desctructionLevel;
             Price = price;
+            DestructionLevel = desctructionLevel;
         }
         
-        public double Price {get; private set;}
+        public double Price 
+        {
+            get { return price; }
+            private set
+            {
+                this.price = value;
+            }
+        }
 
         public int DestructionLevel
         {
