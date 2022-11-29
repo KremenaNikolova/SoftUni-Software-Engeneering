@@ -133,6 +133,18 @@ namespace FightingArena.Tests
             Assert.AreEqual(attackerHP, attacker.HP);
         }
 
+        [Test]
+        public void Test_WarriorShouldThrowExceptionIfHPIsBelowWarriorDamage()
+        {
+            Warrior attacker = new Warrior("Pisna mi veche", 65, 50);
+            Warrior defender = new Warrior("Ne e istina prosto", 75, 50);
+
+            Assert.Throws<InvalidOperationException>(() =>
+            {
+                attacker.Attack(defender);
+            }, "You are trying to attack too strong enemy");
+        }
+
 
     }
 }
