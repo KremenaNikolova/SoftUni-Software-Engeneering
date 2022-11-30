@@ -87,7 +87,7 @@ namespace PlanetWars.Tests
                 Weapon weapon = new Weapon("NurclearWeapon", 500, 50);
                 planet.AddWeapon(weapon);
 
-                int expectedMilitaryPowerRatio = 50;
+                double expectedMilitaryPowerRatio = 50;
 
                 Assert.AreEqual(expectedMilitaryPowerRatio, planet.MilitaryPowerRatio);
             }
@@ -164,6 +164,9 @@ namespace PlanetWars.Tests
                 planet.AddWeapon(weapon);
 
                 planet.UpgradeWeapon(weapon.Name);
+
+                int expectedDecstructionLevel = 51;
+                Assert.AreEqual(expectedDecstructionLevel, weapon.DestructionLevel);
             }
 
             [Test]

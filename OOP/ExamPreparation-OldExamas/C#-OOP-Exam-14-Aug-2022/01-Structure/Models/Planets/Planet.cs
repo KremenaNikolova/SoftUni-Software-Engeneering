@@ -35,7 +35,7 @@ namespace PlanetWars.Models.Planets
         public string Name 
         {
             get { return name; }
-            set
+            private set
             {
                 if (string.IsNullOrEmpty(value))
                 {
