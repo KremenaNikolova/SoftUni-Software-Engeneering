@@ -36,15 +36,14 @@ namespace _02_Business_Logic.Core
             {
                 throw new InvalidOperationException($"Weapon {weaponName} does not exist.");
             }
-            foreach (var person in heroes.Models)
-            {
-                if (person.Weapon.Name==weaponName)
-                {
-                    throw new InvalidOperationException($"Hero {heroName} is well-armed.");
-                }
-            }
+            
             var hero = heroes.FindByName(heroName);
             var weapon = weapons.FindByName(weaponName);
+
+            if (hero.Weapon!=null)
+            {
+                throw new InvalidOperationException($"Hero {heroName} is well-armed.");
+            }
 
             hero.AddWeapon(weapon);
             weapons.Remove(weapon);
