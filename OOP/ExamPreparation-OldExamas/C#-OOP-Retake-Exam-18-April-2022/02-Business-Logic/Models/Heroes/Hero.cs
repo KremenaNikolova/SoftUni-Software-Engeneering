@@ -67,7 +67,7 @@ namespace Heroes.Models.Heroes
             {
                 if (value==null)
                 {
-                    throw new ArgumentException("Hero armour cannot be below 0.");
+                    throw new ArgumentException("Weapon cannot be null.");
                 }
                 weapons= value;
             }

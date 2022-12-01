@@ -3,6 +3,7 @@ using Heroes.Models.Heroes;
 using Heroes.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Heroes.Models.Map
@@ -33,7 +34,7 @@ namespace Heroes.Models.Map
                 
                 foreach (var knight in knights)
                 {
-                    foreach (var barbarian in barbarians)
+                    foreach (var barbarian in barbarians.Where(x=>x.IsAlive))
                     {
                         barbarian.TakeDamage(knight.Weapon.DoDamage());
                     }
@@ -42,7 +43,7 @@ namespace Heroes.Models.Map
 
                 foreach (var barbarian in barbarians)
                 {
-                    foreach (var knight in knights)
+                    foreach (var knight in knights.Where(x=>x.IsAlive))
                     {
                         knight.TakeDamage(barbarian.Weapon.DoDamage());
                     }

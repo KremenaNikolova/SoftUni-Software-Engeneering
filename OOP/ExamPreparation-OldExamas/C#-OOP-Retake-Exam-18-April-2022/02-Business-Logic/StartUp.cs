@@ -9,6 +9,13 @@ namespace Heroes
         {
             IEngine engine = new Engine();
             engine.Run();
+
+            //CreateHero { type } { name } { health } { armour }
+            //CreateWeapon { type } { name } { durability }
+            //AddWeaponToHero { weaponName } { heroName }
+
+
+
         }
     }
 }
