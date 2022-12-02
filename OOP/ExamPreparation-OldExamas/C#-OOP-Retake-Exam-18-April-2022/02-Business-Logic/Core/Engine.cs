@@ -5,6 +5,7 @@
     using Heroes.IO.Contracts;
     using Heroes.Core.Contracts;
     using _02_Business_Logic.Core;
+    using Formula1.IO;
 
     public class Engine : IEngine
     {
@@ -14,7 +15,7 @@
 
         public Engine()
         {
-            this.writer = new Writer();
+            this.writer = new FileWriter();
             this.reader = new Reader();
             this.controller = new Controller();
         }

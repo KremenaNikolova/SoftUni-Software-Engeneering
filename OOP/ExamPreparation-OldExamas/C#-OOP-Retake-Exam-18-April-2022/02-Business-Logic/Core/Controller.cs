@@ -103,7 +103,7 @@ namespace _02_Business_Logic.Core
             
             foreach (var hero in heroes.Models.OrderBy(x=>x.GetType().Name).ThenByDescending(x=>x.Health).ThenBy(x=>x.Name))
             {
-                sb.AppendLine($"{hero.GetType()}: {hero.Name}");
+                sb.AppendLine($"{hero.GetType().Name}: {hero.Name}");
                 sb.AppendLine($"--Health: { hero.Health }");
                 sb.AppendLine($"--Armour: { hero.Armour }");
                 sb.AppendLine(hero.Weapon != null ? $"--Weapon: {hero.Weapon.Name}" : "--Weapon: Unarmed");
