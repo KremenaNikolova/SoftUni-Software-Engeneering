@@ -17,7 +17,6 @@ namespace Formula1.Models.Pilots
         public Pilot(string fullName)
         {
             FullName= fullName;
-            Car = car;
         }
 
         public string FullName

@@ -1,9 +1,6 @@
-﻿using Formula1.Core;
-using Formula1.Models.Contracts;
+﻿using Formula1.Models.Contracts;
 using Formula1.Utilities;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Formula1.Models.Cars
 {
@@ -25,7 +22,7 @@ namespace Formula1.Models.Cars
             get => model;
             private set
             {
-                if (string.IsNullOrWhiteSpace(value))
+                if (string.IsNullOrWhiteSpace(value) || value.Length<3)
                 {
                     throw new ArgumentException(string.Format(ExceptionMessages.InvalidF1CarModel, value));
                 }

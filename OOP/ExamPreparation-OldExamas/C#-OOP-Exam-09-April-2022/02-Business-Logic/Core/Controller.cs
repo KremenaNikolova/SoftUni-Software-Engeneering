@@ -80,13 +80,13 @@ namespace _02_Business_Logic.Core
 
         public string AddCarToPilot(string pilotName, string carModel)
         {
-            IPilot searchPilot = pilotRepository.FindByName(pilotName);
-            if (searchPilot==null || searchPilot.Car.Model!=null)
+            IPilot searchPilot = pilotRepository.Models.FirstOrDefault(x => x.FullName == pilotName);
+            if (searchPilot ==null || searchPilot.Car!=null)
             {
                 throw new InvalidOperationException(string.Format(ExceptionMessages.PilotDoesNotExistOrHasCarErrorMessage, pilotName));
             }
-            IFormulaOneCar searchCar = formulaOneCarRepository.FindByName(carModel);
-            if (searchCar!=null)
+            IFormulaOneCar searchCar = formulaOneCarRepository.Models.FirstOrDefault(x => x.Model == carModel);
+            if (searchCar==null)
             {
                 throw new NullReferenceException(string.Format(ExceptionMessages.CarDoesNotExistErrorMessage, carModel));
             }
@@ -156,20 +156,22 @@ namespace _02_Business_Logic.Core
 
         public string RaceReport()
         {
-            foreach (var race in raceRepository.Models)
+            StringBuilder sb = new StringBuilder();
+            foreach (var race in raceRepository.Models.Where(x=>x.Pilots.Count>0))
             {
-                race.RaceInfo();
+                sb.AppendLine(race.RaceInfo());
             }
-            return null;
+            return sb.ToString().TrimEnd();
         }
 
         public string PilotReport()
         {
-            foreach (var pilot in pilotRepository.Models)
+            StringBuilder sb = new StringBuilder();
+            foreach (var pilot in pilotRepository.Models.OrderByDescending(x => x.NumberOfWins))
             {
-                pilot.ToString();
+                sb.AppendLine(pilot.ToString());
             }
-            return null;
+            return sb.ToString().TrimEnd();
         }
 
 
