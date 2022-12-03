@@ -31,7 +31,6 @@ namespace Heroes.Models.Map
 
             while (knights.Count!=0 && barbarians.Count!=0)
             {
-                
                 foreach (var knight in knights)
                 {
                     foreach (var barbarian in barbarians.Where(x=>x.IsAlive))

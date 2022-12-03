@@ -26,6 +26,51 @@ namespace _02_Business_Logic.Core
             weapons = new WeaponRepository();
         }
 
+        public string CreateHero(string type, string name, int health, int armour)
+        {
+            if (heroes.Models.Any(x => x.Name == name))
+            {
+                throw new InvalidOperationException($"The hero {name} already exists.");
+            }
+
+            IHero hero;
+            switch (type)
+            {
+                case "Knight": hero = new Knight(name, health, armour); break;
+                case "Barbarian": hero = new Barbarian(name, health, armour); break;
+                default: throw new InvalidOperationException("Invalid hero type.");
+            }
+
+            heroes.Add(hero);
+            string output = hero.GetType() == typeof(Knight) ?
+                $"Successfully added Sir {name} to the collection." :
+                $"Successfully added Barbarian {name} to the collection.";
+
+            return output;
+        }
+
+        public string CreateWeapon(string type, string name, int durability)
+        {
+            if (weapons.Models.Any(x => x.Name == name))
+            {
+                throw new InvalidOperationException($"The weapon {name} already exists.");
+
+            }
+
+            IWeapon weapon;
+            switch (type)
+            {
+                case "Claymore": weapon = new Claymore(name, durability); break;
+                case "Mace": weapon = new Mace(name, durability); break;
+                default: throw new InvalidOperationException("Invalid weapon type.");
+            }
+
+            weapons.Add(weapon);
+            string output = $"A {type.ToLower()} {name} is added to the collection.";
+
+            return output;
+        }
+
         public string AddWeaponToHero(string weaponName, string heroName)
         {
             if (!heroes.Models.Any(x=>x.Name==heroName))
@@ -52,49 +97,11 @@ namespace _02_Business_Logic.Core
             return output;
         }
 
-        public string CreateHero(string type, string name, int health, int armour)
+        public string StartBattle()
         {
-            if (heroes.Models.Any(x => x.Name == name))
-            {
-                throw new InvalidOperationException($"The hero {name} already exists.");
-            }
-
-            IHero hero;
-            switch (type)
-            {
-                case "Knight": hero = new Knight(name, health, armour); break;
-                case "Barbarian": hero = new Barbarian(name, health, armour);  break;
-                default: throw new InvalidOperationException("Invalid hero type.");
-            }
-
-            heroes.Add(hero);
-            string output = hero.GetType() == typeof(Knight) ? 
-                $"Successfully added Sir {name} to the collection." : 
-                $"Successfully added Barbarian {name} to the collection.";
-
-            return output;
-        }
-
-        public string CreateWeapon(string type, string name, int durability)
-        {
-            if (weapons.Models.Any(x=>x.Name==name))
-            {
-                throw new InvalidOperationException($"The weapon {name} already exists.");
-
-            }
-
-            IWeapon weapon;
-            switch (type) 
-            {
-                case "Claymore": weapon = new Claymore(name, durability); break;
-                case "Mace": weapon = new Mace(name, durability); break;
-                default: throw new InvalidOperationException("Invalid weapon type.");
-            }
-
-            weapons.Add(weapon);
-            string output = $"A {type.ToLower()} {name} is added to the collection.";
-
-            return output;
+            Map map = new Map();
+            ICollection<IHero> battleHeroes = heroes.Models.Where(x => x.IsAlive && x.Weapon != null).ToList();
+            return map.Fight(battleHeroes);
         }
 
         public string HeroReport()
@@ -112,11 +119,5 @@ namespace _02_Business_Logic.Core
             return sb.ToString().TrimEnd();
         }
 
-        public string StartBattle()
-        {
-            Map map = new Map();
-            ICollection<IHero> battleHeroes = heroes.Models.Where(x=>x.IsAlive && x.Weapon!=null).ToList();
-            return map.Fight(battleHeroes);
-        }
     }
 }

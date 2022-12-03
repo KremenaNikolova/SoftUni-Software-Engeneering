@@ -77,18 +77,18 @@ namespace Heroes.Models.Heroes
         {
             get 
             {
-                if (health<0)
+                if (health>0)
                 {
-                    return false;
+                    return true;
                 }
-                return true;
+                return false;
             }
 
         }
 
         public void AddWeapon(IWeapon weapon)
         {
-            this.weapons=weapon;
+                this.Weapon = weapon;
         }
 
         public void TakeDamage(int points)
