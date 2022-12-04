@@ -5,6 +5,8 @@ VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NavalVessels", "01-Structure\NavalVessels.csproj", "{E9E0C44E-AA49-41F2-82D7-BF39A51F7110}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NavalVesselsBusinessLogic", "02-Business-Logic\NavalVesselsBusinessLogic.csproj", "{ACE170E0-DA43-48DD-89AD-94ADB704008F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{E9E0C44E-AA49-41F2-82D7-BF39A51F7110}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E9E0C44E-AA49-41F2-82D7-BF39A51F7110}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E9E0C44E-AA49-41F2-82D7-BF39A51F7110}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACE170E0-DA43-48DD-89AD-94ADB704008F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACE170E0-DA43-48DD-89AD-94ADB704008F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACE170E0-DA43-48DD-89AD-94ADB704008F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACE170E0-DA43-48DD-89AD-94ADB704008F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
