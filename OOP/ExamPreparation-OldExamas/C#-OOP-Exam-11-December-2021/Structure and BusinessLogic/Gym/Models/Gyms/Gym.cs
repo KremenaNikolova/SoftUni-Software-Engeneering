@@ -4,6 +4,7 @@ using Gym.Models.Gyms.Contracts;
 using Gym.Utilities.Messages;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Gym.Models.Gyms
@@ -50,9 +51,9 @@ namespace Gym.Models.Gyms
             return result;
         }
 
-        public ICollection<IEquipment> Equipment => equipment.AsReadOnly();
+        public ICollection<IEquipment> Equipment => equipment;
 
-        public ICollection<IAthlete> Athletes =>athletes.AsReadOnly();
+        public ICollection<IAthlete> Athletes =>athletes;
 
         public void AddAthlete(IAthlete athlete)
         {
@@ -79,17 +80,18 @@ namespace Gym.Models.Gyms
             {
                 item.Exercise();
             }
+            
         }
 
         public string GymInfo()
         {
             StringBuilder sb = new StringBuilder();
-            string outputAtlethes = Athletes.Count == 0 ? "No athletes" : string.Join(", ", Athletes);
+            string outputAtlethes = Athletes.Count == 0 ? "No athletes" : string.Join(", ", Athletes.Select(x=>x.FullName));
 
             sb.AppendLine($"{Name} is a {GetType().Name}:");
             sb.AppendLine($"Athletes: {outputAtlethes}");
             sb.AppendLine($"Equipment total count: {Equipment.Count}");
-            sb.AppendLine($"Equipment total weight: {EquipmentWeight} grams");
+            sb.AppendLine($"Equipment total weight: {EquipmentWeight:f2} grams");
 
             return sb.ToString().TrimEnd();
         }
