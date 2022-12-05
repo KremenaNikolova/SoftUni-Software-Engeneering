@@ -33,6 +33,7 @@ namespace Gyms.Tests
 
             Assert.AreEqual(name, gym.Name);
             Assert.AreEqual(capacity, gym.Capacity);
+            Assert.AreEqual(0, gym.Count);
         }
 
         [TestCase("")]
