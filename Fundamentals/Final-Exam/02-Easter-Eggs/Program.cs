@@ -9,7 +9,9 @@ namespace _02_Easter_Eggs
         static void Main(string[] args)
         {
             string hiddenEggs = Console.ReadLine();
-            string pattern = @"([@#]+[a-z]{3,}[@#]+)[^\w\d ]+([/]+)[\d]+([/]+)";
+            string pattern = @"([@ | #]+[a-z]{3,}[@ | #]+)[^\w\d]*([/]+)[\d]+([/]+)";
+            //"([@#]+[a-z]{3,}[@#]+)[^\w\d ]+([/]+)[\d]+([/]+)" - old wrong one
+
             List<List<string>> countEggs = new List<List<string>>();
 
             MatchCollection matches = Regex.Matches(hiddenEggs, pattern);
