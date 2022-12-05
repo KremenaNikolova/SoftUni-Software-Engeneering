@@ -11,10 +11,6 @@ namespace NavalVessels.Models.Vessels
     {
         private string name;
         private ICaptain captain;
-        private double armorThickness;
-        private double mainWeaponCaliber;
-        private double speed;
-        private List<string> targets;
 
         public Vessel(string name, double mainWeaponCaliber, double speed, double armorThickness)
         {
@@ -23,7 +19,7 @@ namespace NavalVessels.Models.Vessels
             Speed = speed;
             ArmorThickness = armorThickness;
             
-            targets = new List<string>();
+            Targets = new List<string>();
         }
 
 
@@ -45,7 +41,7 @@ namespace NavalVessels.Models.Vessels
             get => captain;
             set
             {
-                if (captain==null)
+                if (value==null)
                 {
                     throw new NullReferenceException(ExceptionMessages.InvalidCaptainToVessel);
                 }
@@ -59,7 +55,7 @@ namespace NavalVessels.Models.Vessels
 
         public double Speed { get; protected set; }
 
-        public ICollection<string> Targets => targets.AsReadOnly();
+        public ICollection<string> Targets {get; private set;}
 
         public void Attack(IVessel target)
         {
@@ -73,7 +69,7 @@ namespace NavalVessels.Models.Vessels
             {
                 target.ArmorThickness = 0;
             }
-            targets.Add(target.Name);
+            Targets.Add(target.Name);
         }
 
         public abstract void RepairVessel();
@@ -81,7 +77,7 @@ namespace NavalVessels.Models.Vessels
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            string availibleTargets = Targets.Any() ? string.Join(", ", targets) : "None";
+            string availibleTargets = Targets.Any() ? string.Join(", ", Targets) : "None";
 
             sb.AppendLine($"- {Name}");
             sb.AppendLine($" *Type: {GetType().Name}");

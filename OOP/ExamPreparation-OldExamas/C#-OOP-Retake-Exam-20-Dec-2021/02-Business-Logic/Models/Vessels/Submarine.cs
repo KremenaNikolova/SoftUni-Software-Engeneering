@@ -24,6 +24,7 @@ namespace NavalVessels.Models.Vessels
 
         public void ToggleSubmergeMode()
         {
+            SubmergeMode = !SubmergeMode;
             if (SubmergeMode==true)
             {
                 MainWeaponCaliber += 40;
@@ -34,7 +35,7 @@ namespace NavalVessels.Models.Vessels
                 MainWeaponCaliber -= 40;
                 Speed += 4;
             }
-            SubmergeMode = !SubmergeMode;
+            
         }
 
         public override string ToString()
@@ -42,8 +43,8 @@ namespace NavalVessels.Models.Vessels
             StringBuilder sb = new StringBuilder();
             string submergeMode = SubmergeMode == true ? "ON" : "OFF";
 
-            sb.AppendLine(sb.ToString());
-            sb.AppendLine($" *Sonar mode: {submergeMode}");
+            sb.AppendLine(base.ToString());
+            sb.AppendLine($" *Submerge mode: {submergeMode}");
 
             return sb.ToString().TrimEnd();
         }

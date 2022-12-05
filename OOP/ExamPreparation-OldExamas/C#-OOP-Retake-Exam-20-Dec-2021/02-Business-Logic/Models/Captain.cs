@@ -10,15 +10,15 @@ namespace NavalVessels.Models
     public class Captain : ICaptain
     {
         private string fullName;
-        private int combatExperience;
         private List<IVessel> vesselsList;
 
         public Captain(string fullName)
         {
             FullName= fullName;
+            CombatExperience = 0;
 
             vesselsList = new List<IVessel>();
-            combatExperience= 0;
+            
         }
 
         public string FullName
@@ -34,7 +34,7 @@ namespace NavalVessels.Models
             }
         }
 
-        public int CombatExperience => combatExperience;
+        public int CombatExperience {get; private set;}
 
         public ICollection<IVessel> Vessels => vesselsList.AsReadOnly();
 
@@ -49,7 +49,7 @@ namespace NavalVessels.Models
 
         public void IncreaseCombatExperience()
         {
-            combatExperience += 10;
+            CombatExperience += 10;
         }
 
         public string Report()

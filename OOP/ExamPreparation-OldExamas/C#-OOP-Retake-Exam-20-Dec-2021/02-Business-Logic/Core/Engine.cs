@@ -6,6 +6,7 @@
     using Contracts;
     using IO;
     using IO.Contracts;
+    using NavalVesselsBusinessLogic.Core;
 
     public class Engine : IEngine
     {

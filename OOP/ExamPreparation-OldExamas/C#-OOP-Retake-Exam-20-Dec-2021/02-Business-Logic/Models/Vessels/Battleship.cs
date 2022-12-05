@@ -23,6 +23,7 @@ namespace NavalVessels.Models.Vessels
 
         public void ToggleSonarMode()
         {
+            SonarMode = !SonarMode;
             if (SonarMode==true)
             {
                 MainWeaponCaliber += 40;
@@ -33,7 +34,7 @@ namespace NavalVessels.Models.Vessels
                 MainWeaponCaliber -= 40;
                 Speed += 5;
             }
-            SonarMode = !SonarMode;
+            
         }
 
         public override string ToString()

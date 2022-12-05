@@ -45,7 +45,7 @@ namespace NavalVessels.Models.Vessels
             get => captain;
             set
             {
-                if (captain==null)
+                if (value==null)
                 {
                     throw new NullReferenceException(ExceptionMessages.InvalidCaptainToVessel);
                 }
