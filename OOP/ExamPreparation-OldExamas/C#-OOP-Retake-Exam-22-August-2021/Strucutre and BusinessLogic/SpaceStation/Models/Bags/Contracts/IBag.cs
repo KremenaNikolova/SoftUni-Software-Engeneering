@@ -1,4 +1,4 @@
-﻿namespace SpaceStation.Models.Bags.Contracts
+﻿namespace SpaceStation.Models.Bag.Contracts
 {
     using System.Collections.Generic;
 

@@ -1,7 +1,7 @@
 ﻿namespace SpaceStation.Models.Astronauts.Contracts
 {
-    using Bags;
-    using Bags.Contracts;
+    using Bag;
+    using Bag.Contracts;
 
     public interface IAstronaut
     {

@@ -15,7 +15,7 @@ namespace SpaceStation.Models.Astronauts
 
         public override void Breath()
         {
-            Oxygen = -DECREASE_OXYGEN;
+            Oxygen -= DECREASE_OXYGEN;
         }
     }
 }

@@ -1,9 +1,9 @@
-﻿using SpaceStation.Models.Bags.Contracts;
+﻿using SpaceStation.Models.Bag.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SpaceStation.Models.Bags
+namespace SpaceStation.Models.Bag
 {
     public class Backpack : IBag
     {
