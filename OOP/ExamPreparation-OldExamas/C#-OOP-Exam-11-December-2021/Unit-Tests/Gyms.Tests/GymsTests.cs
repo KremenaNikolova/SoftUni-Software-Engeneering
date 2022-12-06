@@ -108,8 +108,9 @@ namespace Gyms.Tests
             Athlete athlete = new Athlete("Heastia");
             gym.AddAthlete(athlete);
 
-            gym.InjureAthlete("Heastia");
+            var injuredAthlete = gym.InjureAthlete("Heastia");
 
+            Assert.AreEqual(athlete, injuredAthlete);
             Assert.AreEqual(true, athlete.IsInjured);
             Assert.AreEqual("Heastia", athlete.FullName);
         }
