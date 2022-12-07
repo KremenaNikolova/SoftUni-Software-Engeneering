@@ -70,7 +70,7 @@ namespace SpaceStation.Core
             IMission mission = new Mission();
             var planet = planets.FindByName(planetName);
             var availibleAstronauts = astronauts.Models.Where(x => x.Oxygen > 60).ToArray();
-            if (availibleAstronauts==null)
+            if (availibleAstronauts.Length==0)
             {
                 throw new InvalidOperationException(ExceptionMessages.InvalidAstronautCount);
             }
