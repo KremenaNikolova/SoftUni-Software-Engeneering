@@ -22,10 +22,6 @@ namespace CarRacing.Models.Maps
 
                 return string.Format(OutputMessages.OneRacerIsNotAvailable, winnerUsername, lostUsername);
             }
-
-            racerOne.Race();
-            racerTwo.Race();
-
             double racerOneRacingBehavior = racerOne.RacingBehavior == "strict" ? 1.2 : 1.1;
             double racerTwoRacingBehavior = racerTwo.RacingBehavior == "strict" ? 1.2 : 1.1;
 
@@ -34,6 +30,8 @@ namespace CarRacing.Models.Maps
 
             string winner = chanceOfWinningRacerOne > chanceOfWinningRacerTwo ? racerOne.Username : racerTwo.Username;
 
+            racerOne.Race();
+            racerTwo.Race();
             return string.Format(OutputMessages.RacerWinsRace, racerOne.Username, racerTwo.Username, winner);
 
         }

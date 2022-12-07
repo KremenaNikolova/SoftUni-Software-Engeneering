@@ -8,7 +8,7 @@ namespace CarRacing.Models.Cars
     {
         private const double AVAILABLE_FUEL = 80;
         private const double FUEL_CONSUMPTION_PER_RACE = 10;
-        public SuperCar(string make, string model, string vIN, int horsePower) : base(make, model, vIN, horsePower, AVAILABLE_FUEL, FUEL_CONSUMPTION_PER_RACE)
+        public SuperCar(string make, string model, string vin, int horsePower) : base(make, model, vin, horsePower, AVAILABLE_FUEL, FUEL_CONSUMPTION_PER_RACE)
         {
         }
     }

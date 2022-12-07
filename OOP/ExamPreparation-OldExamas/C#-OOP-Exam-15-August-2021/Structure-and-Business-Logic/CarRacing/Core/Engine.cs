@@ -1,6 +1,4 @@
-﻿// ReSharper disable InconsistentNaming
-// ReSharper disable FunctionNeverReturns
-namespace CarRacing.Core
+﻿namespace CarRacing.Core
 {
     using System;
     using Contracts;
@@ -17,7 +15,7 @@ namespace CarRacing.Core
         {
             this.writer = new Writer();
             this.reader = new Reader();
-            //this.controller = new Controller();
+            this.controller = new Controller();
         }
 
         public void Run()

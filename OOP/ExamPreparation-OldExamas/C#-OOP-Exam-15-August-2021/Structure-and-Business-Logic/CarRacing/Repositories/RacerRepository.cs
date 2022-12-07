@@ -10,7 +10,7 @@ namespace CarRacing.Repositories
 {
     public class RacerRepository : IRepository<IRacer>
     {
-        private readonly List<IRacer> racersList;
+        private List<IRacer> racersList;
 
         public RacerRepository()
         {

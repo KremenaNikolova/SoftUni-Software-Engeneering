@@ -16,11 +16,11 @@ namespace CarRacing.Models.Cars
         double fuelAvailable;
         double fuelConsumptionPerRace;
 
-        protected Car(string make, string model, string vIN, int horsePower, double fuelAvailable, double fuelConsumptionPerRace)
+        protected Car(string make, string model, string vin, int horsePower, double fuelAvailable, double fuelConsumptionPerRace)
         {
             Make = make;
             Model = model;
-            VIN = vIN;
+            VIN = vin;
             HorsePower = horsePower;
             FuelAvailable = fuelAvailable;
             FuelConsumptionPerRace = fuelConsumptionPerRace;
@@ -57,7 +57,7 @@ namespace CarRacing.Models.Cars
             get => vin;
             private set
             {
-                if (value.Length!=16)
+                if (value.Length!=17)
                 {
                     throw new ArgumentException(ExceptionMessages.InvalidCarVIN);
                 }
