@@ -1,4 +1,6 @@
-﻿namespace Aquariums
+﻿using System;
+
+namespace Aquariums
 {
     public class Fish
     {
@@ -11,5 +13,10 @@
         public string Name { get; set; }
 
         public bool Available { get; set; }
+
+        public object[] Select(Func<object, object> value)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
