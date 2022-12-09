@@ -15,7 +15,9 @@ namespace WarCroft.Entities.Characters.Contracts
 		public Character(string name, double health, double armor, double abilityPoints, Bag bag)
 		{
 			Name= name;
+			BaseHealth= health;
 			Health= health;
+			BaseArmor= armor;
 			Armor= armor;
 			AbilityPoints= abilityPoints;
 			Bag= bag;
@@ -60,10 +62,6 @@ namespace WarCroft.Entities.Characters.Contracts
 				if (value>BaseArmor)
 				{
 					value = BaseArmor;
-				}
-				else if (value<0)
-				{
-					value = 0;
 				}
 				armor = value;
 			}
