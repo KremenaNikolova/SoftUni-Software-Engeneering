@@ -71,7 +71,7 @@ namespace WarCroft.Entities.Characters.Contracts
 
 		public bool IsAlive { get; set; } = true;
 
-		protected void EnsureAlive()
+		public void EnsureAlive()
 		{
 			if (!this.IsAlive)
 			{
@@ -102,10 +102,9 @@ namespace WarCroft.Entities.Characters.Contracts
 
 		public void UseItem(Item item)
 		{
-			if (IsAlive) 
-			{
+
+				EnsureAlive();
 				item.AffectCharacter(this);
-			}
 		}
 
     }

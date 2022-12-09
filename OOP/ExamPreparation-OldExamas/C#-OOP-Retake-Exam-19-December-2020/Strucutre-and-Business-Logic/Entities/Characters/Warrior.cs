@@ -20,14 +20,14 @@ namespace WarCroft.Entities.Characters
 
         public void Attack(Character character)
         {
-            if (this==character)
+            if (this == character)
             {
                 throw new InvalidOperationException(ExceptionMessages.CharacterAttacksSelf);
             }
-            if (this.IsAlive && character.IsAlive)
-            {
-                character.TakeDamage(this.AbilityPoints);
-            }
+            this.EnsureAlive();
+            character.EnsureAlive();
+            character.TakeDamage(this.AbilityPoints);
         }
     }
 }
+
