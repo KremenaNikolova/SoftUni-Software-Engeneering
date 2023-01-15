@@ -183,3 +183,122 @@ INSERT INTO [Movies]([Title], [DirectorId], [CopyrightYear], [Length], [GenreId]
 
 
 --14-Car Rental Database
+CREATE DATABASE [CarRental]
+
+USE [CarRental]
+
+CREATE TABLE [Categories](
+       [Id] INT PRIMARY KEY IDENTITY,
+	   [CategoryName] NVARCHAR(50) NOT NULL,
+	   [DailyRate] INT,
+	   [WeeklyRate] INT,
+	   [MonthlyRate] INT,
+	   [WeekendRate] INT
+	   )
+
+CREATE TABLE [Cars](
+       [Id] INT PRIMARY KEY IDENTITY,
+	   [PlateNumber] INT NOT NULL,
+	   [Manufacturer] NVARCHAR(20) NOT NULL,
+	   [Model] NVARCHAR(20)NOT NULL,
+	   [CarYear] DATE,
+	   [CategoryId] INT FOREIGN KEY REFERENCES [Categories](Id) NOT NULL,
+	   [Doors] INT,
+	   [Picture] VARBINARY(MAX),
+	   [Condition] NVARCHAR(100),
+	   [Available] BIT
+	   )
+
+CREATE TABLE [Employees](
+       [Id] INT PRIMARY KEY IDENTITY,
+	   [FirstName] NVARCHAR(10) NOT NULL,
+	   [LastName] NVARCHAR(10) NOT NULL,
+	   [Title] NVARCHAR(10),
+	   [Notes] NVARCHAR(MAX)
+	   )
+
+CREATE TABLE [Customers](
+       [Id] INT PRIMARY KEY IDENTITY,
+	   [DriverLicenceNumber] INT NOT NULL,
+	   [FullName] NVARCHAR(50) NOT NULL,
+	   [Address] NVARCHAR(50),
+	   [City] NVARCHAR(30),
+	   [ZIPCode] INT,
+	   [Notes] NVARCHAR(MAX)
+	   )
+
+CREATE TABLE [RentalOrders](
+       [Id] INT PRIMARY KEY IDENTITY,
+	   [EmployeeId] INT FOREIGN KEY REFERENCES [Employees](Id) NOT NULL,
+	   [CustomerId] INT FOREIGN KEY REFERENCES [Customers](Id) NOT NULL,
+	   [CarId] INT FOREIGN KEY REFERENCES [Cars](Id) NOT NULL,
+	   [TankLevel] INT,
+	   [KilometrageStart] INT,
+	   [KilometrageEnd] INT,
+	   [TotalKilometrage] INT,
+	   [StartDate] DATE,
+	   [EndDate] DATE,
+	   [RateApplied] NVARCHAR(10),
+	   [TaxRate] DECIMAL,
+	   [OrderStatus] BIT,
+	   [Notes] NVARCHAR(MAX)
+	   )
+
+
+INSERT INTO [Categories]([CategoryName], [DailyRate], [WeeklyRate], [MonthlyRate], [WeekendRate])
+       VALUES
+	   ('Truck', NULL, NULL, NULL, NULL),
+	   ('Nice Car', 9, 10, 10, 10),
+	   ('Small Car', 5, 7, 7, 6)
+
+INSERT INTO [Cars]([PlateNumber], [Manufacturer], [Model], [CarYear], [CategoryId], [Doors], [Condition], [Available])
+       VALUES
+	   (1254, 'Seat', 'Ibiza', '2011-10-05', 2, 3, 'I have no idea', 1),
+	   (5874, 'Opel', 'Astra', NULL, 1, 5, NULL, 1),
+	   (1254, 'BMW', 'M5', NULL, 3, 5, NULL, 1)
+
+INSERT INTO [Employees]([FirstName], [LastName], [Title], [Notes])
+       VALUES
+	   ('Иванка', 'Михайлова', 'Учител', NUll),
+	   ('Geroge', 'Snow', NULL, NUll),
+	   ('John', 'Snow', NULL, NUll)
+
+INSERT INTO [Customers]([DriverLicenceNumber],[FullName],[Address], [City], [ZIPCode], [Notes])
+       VALUES
+	   (587499865, 'Gabriel Mondo', 'Unknown', 'Viena', 854421, NULL),
+	   (547022100, 'Alexander Martin', NULL, 'London', NULL, NULL),
+	   (587499865, 'Sara Ivanova', NULL, 'Sofia', NULL, NULL)
+
+INSERT INTO [RentalOrders]([EmployeeId],[CustomerId],[CarId],[TankLevel],[KilometrageStart], [KilometrageEnd] ,[TotalKilometrage],[StartDate],[EndDate],[RateApplied],[TaxRate],[OrderStatus], [Notes])
+       VALUES
+	   (1, 1, 1, 5, 100000, 120000, 120000, '2022-12-01', '2023-01-15', NULL, 3.5, 1, NULL),
+	   (2, 2, 2, 10, 100000, 110000, 110000, '2022-08-01', '2022-09-10', NULL, 3.5, 1, NULL),
+	   (3, 3, 3, 7, 100000, 105000, 105000, '2022-10-01', '2022-11-25', NULL, 3.5, 1, NULL)
+
+
+--15-Hotel Database
+CREATE DATABASE [Hotel]
+
+USE [Hotel]
+
+CREATE TABLE [Employees](
+       [Id] INT PRIMARY KEY IDENTITY,
+	   [FirstName] NVARCHAR(10) NOT NULL,
+	   [LastName] NVARCHAR(10) NOT NULL,
+	   [Title] NVARCHAR(10),
+	   [NOTES] NVARCHAR(MAX)
+	   )
+
+CREATE TABLE [Customers](
+       [AccountNumber] INT PRIMARY KEY IDENTITY,
+	   [FirstName] NVARCHAR(10) NOT NULL,
+	   [LastName] NVARCHAR(10) NOT NULL,
+	   [PhoneNumber] INT,
+	   [EmergencyName] NVARCHAR(10),
+	   [EmergencyNumber] INT,
+	   [Notes] NVARCHAR(MAX)
+	   )
+
+CREATE TABLE [RoomStatus](
+       [RoomStatus] INT PRIMARY KEY IDENTITY,
+	   [
