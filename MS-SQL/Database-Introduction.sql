@@ -286,7 +286,7 @@ CREATE TABLE [Employees](
 	   [FirstName] NVARCHAR(10) NOT NULL,
 	   [LastName] NVARCHAR(10) NOT NULL,
 	   [Title] NVARCHAR(10),
-	   [NOTES] NVARCHAR(MAX)
+	   [Notes] NVARCHAR(MAX)
 	   )
 
 CREATE TABLE [Customers](
@@ -294,11 +294,207 @@ CREATE TABLE [Customers](
 	   [FirstName] NVARCHAR(10) NOT NULL,
 	   [LastName] NVARCHAR(10) NOT NULL,
 	   [PhoneNumber] INT,
-	   [EmergencyName] NVARCHAR(10),
+	   [EmergencyName] NVARCHAR(20),
 	   [EmergencyNumber] INT,
 	   [Notes] NVARCHAR(MAX)
 	   )
 
 CREATE TABLE [RoomStatus](
-       [RoomStatus] INT PRIMARY KEY IDENTITY,
-	   [
+       [RoomStatus] VARCHAR(25) PRIMARY KEY NOT NULL,
+	   [Notes] NVARCHAR(MAX)
+	   )
+
+CREATE TABLE [RoomTypes](
+       [RoomType] VARCHAR(25) PRIMARY KEY NOT NULL,
+	   [Notes] NVARCHAR(MAX)
+	   )
+
+CREATE TABLE [BedTypes](
+       [BedType] VARCHAR(25) PRIMARY KEY NOT NULL,
+	   [Notes] NVARCHAR(MAX)
+	   )
+
+CREATE TABLE [Rooms](
+       [RoomNumber] INT PRIMARY KEY IDENTITY,
+	   [RoomType] VARCHAR(25) FOREIGN KEY REFERENCES [RoomTypes]([RoomType]) NOT NULL,
+	   [BedType] VARCHAR(25) FOREIGN KEY REFERENCES [BedTypes]([BedType]) NOT NULL,
+	   [Rate] INT,
+	   CHECK ([Rate]<=10),
+	   [RoomStatus] VARCHAR(25) FOREIGN KEY REFERENCES [RoomStatus]([RoomStatus]) NOT NULL,
+	   [Notes] NVARCHAR(MAX)
+	   )
+
+CREATE TABLE [Payments](
+       [Id] INT PRIMARY KEY IDENTITY,
+	   [EmployeeId] INT FOREIGN KEY REFERENCES [Employees]([Id]),
+	   [PaymentDate] DATE,
+	   [AccountNumber] INT FOREIGN KEY REFERENCES [Customers]([AccountNumber]),
+	   [FirstDateOccupied] DATE NOT NULL,
+	   [LastDateOccupied] DATE NOT NULL,
+	   [TotalDays] INT NOT NULL,
+	   [AmountCharged] DECIMAL NOT NULL,
+	   [TaxRate] DECIMAL,
+	   [TaxAmount] DECIMAL,
+	   [PaymentTotal] DECIMAL NOT NULL,
+	   [Notes] NVARCHAR(MAX)
+	   )
+
+CREATE TABLE [Occupancies](
+       [Id] INT PRIMARY KEY IDENTITY,
+	   [EmployeeId] INT FOREIGN KEY REFERENCES [Employees]([Id]),
+	   [DateOccupied] DATE,
+	   [AccountNumber] INT FOREIGN KEY REFERENCES [Customers]([AccountNumber]),
+	   [RoomNumber] INT FOREIGN KEY REFERENCES [Rooms]([RoomNumber]),
+	   [RateApplied] DECIMAL (5,2),
+	   [PhoneCharge] DECIMAL (5,2),
+	   [Notes] NVARCHAR(MAX)
+	   )
+
+INSERT INTO [Employees]([FirstName], [LastName], [Title], [Notes])
+       VALUES
+	   ('Ivan', 'Ivanov', 'Director', 'I have no idea'),
+	   ('Ganka', 'Grozdanova', 'IT', NULL),
+	   ('Kremena', 'Nikolova', NULL, NULL)
+
+INSERT INTO [Customers]([FirstName], [LastName], [PhoneNumber], [EmergencyName], [EmergencyNumber], [Notes])
+       VALUES
+	   ('Geroge', 'Depp', 000147299, 'Ivan', 000178995, 'This is just exercise'),
+	   ('Stefan', 'Old', 000555666, 'Deamon', 000777888, 'This is just exercise'),
+	   ('Baby', 'Boy', 000147258, 'Bbaby', 000369852, 'This is just exercise')
+
+INSERT INTO [RoomStatus]([RoomStatus], [Notes])
+       VALUES
+	   ('Availible', NULL),
+	   ('Availible Sometimes', 'Good clean'),
+	   ('Not Availible', NULL)
+
+INSERT INTO [RoomTypes]([RoomType], [Notes])
+       VALUES
+	   ('Apartment', 'Nice one'),
+	   ('2 rooms', NULL),
+	   ('Studio', NULL)
+
+INSERT INTO [BedTypes]([BedType], [Notes])
+       VALUES
+	   ('Double bed', 'For couples'),
+	   ('Signle bed', 'When you are signle man'),
+	   ('Big Romantic Bed', NULL)
+
+INSERT INTO [Rooms]([RoomType], [BedType], [Rate], [RoomStatus], [Notes])
+       VALUES
+	   ('Apartment', 'Double bed', 10, 'Availible', NULL),
+	   ('Studio', 'Big Romantic Bed', 10, 'Availible Sometimes', 'Really nice one'),
+	   ('2 rooms', 'Signle bed', 8, 'Not Availible', NULL)
+
+INSERT INTO [Payments]([EmployeeId], [PaymentDate], [AccountNumber], [FirstDateOccupied], [LastDateOccupied], [TotalDays], [AmountCharged], [TaxRate], [TaxAmount], [PaymentTotal], [Notes])
+       VALUES
+	   (2, '2023-01-03', 2, '2023-05-25', '2023-05-30', 5, 2050, 2.25, 410, 2460, NULL),
+	   (1, '2023-01-10', 3, '2023-07-07', '2023-07-27', 10, 4100, 2.25, 820, 4920, NULL),
+	   (3, '2023-01-05', 1, '2023-05-15', '2023-05-25', 10, 4100, 2.25, 820, 4920, NULL)
+
+INSERT INTO [Occupancies]([EmployeeId], [DateOccupied], [AccountNumber], [RoomNumber], [RateApplied], [PhoneCharge], [Notes])
+       VALUES
+	   (2, '2023-05-25', 2, 1, 9.00, NULL, NULL),
+	   (1, '2023-07-07', 3, 2, 9.00, NULL, NULL),
+	   (3, '2023-05-15', 1, 3, 7.00, NULL, 'Very Well')
+
+
+--16-Create SoftUni Database
+CREATE DATABASE [SoftUni]
+
+USE[SoftUni]
+
+CREATE TABLE [Towns](
+       [Id] INT PRIMARY KEY IDENTITY,
+	   [Name] NVARCHAR(50) NOT NULL
+	   )
+
+CREATE TABLE [Addresses](
+       [Id] INT PRIMARY KEY IDENTITY,
+	   [AddressText] NVARCHAR(MAX),
+	   [TownId] INT FOREIGN KEY REFERENCES [Towns]([Id])
+	   )
+
+CREATE TABLE [Departments](
+       [Id] INT PRIMARY KEY IDENTITY,
+	   [Name] NVARCHAR(50) NOT NULL
+	   )
+
+CREATE TABLE [Employees](
+       [Id] INT PRIMARY KEY IDENTITY,
+	   [FirstName] NVARCHAR(15) NOT NULL,
+	   [MiddleName] NVARCHAR(15) NOT NULL,
+	   [LastName] NVARCHAR(15) NOT NULL,
+	   [JobTitle] NVARCHAR(15),
+	   [DepartmentId] INT FOREIGN KEY REFERENCES [Departments]([Id]),
+	   [HireDate] DATE,
+	   [Salary] DECIMAL (6,2),
+	   [AddressId] INT FOREIGN KEY REFERENCES [Addresses]([Id])
+	   )
+
+
+--17-Backup Database
+USE[master]
+GO
+
+BACKUP DATABASE [SoftUni]
+TO DISK = 'C:\Users\aradi\Desktop\softuni-backup.bak'
+GO
+
+DROP DATABASE [SoftUni]
+GO
+
+RESTORE DATABASE [SoftUni]
+FROM DISK = 'C:\Users\aradi\Desktop\softuni-backup.bak'
+
+
+--18-Basic Insert
+USE [SoftUni]
+GO
+
+INSERT INTO [Towns]([Name])
+       VALUES
+	   ('Sofia'),
+	   ('Plovdiv'),
+	   ('Varna'),
+	   ('Burgas')
+
+INSERT INTO [Addresses]([AddressText], [TownId])
+       VALUES
+	   ('bul. Simeon Veliki 33', 1),
+	   ('Peach Garden 1', 2),
+	   ('Uknown 21', 3)
+
+INSERT INTO [Departments]([Name])
+       VALUES
+	   ('Engineering'),
+	   ('Sales'),
+	   ('Marketing'),
+	   ('Software Development'),
+	   ('Quality Assurance')
+
+INSERT INTO [Employees]([FirstName], [MiddleName], [LastName], [JobTitle], [DepartmentId], [HireDate], [Salary])
+       VALUES
+	   ('Ivan', 'Ivanov', 'Ivanov', '.NET Developer', 4, '2013-02-01', 3500.00),
+	   ('Petar', 'Petrov', 'Petrov', 'Senior Engineer', 1, '2004-03-02', 4000.00),
+	   ('Maria', 'Petrova', 'Ivanova', 'Intern', 5, '2016-08-28', 525.25),
+	   ('Georgi', 'Teziev', 'Ivanov', 'CEO', 2, '2007-12-09', 3000.00),
+	   ('Peter', 'Pan', 'Pan', 'Intern', 3, '2016-08-28', 599.88)
+
+
+--19-Basic Select All Fields
+SELECT * FROM [Towns]
+
+SELECT * FROM [Departments]
+
+SELECT * FROM [Employees]
+
+
+--20-Basic Select All Fields and Order Them
+
+
+
+
+
+
+
