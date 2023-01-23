@@ -16,6 +16,3 @@ namespace _01._3_PB_CSharp_First_Steps_in_Coding_Exercise
     }
 }
 
-
-// usd to bgn
-// 1usd = 1.79549 BGN

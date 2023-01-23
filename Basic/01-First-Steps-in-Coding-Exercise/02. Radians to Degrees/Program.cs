@@ -14,6 +14,3 @@ namespace Radians_to_Degrees
     }
 }
 
-
-//da chete ygyl v radian
-// formula za ygyl v radian градус = радиан * 180 / Math.PI
