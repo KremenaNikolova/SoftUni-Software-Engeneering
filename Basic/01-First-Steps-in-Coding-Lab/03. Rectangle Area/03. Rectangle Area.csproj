@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
-    <RootNamespace>_01._2_PB_CSharp_First_Steps_in_Coding_Lab</RootNamespace>
+    <RootNamespace>_03._Rectangle_Area</RootNamespace>
   </PropertyGroup>
 
 </Project>
