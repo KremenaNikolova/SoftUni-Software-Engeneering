@@ -76,7 +76,7 @@ SELECT * FROM
               	     (PARTITION BY e.Salary ORDER BY e.EmployeeID) [Rank]
                 FROM Employees AS e
 			   WHERE e.Salary BETWEEN 10000 AND 50000
-) t
+) [Rank Subquery]
  WHERE [Rank] = 2
  ORDER BY Salary DESC
 
@@ -93,5 +93,50 @@ SELECT CountryName AS [Country Name],
 
 
 --13. Mix of Peak and River Names
-SELECT *
+SELECT PeakName, RiverName,
+ LOWER (CONCAT (SUBSTRING(PeakName, 1, LEN(PeakName)-1), SUBSTRING(RiverName, 1, LEN(RiverName)))) AS Mix
   FROM Peaks, Rivers
+ WHERE RIGHT(PeakName, 1) = LEFT(RiverName, 1)
+ ORDER BY Mix
+
+
+--14. Games From 2011 and 2012 Year
+USE Diablo
+GO
+
+  SELECT TOP(50) [Name], FORMAT([Start], 'yyyy-MM-dd') AS [Start]
+    FROM Games
+   WHERE YEAR([Start]) = 2011 OR YEAR([Start]) = 2012
+ORDER BY [Start]
+
+
+--15. User Email Providers
+  SELECT Username, SUBSTRING(Email, CHARINDEX('@', Email)+1, LEN(Email)) AS [Email Provider]
+    FROM Users
+ORDER BY [Email Provider], Username
+
+
+--16. Get Users with IP Address Like Pattern
+  SELECT Username, IpAddress AS [IP Address]
+    FROM Users
+   WHERE IpAddress LIKE '___.1%.%.___'
+ORDER BY Username
+
+
+--17. Show All Games with Duration & Part of the Day
+  SELECT g.[Name] AS Game,
+         CASE
+            WHEN DATEPART(HOUR, [Start])>=0 AND DATEPART(HOUR, [Start])<12 THEN 'Morning'
+  		    WHEN DATEPART(HOUR, [Start])>=12 AND DATEPART(HOUR, [Start])<18 THEN 'Afternoon'
+  		    ELSE 'Evening'
+  	     END
+  	       AS [Part of the Day],
+          CASE
+  	        WHEN Duration <=3 THEN 'Extra Short'
+  		    WHEN Duration BETWEEN 4 and 6 THEN 'Short'
+  		    WHEN Duration > 6 THEN 'Long'
+  		    ELSE 'Extra Long'
+  		 END
+  		   AS Duration
+    FROM Games AS g
+ORDER BY g.[Name], Duration, [Part of the Day]
