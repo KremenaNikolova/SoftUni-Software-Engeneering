@@ -140,3 +140,43 @@ ORDER BY Username
   		   AS Duration
     FROM Games AS g
 ORDER BY g.[Name], Duration, [Part of the Day]
+
+
+--18. Orders Table
+USE Orders
+GO
+
+SELECT ProductName,
+       OrderDate,
+	   DATEADD(DAY, 3, OrderDate) AS [Pay Due],
+       DATEADD(MONTH, 1, OrderDate) AS [Deliver Due]
+  FROM Orders
+
+
+--19. People Table
+USE Exercise
+GO
+
+CREATE TABLE People
+(
+       Id INT PRIMARY KEY IDENTITY,
+	   [Name] NVARCHAR(50) NOT NULL,
+	   Birthdate DATETIME2
+)
+
+INSERT INTO People
+VALUES
+       ('Petar', '1990-10-18'),
+	   ('Kremena', '1992-02-20'),
+	   ('Damqn', '1885-09-25')
+
+SELECT [Name],
+       --DATEDIFF(YEAR, Birthdate, GETDATE()) AS [Age in Years],
+	   FLOOR(DATEDIFF(DAY, Birthdate, GETDATE())/365.25) AS [Age in Years],
+	   DATEDIFF(MONTH, Birthdate, GETDATE()) AS [Age in Months],
+	   DATEDIFF(DAY, Birthdate, GETDATE()) AS [Age in Days],
+	   DATEDIFF(MINUTE, Birthdate, GETDATE()) AS [Age in Minutes]
+FROM  People
+
+
+
