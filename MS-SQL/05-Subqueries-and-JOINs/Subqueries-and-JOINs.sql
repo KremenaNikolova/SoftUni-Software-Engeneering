@@ -75,6 +75,40 @@ WHERE e.HireDate > '1999-1-1'
 ORDER BY e.HireDate
 
 
+--07. Employees With Project
+SELECT TOP (5)
+     e.EmployeeID
+	,e.FirstName
+	,p.[Name] AS ProjectName
+FROM Employees AS e
+JOIN EmployeesProjects AS ep
+ON e.EmployeeID = ep.EmployeeID
+JOIN Projects AS p
+ON ep.ProjectID = p.ProjectID
+WHERE p.StartDate > 2002-08-13 AND p.EndDate IS NULL
+ORDER BY e.EmployeeID
+
+
+--08. Employee 24
+SELECT 
+     e.EmployeeID
+	,e.FirstName
+	,CASE
+	    WHEN p.StartDate >= '2005-01-01' THEN NULL
+	    ELSE p.[Name]
+	 END
+	 AS ProjectName
+FROM Employees AS e
+JOIN EmployeesProjects AS ep
+ON e.EmployeeID = ep.EmployeeID
+JOIN Projects AS p
+ON ep.ProjectID = p.ProjectID
+WHERE e.EmployeeID = 24
+
+
+--09. Employee Manager
+
+
 
 select * from Projects
 select * from EmployeesProjects
