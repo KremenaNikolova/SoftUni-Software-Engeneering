@@ -77,9 +77,25 @@ ORDER BY [MagicWandCreator],
 	    		    WHEN [Age] BETWEEN 21 AND 30 THEN '[21-30]'
 	    		    WHEN [Age] BETWEEN 31 AND 40 THEN '[31-40]'
 	    		    WHEN [Age] BETWEEN 41 AND 50 THEN '[41-50]'
+					WHEN [Age] BETWEEN 51 AND 60 THEN '[51-60]'
 	    		    ELSE '[61+]'
 	    		 END AS [AgeGroup]
 	        FROM [WizzardDeposits]
 	      )   AS [AgeGroupSubquery]
 GROUP BY [AgeGroup]
+
+
+--10. First Letter
+  SELECT 
+DISTINCT LEFT([FirstName], 1)
+    FROM [WizzardDeposits]
+   WHERE [DepositGroup] = 'Troll Chest'
+GROUP BY [FirstName]
+ORDER BY LEFT([FirstName], 1)
+
+
+--11. Average Interest
+
+
+
 
