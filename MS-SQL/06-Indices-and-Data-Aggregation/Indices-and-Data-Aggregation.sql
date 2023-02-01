@@ -95,7 +95,120 @@ ORDER BY LEFT([FirstName], 1)
 
 
 --11. Average Interest
+  SELECT [DepositGroup],
+         [IsDepositExpired],
+		 AVG([DepositInterest]) AS [AverageInterest]
+    FROM [WizzardDeposits]
+   WHERE [DepositStartDate] > '01/01/1985'
+GROUP BY [DepositGroup], [IsDepositExpired]
+ORDER BY [DepositGroup] DESC,
+		 [IsDepositExpired]
 
+
+--12. *Rich Wizard, Poor Wizard
+SELECT SUM([Difference]) AS [SumDifference]
+  FROM
+       (
+	    SELECT [wz1].[FirstName] AS [Host Wizard],
+			   [wz1].[DepositAmount] AS [Host Wizard Deposit],
+			   [wz2].[FirstName] AS [Guest Wizard],
+			   [wz2].[DepositAmount] AS [Guest Wizard Deposit],
+			   [wz1].[DepositAmount] - [wz2].[DepositAmount] AS [Difference]
+		  FROM [WizzardDeposits] AS [wz1]
+		  JOIN [WizzardDeposits] AS [wz2] ON [wz1].[Id]+1 = [wz2].[Id]
+	   ) AS [SumSubquery]
+
+
+--13. Departments Total Salaries
+USE[SoftUni]
+GO
+
+  SELECT [DepartmentID],
+		 SUM([Salary]) AS [TotalSalary]
+    FROM [Employees]
+GROUP BY [DepartmentID]
+ORDER BY [DepartmentID]
+
+
+--14. Employees Minimum Salaries
+  SELECT [DepartmentID],
+		 MIN([Salary]) AS [MinimumSalary]
+    FROM [Employees]
+   WHERE [DepartmentID] IN (2, 5, 7) AND [HireDate] > '01/01/2000'
+GROUP BY [DepartmentID]
+
+
+--15. Employees Average Salaries
+SELECT *
+  INTO [CopyEmployeesTable]
+  FROM [Employees]
+ WHERE [Salary] > 30000
+
+DELETE
+  FROM [CopyEmployeesTable]
+ WHERE [ManagerID] = 42
+
+UPDATE [CopyEmployeesTable]
+   SET [Salary] += 5000
+ WHERE [DepartmentID] = 1
+
+  SELECT [DepartmentID],
+	     AVG([Salary]) AS [AverageSalary]
+    FROM [CopyEmployeesTable]
+GROUP BY [DepartmentID]
+
+
+--16. Employees Maximum Salaries
+  SELECT [DepartmentID],
+		 MAX([Salary]) AS [MaxSalary]
+    FROM [Employees]
+GROUP BY [DepartmentID]
+HAVING MAX([Salary]) NOT BETWEEN 30000 AND 70000
+
+
+--17. Employees Count Salaries
+SELECT COUNT([EmployeeID])
+  FROM [Employees]
+ WHERE [ManagerID] IS NULL
+
+
+--18. *3rd Highest Salary
+WITH [SubQueryRank]
+  AS (
+	  SELECT [DepartmentID],
+			 [Salary],
+	         DENSE_RANK() OVER(PARTITION BY [DepartmentID] ORDER BY [Salary] DESC) AS [SalaryRank]
+        FROM [Employees]
+     )
+
+  SELECT 
+DISTINCT [DepartmentID],
+	     [Salary] AS [ThirdHignestSalary]
+    FROM [SubQueryRank]
+   WHERE [SubQueryRank].[SalaryRank] = 3
+
+
+--19. **Salary Challenge
+  SELECT TOP(10)
+         [e].[FirstName],
+         [e].[LastName],
+	     [e].[DepartmentID]
+    FROM [Employees] AS [e]
+   WHERE [e].[Salary] > (
+						   SELECT AVG([sub].[Salary])
+						     FROM [Employees] AS [sub]
+							WHERE [e].[DepartmentID] = [sub].[DepartmentID]
+						 GROUP BY [sub].[DepartmentID]
+					    )
+ORDER BY [e].[DepartmentID]
+
+
+
+
+
+
+SELECT *
+  FROM [Employees]
 
 
 
