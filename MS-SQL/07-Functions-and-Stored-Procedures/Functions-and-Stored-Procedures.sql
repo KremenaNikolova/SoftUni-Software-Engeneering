@@ -142,3 +142,42 @@ SELECT [dbo].[ufn_IsWordComprised]('oistmiahf', 'Sofia')
 GO
 
 --08. *Delete Employees and Departments
+CREATE PROCEDURE [usp_DeleteEmployeesFromDepartment] @departmentID INT
+AS
+	BEGIN
+		ALTER TABLE [Departments]
+		ALTER COLUMN [ManagerID] INT
+
+		DECLARE @copyOfEmployeesToDelete TABLE ([ID] INT)
+		INSERT INTO @copyOfEmployeesToDelete
+			SELECT [EmployeeID]
+			  FROM [Employees]
+			 WHERE [DepartmentID] = @departmentID
+
+		DELETE
+		  FROM [EmployeesProjects]
+		 WHERE [EmployeeID] IN (SELECT * FROM @copyOfEmployeesToDelete)
+
+		 UPDATE [Departments]
+		    SET [ManagerID] = NULL
+		  WHERE [ManagerID] IN (SELECT * FROM @copyOfEmployeesToDelete)
+
+		  UPDATE [Employees]
+		    SET [ManagerID] = NULL
+		  WHERE [ManagerID] IN (SELECT * FROM @copyOfEmployeesToDelete)
+		  
+		 DELETE 
+		   FROM [Employees]
+		  WHERE [DepartmentID] = @departmentID
+
+		 DELETE
+		   FROM [Departments]
+		  WHERE [DepartmentID] = @departmentID
+
+		 SELECT COUNT(*)
+		   FROM [Employees]
+		  WHERE [DepartmentID] = @departmentID
+	END
+GO
+
+EXEC [dbo].[usp_DeleteEmployeesFromDepartment] 7
