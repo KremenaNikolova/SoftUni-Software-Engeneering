@@ -180,4 +180,98 @@ AS
 	END
 GO
 
-EXEC [dbo].[usp_DeleteEmployeesFromDepartment] 7
+EXECUTE [dbo].[usp_DeleteEmployeesFromDepartment] 7
+
+
+--09. Find Full Name
+USE[Bank]
+GO
+
+CREATE PROCEDURE [usp_GetHoldersFullName]
+AS
+	BEGIN
+		SELECT CONCAT ([FirstName], ' ', [LastName]) AS [Full Name]
+		  FROM [AccountHolders]
+	END
+GO
+
+EXECUTE [dbo].[usp_GetHoldersFullName]
+GO
+
+--10. People with Balance Higher Than
+CREATE PROCEDURE [usp_GetHoldersWithBalanceHigherThan] @moneyInAccount DECIMAL (18, 2)
+AS
+	BEGIN
+		  SELECT [ah].[FirstName], [ah].[LastName]
+		    FROM [AccountHolders] AS [ah]
+		    JOIN [Accounts] AS [ac] ON [ah].[id] = [ac].[AccountHolderId]
+		GROUP BY [ah].[FirstName], [ah].[LastName]
+		  HAVING SUM([ac].[Balance])> @moneyInAccount
+		ORDER BY [ah].[FirstName], [ah].[LastName]
+	END
+GO
+
+EXECUTE [dbo].[usp_GetHoldersWithBalanceHigherThan] 35000
+GO
+
+--11. Future Value Function
+CREATE FUNCTION [ufn_CalculateFutureValue] (@sum DECIMAL(18,4), @yearlyInterestRate FLOAT, @numberOfYears INT)
+RETURNS DECIMAL(18,4)
+AS
+	BEGIN
+		RETURN @sum*POWER(1+@yearlyInterestRate, @numberOfYears)
+	END
+GO
+
+SELECT [dbo].[ufn_CalculateFutureValue](1000, 0.1, 5)
+GO
+
+--12. Calculating Interest
+CREATE PROCEDURE [usp_CalculateFutureValueForAccount] (@accountID INT, @interestRate FLOAT)
+AS
+	BEGIN
+		SELECT TOP(1)
+			   [ah].[Id] AS [Account Id],
+			   [ah].[FirstName] AS [First Name],
+			   [ah].[LastName] AS [Last Name],
+			   [a].[Balance] AS [Current Balance],
+			   [dbo].[ufn_CalculateFutureValue]([a].[Balance], @interestRate, 5) AS [Balance in 5 years]
+		  FROM [AccountHolders] AS [ah]
+		  JOIN [Accounts] AS [a] ON [ah].Id = [a].[AccountHolderId]
+		 WHERE [ah].[Id] = @accountID
+	END
+GO
+
+EXECUTE [dbo].[usp_CalculateFutureValueForAccount] 1, 0.1
+GO
+
+--13. *Cash in User Games Odd Rows
+USE[Diablo]
+GO
+
+CREATE FUNCTION [ufn_CashInUsersGames] (@gameName VARCHAR(50))
+RETURNS TABLE
+AS
+	RETURN
+		SELECT SUM([Cash]) AS [SumCash]
+		  FROM (
+				SELECT ROW_NUMBER() OVER(ORDER BY [ug].[Cash]DESC) AS [RowNumber],
+			           [ug].[Cash]
+				  FROM [UsersGames] AS [ug]
+				  JOIN [Games] AS [g] ON [ug].[GameId] = [g].Id
+				 WHERE [g].[Name] = @gameName
+			   ) AS [SubRowQuery]
+		 WHERE [RowNumber] % 2 <>0
+GO
+
+SELECT * FROM [dbo].[ufn_CashInUsersGames]('Love in a mist')
+
+
+
+
+
+SELECT *
+  FROM [UsersGames]
+
+SELECT *
+  FROM [Games]
