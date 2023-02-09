@@ -138,14 +138,57 @@ ORDER BY [Site]
 
 
 --09. Tourists with their Bonus Prizes
+   SELECT t.[Name],
+		  t.Age,
+		  t.PhoneNumber,
+		  CASE
+			WHEN bp.[Name] IS NULL THEN '(no bonus prize)'
+			ELSE bp.[Name]
+		  END AS Reward
+     FROM Tourists AS t
+LEFT JOIN TouristsBonusPrizes AS tbp ON tbp.TouristId = t.Id
+LEFT JOIN BonusPrizes AS bp ON tbp.BonusPrizeId = bp.Id
+ ORDER BY t.[Name]
 
-   SELECT *
-   FROM Sites
-   WHERE Establishment LIKE '%BC%'
+
+--10. Tourists visiting History and Archaeology sites
+  SELECT DISTINCT(SUBSTRING(t.[Name], CHARINDEX(' ', t.[Name]) +1, LEN(t.[Name]))) AS LastName,
+		 t.Nationality,
+		 t.Age,
+		 t.PhoneNumber
+    FROM Tourists AS t
+	JOIN SitesTourists AS st ON st.TouristId = t.Id
+	JOIN Sites AS s ON st.SiteId = s.Id
+	JOIN Categories AS c ON s.CategoryId = c.Id
+   WHERE c.[Name] = 'History and archaeology'
+ORDER BY LastName
+GO
+
+--11. Tourists Count on a Tourist Site
+CREATE FUNCTION udf_GetTouristsCountOnATouristSite(@Site VARCHAR(100))
+RETURNS INT 
+AS
+	BEGIN
+
+		DECLARE @CountOfTourist INT
+		SET @CountOfTourist = (
+			SELECT COUNT(*)
+			  FROM Tourists AS t
+			  JOIN SitesTourists AS st ON st.TouristId = t.Id
+			  JOIN Sites AS s ON st.SiteId = s.Id
+			 WHERE s.[Name] = @Site
+			 )
+
+		 RETURN @CountOfTourist
+	END
+GO
+
+SELECT dbo.udf_GetTouristsCountOnATouristSite ('Regional History Museum – Vratsa')
+SELECT dbo.udf_GetTouristsCountOnATouristSite ('Samuil’s Fortress')
+SELECT dbo.udf_GetTouristsCountOnATouristSite ('Gorge of Erma River')
 
 
-
-
+--
 	 
    
 
