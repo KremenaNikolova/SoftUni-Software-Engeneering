@@ -83,3 +83,76 @@ WHERE BonusPrizeId = (SELECT Id FROM BonusPrizes WHERE [Name] = 'Sleeping bag')
 
 DELETE FROM BonusPrizes
 WHERE [Name] = 'Sleeping bag'
+
+
+--05. Tourists
+  SELECT [Name],
+		 Age,
+		 PhoneNumber,
+		 Nationality
+    FROM Tourists
+ORDER BY Nationality, 
+		 Age DESC,
+		 [Name]
+
+
+--06. Sites with Their Location and Category
+  SELECT s.[Name],
+		 loc.[Name],
+		 s.Establishment,
+		 c.[Name]
+    FROM Sites AS s
+	JOIN Locations AS loc ON s.LocationId = loc.Id
+	JOIN Categories AS c ON c.Id = s.CategoryId
+ORDER BY c.[Name] DESC,
+		 loc.[Name],
+		 s.[Name]
+
+
+--07. Count of Sites in Sofia Province
+ SELECT loc.Province,
+        loc.Municipality,
+        loc.[Name] As [Location],
+	    COUNT(*) AS CountOfSites
+   FROM Locations AS loc
+   JOIN Sites AS s ON s.LocationId = loc.Id
+   WHERE Province = 'Sofia'
+GROUP BY loc.Province, loc.Municipality, loc.[Name]
+ORDER BY CountOfSites DESC,
+	     [Location]
+
+
+--08. Tourist Sites established BC
+  SELECT s.[Name] AS [Site],
+		 loc.[Name] AS [Location],
+		 loc.Municipality,
+		 loc.Province,
+		 s.Establishment
+    FROM Sites AS s
+	JOIN Locations AS loc ON s.LocationId = loc.Id 
+						 AND loc.[Name] NOT LIKE 'B%' 
+						 AND loc.[Name] NOT LIKE 'M%' 
+						 AND loc.[Name] NOT LIKE 'D%'
+   WHERE Establishment LIKE '%BC'
+ORDER BY [Site]
+
+
+--09. Tourists with their Bonus Prizes
+
+   SELECT *
+   FROM Sites
+   WHERE Establishment LIKE '%BC%'
+
+
+
+
+	 
+   
+
+    
+   
+
+
+   SELECT * FROM Sites
+   SELECT * FROM SitesTourists
+   SELECT * FROM Locations
