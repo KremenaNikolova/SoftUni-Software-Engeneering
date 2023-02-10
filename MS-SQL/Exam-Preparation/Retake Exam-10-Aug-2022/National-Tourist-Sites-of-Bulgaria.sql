@@ -187,8 +187,20 @@ SELECT dbo.udf_GetTouristsCountOnATouristSite ('Regional History Museum – Vratsa
 SELECT dbo.udf_GetTouristsCountOnATouristSite ('Samuil’s Fortress')
 SELECT dbo.udf_GetTouristsCountOnATouristSite ('Gorge of Erma River')
 
+GO
 
---
+--12. Annual Reward Lottery
+CREATE PROCEDURE usp_AnnualRewardLottery(@TouristName VARCHAR(50))
+AS
+	BEGIN
+
+		UPDATE Tourists
+		SET 
+			CASE
+			  
+			END
+
+	END
 	 
    
 
