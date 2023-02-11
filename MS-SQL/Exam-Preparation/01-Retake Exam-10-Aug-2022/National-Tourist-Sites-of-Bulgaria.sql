@@ -85,7 +85,7 @@ DELETE FROM BonusPrizes
 WHERE [Name] = 'Sleeping bag'
 
 
---05. Tourists
+--05. Tourists --Start with fresh Database from here
   SELECT [Name],
 		 Age,
 		 PhoneNumber,

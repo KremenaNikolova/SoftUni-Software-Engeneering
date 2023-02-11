@@ -78,9 +78,6 @@ UPDATE Animals
 
 
 --04. Delete 
-
---The Zoo decided to close one of the Volunteers Departments - Education program assistant. 
---Your job is to delete this department from the database. 
 DECLARE @DepartmentID INT = (SELECT Id FROM VolunteersDepartments WHERE DepartmentName = 'Education program assistant')
 
 DELETE 
@@ -92,7 +89,7 @@ DELETE
  WHERE Id = @DepartmentID
 
 
---05. Tourists
+--05. Volunteers --Start with fresh Database from here
   SELECT [Name],
   	     PhoneNumber,
   	     [Address], 
@@ -103,7 +100,7 @@ ORDER BY [Name],
 		 DepartmentId
 
 
---06. Sites with Their Location and Category
+--06.Animal data
    SELECT a.[Name],
 		  [at].AnimalType,
 		  FORMAT(a.BirthDate, 'dd.MM.yyyy') AS BirthDate
@@ -112,7 +109,7 @@ LEFT JOIN AnimalTypes AS [at] ON a.AnimalTypeId = [at].Id
  ORDER BY a.[Name]
 
 
---07. Count of Sites in Sofia Province
+--07.Owners and Their Animals
   SELECT TOP(5)
          o.[Name] AS [Owner],
 		 COUNT(*) AS CountOfAnimals
@@ -123,7 +120,7 @@ ORDER BY CountOfAnimals DESC,
 		 [Owner]
 
 
---08. Tourist Sites established BC
+--08. Owners, Animals and Cages
   SELECT CONCAT(o.[Name], '-', a.[Name]) AS OwnersAnimals,
 		 o.PhoneNumber,
 		 ac.CageId AS CageId
@@ -136,7 +133,7 @@ ORDER BY o.[Name],
 	     a.[Name] DESC
 
 
---09. Tourists with their Bonus Prizes
+--09. Volunteers in Sofia
   SELECT v.[Name],
 		 v.PhoneNumber,
 		 TRIM(REPLACE(REPLACE(v.[Address], 'Sofia', ''), ',', ''))AS [Address]
@@ -147,7 +144,7 @@ ORDER BY o.[Name],
 ORDER BY v.[Name]
 
 
---10. Tourists visiting History and Archaeology sites
+--10. Animals for Adoption
    SELECT a.[Name],
 	      YEAR(a.BirthDate) AS BirthYear,
 		  [at].AnimalType
@@ -159,7 +156,7 @@ LEFT JOIN AnimalTypes AS [at] ON a.AnimalTypeId = [at].Id
  ORDER BY a.[Name]
  GO
 
---11. Tourists Count on a Tourist Site
+--11. All Volunteers in a Department
 CREATE FUNCTION udf_GetVolunteersCountFromADepartment (@VolunteersDepartment VARCHAR(30)) 
 RETURNS INT
 AS
@@ -181,7 +178,7 @@ SELECT dbo.udf_GetVolunteersCountFromADepartment ('Guest engagement') --4
 SELECT dbo.udf_GetVolunteersCountFromADepartment ('Zoo events') --5
 GO
 
---12. Annual Reward Lottery
+--12. Animals with Owner or Not
 CREATE PROCEDURE usp_AnimalsWithOwnersOrNot(@AnimalName VARCHAR(30))
 AS
 	BEGIN
