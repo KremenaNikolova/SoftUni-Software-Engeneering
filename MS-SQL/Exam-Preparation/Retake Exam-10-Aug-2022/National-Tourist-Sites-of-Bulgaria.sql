@@ -190,24 +190,38 @@ SELECT dbo.udf_GetTouristsCountOnATouristSite ('Gorge of Erma River')
 GO
 
 --12. Annual Reward Lottery
-CREATE PROCEDURE usp_AnnualRewardLottery(@TouristName VARCHAR(50))
+CREATE OR ALTER PROCEDURE usp_AnnualRewardLottery(@TouristName VARCHAR(50))
 AS
 	BEGIN
+		DECLARE @TouristID INT = (SELECT Id
+								   FROM Tourists
+								  WHERE [Name] = @TouristName)
+
+		DECLARE @CountSites INT = (SELECT COUNT(*)
+								     FROM SitesTourists
+									WHERE @TouristID = TouristId)
+
+		DECLARE @Reward VARCHAR(20) = (
+										CASE
+											WHEN @CountSites>=100 THEN 'Gold badge'
+											WHEN @CountSites>=50 THEN 'Silver badge'
+											WHEN @CountSites>=25 THEN 'Bronze badge'
+											ELSE NULL
+										END )
 
 		UPDATE Tourists
-		SET 
-			CASE
-			  
-			END
+		   SET Reward = @Reward
+		 WHERE [Name] = @TouristName
+
+		 SELECT [Name],
+				Reward
+		   FROM Tourists
+		  WHERE [Name] = @TouristName
 
 	END
+GO
 	 
-   
-
-    
-   
-
-
-   SELECT * FROM Sites
-   SELECT * FROM SitesTourists
-   SELECT * FROM Locations
+EXEC usp_AnnualRewardLottery 'Gerhild Lutgard' --Gerhild Lutgard/Gold badge
+EXEC usp_AnnualRewardLottery 'Teodor Petrov' --Teodor Petrov/Silver badge
+EXEC usp_AnnualRewardLottery 'Zac Walsh' --Zac Walsh/Bronze badge
+EXEC usp_AnnualRewardLottery 'Brus Brown' --Brus Brown/NULL
