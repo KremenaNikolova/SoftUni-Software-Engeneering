@@ -21,7 +21,7 @@ CREATE TABLE Pilots(
 
 CREATE TABLE AircraftTypes(
 	Id INT PRIMARY KEY IDENTITY,
-	TypeName VARCHAR(30)
+	TypeName VARCHAR(30) UNIQUE NOT NULL
 	)
 
 CREATE TABLE Aircraft(
@@ -50,10 +50,11 @@ CREATE TABLE FlightDestinations(
 	Id INT PRIMARY KEY IDENTITY,
 	AirportId INT FOREIGN KEY REFERENCES Airports(Id) NOT NULL,
 	[Start] DATETIME NOT NULL,
-	AircraftId INT FOREIGN KEY REFERENCES Aircraft(Id),
-	PassengerId INT FOREIGN KEY REFERENCES Passengers(Id),
+	AircraftId INT FOREIGN KEY REFERENCES Aircraft(Id) NOT NULL,
+	PassengerId INT FOREIGN KEY REFERENCES Passengers(Id) NOT NULL,
 	TicketPrice DECIMAL(18, 2) DEFAULT 15 NOT NULL
 	)
+
 
 --02. Insert
 INSERT INTO Passengers (FullName, Email)

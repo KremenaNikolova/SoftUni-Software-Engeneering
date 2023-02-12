@@ -57,7 +57,7 @@ CREATE TABLE TouristsBonusPrizes(
 INSERT INTO Tourists([Name], Age, PhoneNumber, Nationality, Reward)
 	VALUES
 		('Borislava Kazakova', 52, '+359896354244', 'Bulgaria', NULL),
-		('Peter Bosh', 48, '+359896354244', 'UK', NULL),
+		('Peter Bosh', 48, '+447911844141', 'UK', NULL),
 		('Martin Smith', 29, '+353863818592', 'Ireland', 'Bronze badge'),
 		('Svilen Dobrev', 49, '+359986584786', 'Bulgaria', 'Silver badge'),
 		('Kremena Popova', 38, '+359893298604', 'Bulgaria', NULL)
@@ -141,6 +141,7 @@ ORDER BY [Site]
    SELECT t.[Name],
 		  t.Age,
 		  t.PhoneNumber,
+		  t.Nationality,
 		  CASE
 			WHEN bp.[Name] IS NULL THEN '(no bonus prize)'
 			ELSE bp.[Name]
