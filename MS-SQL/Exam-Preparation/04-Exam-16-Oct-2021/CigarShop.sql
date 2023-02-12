@@ -96,7 +96,6 @@ DELETE
 
 
 --05. Cigars by Price --Start with fresh Database here
-
   SELECT CigarName,
 		 PriceForSingleCigar,
 		 ImageURL
@@ -157,3 +156,60 @@ ORDER BY c.CigarName,
 
 
 --10. Cigars by Size
+   SELECT cl.LastName,
+		  AVG(s.[Length]) AS CiagrLength,
+		  CEILING(AVG(s.RingRange)) AS CiagrRingRange
+     FROM Clients AS cl
+	 JOIN ClientsCigars AS cc ON cl.Id = cc.ClientId
+	 JOIN Cigars AS cr ON cc.CigarId = cr.Id
+	 JOIN Sizes AS s ON cr.SizeId = s.Id
+ GROUP BY cl.LastName
+ ORDER BY CiagrLength DESC
+ GO
+
+--11. Client with Cigars
+CREATE FUNCTION udf_ClientWithCigars(@name VARCHAR(30))
+RETURNS INT
+AS
+	BEGIN
+		DECLARE @ClientNumberOfCigars INT
+		DECLARE @ClientID INT =
+			(SELECT Id
+			  FROM Clients
+			 WHERE FirstName = @name
+			)
+		
+		SET @ClientNumberOfCigars =
+			(SELECT COUNT(*)
+			  FROM ClientsCigars
+			 WHERE ClientId = @ClientID
+			)
+
+		RETURN @ClientNumberOfCigars
+	END
+GO
+
+SELECT dbo.udf_ClientWithCigars('Betty') --5
+GO
+
+--12. Search for Cigar with Specific Taste
+CREATE PROCEDURE usp_SearchByTaste(@taste VARCHAR(20)) --recieve tasteType
+AS
+	BEGIN
+		   SELECT c.CigarName,
+		  	      FORMAT(c.PriceForSingleCigar, 'C') AS Price,
+			      t.TasteType,
+			      b.BrandName,
+			      CONCAT(s.[Length], ' ', 'cm') AS CigarLength,
+			      CONCAT(s.RingRange, ' ', 'cm') AS CigarRingRange
+		     FROM Tastes AS t
+		     JOIN Cigars AS c ON t.Id = c.TastId
+		     JOIN Brands AS b ON c.BrandId = b.Id
+		     JOIN Sizes AS s ON c.SizeId = s.Id
+		    WHERE t.TasteType = @taste
+		 ORDER BY CigarLength,
+				  CigarRingRange DESC
+	END
+GO
+
+EXEC usp_SearchByTaste 'Woody'
