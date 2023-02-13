@@ -86,3 +86,18 @@ DELETE
 DELETE
   FROM Issues
  WHERE RepositoryId = @RepositoryId
+
+
+--05. Commits
+  SELECT Id,
+		 [Message],
+		 RepositoryId,
+		 ContributorId
+    FROM Commits
+ORDER BY Id,
+		 [Message],
+		 RepositoryId,
+		 ContributorId
+
+
+--06. Front-end
