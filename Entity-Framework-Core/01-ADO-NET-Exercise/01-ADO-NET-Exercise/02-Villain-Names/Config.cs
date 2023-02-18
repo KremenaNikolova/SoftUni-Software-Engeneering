@@ -8,6 +8,6 @@ namespace _02_Villain_Names
 {
     internal static class Config
     {
-        public const string ConnectionString = @"Server=ARADIA;Database=MinionsDB;Integrated Security=True;TrustServerCertificate=True";
+        public const string ConnectionString = @"Server=*****;Database=MinionsDB;Integrated Security=True;TrustServerCertificate=True";
     }
 }
