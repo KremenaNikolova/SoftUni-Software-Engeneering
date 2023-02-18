@@ -10,7 +10,7 @@ namespace _02_Villain_Names
         static async Task Main(string[] args)
         {
            await using SqlConnection connection = new SqlConnection(Config.ConnectionString);
-            await connection.OpenAsync();
+           await connection.OpenAsync();
 
             string result = await GetAllVilliansWithTheirMinions(connection);
             Console.WriteLine(result); ;
