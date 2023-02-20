@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _02_Villain_Names
+namespace _06_Remove_Villain
 {
     internal static class Config
     {
-        public const string ConnectionString = @"Server=ARADIA;Database=MinionsDB;Integrated Security=True;TrustServerCertificate=True";
+        public const string ConnectionString = @"Server=*****;Database=MinionsDB;Integrated Security=True;TrustServerCertificate=True";
     }
 }
