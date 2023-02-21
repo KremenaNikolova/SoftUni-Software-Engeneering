@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "05-Change-Town-Names-Casing
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06-Remove-Villain", "06-Remove-Villain\06-Remove-Villain.csproj", "{006E2AE9-0586-4308-80D7-0AA6602F84C7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "07-Print-All-Minion-Names", "07-Print-All-Minion-Names\07-Print-All-Minion-Names.csproj", "{A1FD2288-CE4D-44B3-A7C7-D66E9FCC6C15}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{006E2AE9-0586-4308-80D7-0AA6602F84C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{006E2AE9-0586-4308-80D7-0AA6602F84C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{006E2AE9-0586-4308-80D7-0AA6602F84C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1FD2288-CE4D-44B3-A7C7-D66E9FCC6C15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1FD2288-CE4D-44B3-A7C7-D66E9FCC6C15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1FD2288-CE4D-44B3-A7C7-D66E9FCC6C15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1FD2288-CE4D-44B3-A7C7-D66E9FCC6C15}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
