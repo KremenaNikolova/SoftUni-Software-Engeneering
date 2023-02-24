@@ -1,4 +1,4 @@
-﻿namespace _02_Database_First
+﻿namespace SoftUni
 {
     internal class Program
     {
