@@ -27,7 +27,10 @@ public class StartUp
 
         //Problem 09 string output = GetEmployee147(dbContext);
 
-        string output = GetDepartmentsWithMoreThan5Employees(dbContext);
+        //Problem 10 string output = GetDepartmentsWithMoreThan5Employees(dbContext);
+
+        string output = GetLatestProjects(dbContext);
+
         Console.WriteLine(output);
     }
 
@@ -282,6 +285,34 @@ public class StartUp
             {
                 sb.AppendLine($"{e.FirstName} {e.LastName} - {e.JobTitle}");
             }
+        }
+
+        return sb.ToString().TrimEnd();
+    }
+
+
+    //11. Find Latest 10 Projects
+    public static string GetLatestProjects(SoftUniContext context)
+    {
+        StringBuilder sb = new StringBuilder();
+
+        var projects = context.Projects
+            .OrderByDescending(p => p.StartDate)
+            .Take(10)
+            .Select(p => new
+            {
+                p.Name,
+                p.Description,
+                StartDate = p.StartDate.ToString("M/d/yyyy h:mm:ss tt", CultureInfo.InvariantCulture)
+            })
+            .OrderBy(p=>p.Name)
+            .ToArray();
+
+        foreach (var p in projects)
+        {
+            sb.AppendLine(p.Name);
+            sb.AppendLine(p.Description);
+            sb.AppendLine(p.StartDate);
         }
 
         return sb.ToString().TrimEnd();
