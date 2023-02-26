@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SoftUni.Data;
+using SoftUni.Models;
 using System.Text;
 
 namespace SoftUni;
@@ -14,7 +15,9 @@ public class StartUp
 
         //Problem 04: string output = GetEmployeesWithSalaryOver50000(dbContext);
 
-        string output = GetEmployeesFromResearchAndDevelopment(dbContext);
+        //Problem 05 string output = GetEmployeesFromResearchAndDevelopment(dbContext);
+
+        string output = AddNewAddressToEmployee(dbContext);
 
         Console.WriteLine(output);
     }
@@ -44,6 +47,7 @@ public class StartUp
         return sb.ToString().TrimEnd();
     }
 
+
     //04. Employees with Salary Over 50 000
     public static string GetEmployeesWithSalaryOver50000(SoftUniContext context)
     {
@@ -67,6 +71,7 @@ public class StartUp
         return sb.ToString().TrimEnd();
     }
 
+
     //05. Employees from Research and Development
     public static string GetEmployeesFromResearchAndDevelopment(SoftUniContext context)
     {
@@ -88,6 +93,41 @@ public class StartUp
         foreach (var employee in employees)
         {
             sb.AppendLine($"{employee.FirstName} {employee.LastName} from {employee.departmentName} - ${employee.Salary:f2}");
+        }
+
+        return sb.ToString().TrimEnd();
+    }
+
+
+    //06. Adding a New Address and Updating Employee
+    public static string AddNewAddressToEmployee(SoftUniContext context)
+    {
+        StringBuilder sb = new StringBuilder();
+
+        Address newAddress = new Address()
+        {
+            AddressText = "Vitoshka 15",
+            TownId = 4
+        };
+
+        context.Addresses.Add(newAddress);
+
+        Employee? employee = context.Employees
+            .FirstOrDefault(e => e.LastName == "Nakov");
+
+        employee!.Address = newAddress;
+
+        context.SaveChanges();
+
+        string[] orderEmployees = context.Employees
+            .OrderByDescending(e => e.AddressId)
+            .Take(10)
+            .Select(e => e.Address.AddressText)
+            .ToArray();
+
+        foreach (var orderEmployee in orderEmployees)
+        {
+            sb.AppendLine($"{orderEmployee}");
         }
 
         return sb.ToString().TrimEnd();
