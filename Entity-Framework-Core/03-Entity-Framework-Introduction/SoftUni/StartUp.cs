@@ -1,6 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using SoftUni.Data;
 using SoftUni.Models;
+using System.Globalization;
 using System.Text;
 
 namespace SoftUni;
@@ -17,7 +19,11 @@ public class StartUp
 
         //Problem 05 string output = GetEmployeesFromResearchAndDevelopment(dbContext);
 
-        string output = AddNewAddressToEmployee(dbContext);
+        //Problem 06 string output = AddNewAddressToEmployee(dbContext);
+
+        //Problem 07 string output = GetEmployeesInPeriod(dbContext);
+
+        //Problem 08 string output = GetAddressesByTown(dbContext);
 
         Console.WriteLine(output);
     }
@@ -132,4 +138,78 @@ public class StartUp
 
         return sb.ToString().TrimEnd();
     }
+
+
+    //07. Employees and Projects
+    public static string GetEmployeesInPeriod(SoftUniContext context)
+    {
+        StringBuilder sb = new StringBuilder();
+
+        DateTime earlyStartDate = new DateTime(2001, 1, 1);
+        DateTime lastStartDate = new DateTime(2003, 12, 31);
+
+        var employees = context.Employees
+            .Take(10)
+            .Select(e => new
+            {
+                e.FirstName,
+                e.LastName,
+                ManagerFirstName = e.Manager!.FirstName,
+                ManagerLastName = e.Manager.LastName,
+                Projects = e.EmployeesProjects
+                .Where(ep => ep.Project.StartDate >= earlyStartDate && ep.Project.StartDate <= lastStartDate)
+                .Select(ep => new
+                {
+                    ep.Project.Name,
+                    StartDate = ep.Project.StartDate.ToString("M/d/yyyy h:mm:ss tt", CultureInfo.InvariantCulture),
+                    EndDate = ep.Project.EndDate.HasValue
+                    ? ep.Project.EndDate.Value.ToString("M/d/yyyy h:mm:ss tt", CultureInfo.InvariantCulture)
+                    : "not finished"
+                })
+                .ToArray()
+            })
+            .ToArray();
+
+        foreach (var employee in employees)
+        {
+            sb.AppendLine($"{employee.FirstName} {employee.LastName} - Manager: {employee.ManagerFirstName} {employee.ManagerLastName}");
+
+            foreach (var project in employee.Projects)
+            {
+                sb.AppendLine($"--{project.Name} - {project.StartDate} - {project.EndDate}");
+            }
+        }
+
+        return sb.ToString().TrimEnd();
+
+
+    }
+
+
+    //08. Addresses by Town
+    public static string GetAddressesByTown(SoftUniContext context)
+    {
+        StringBuilder sb = new StringBuilder();
+
+        var addresses = context.Addresses
+            .OrderByDescending(a => a.Employees.Count)
+            .ThenBy(a => a.Town!.Name)
+            .ThenBy(a => a.AddressText)
+            .Take(10)
+            .Select(a => new
+            {
+                a.AddressText,
+                TownName = a.Town!.Name,
+                EmployeesCount = a.Employees.Count
+            })
+            .ToArray();
+
+        foreach (var address in addresses)
+        {
+            sb.AppendLine($"{address.AddressText}, {address.TownName} - {address.EmployeesCount} employees");
+        }
+
+        return sb.ToString().TrimEnd();
+    }
+    
 }
