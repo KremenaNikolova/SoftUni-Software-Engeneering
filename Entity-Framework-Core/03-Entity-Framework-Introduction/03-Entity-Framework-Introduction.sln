@@ -5,8 +5,6 @@ VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoftUni", "SoftUni\SoftUni.csproj", "{C95B08A6-4A34-4734-9541-DA8E56889021}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject1", "TestProject1\TestProject1.csproj", "{20A0F7D8-1B7D-4A7A-AF59-1B280F6BF85E}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{C95B08A6-4A34-4734-9541-DA8E56889021}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C95B08A6-4A34-4734-9541-DA8E56889021}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C95B08A6-4A34-4734-9541-DA8E56889021}.Release|Any CPU.Build.0 = Release|Any CPU
-		{20A0F7D8-1B7D-4A7A-AF59-1B280F6BF85E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{20A0F7D8-1B7D-4A7A-AF59-1B280F6BF85E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{20A0F7D8-1B7D-4A7A-AF59-1B280F6BF85E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{20A0F7D8-1B7D-4A7A-AF59-1B280F6BF85E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
