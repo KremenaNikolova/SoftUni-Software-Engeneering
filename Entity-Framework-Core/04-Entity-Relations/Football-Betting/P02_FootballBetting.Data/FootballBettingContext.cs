@@ -17,25 +17,25 @@ public class FootballBettingContext : DbContext
 	}
 
 
-    DbSet<Team> Teams { get; set; } = null!;
+    public DbSet<Team> Teams { get; set; } = null!;
 
-    DbSet<Color> Colors { get; set; } = null!;
+    public DbSet<Color> Colors { get; set; } = null!;
 
-    DbSet<Town> Towns { get; set; } = null!;
+    public DbSet<Town> Towns { get; set; } = null!;
 
-    DbSet<Country> Countries { get; set; } = null!;
+    public DbSet<Country> Countries { get; set; } = null!;
 
-    DbSet<Player> Players { get; set; } = null!;
+    public DbSet<Player> Players { get; set; } = null!;
 
-    DbSet<Position> Positions { get; set; } = null!;
+    public DbSet<Position> Positions { get; set; } = null!;
 
-    DbSet<PlayerStatistic> PlayersStatistics { get; set; } = null!;
+    public DbSet<PlayerStatistic> PlayersStatistics { get; set; } = null!;
 
-    DbSet<Game> Games { get; set; } = null!;
+    public DbSet<Game> Games { get; set; } = null!;
 
-    DbSet<Bet> Bets { get; set; } = null!;
+    public DbSet<Bet> Bets { get; set; } = null!;
 
-    DbSet<User> Users { get; set; } = null!;
+    public DbSet<User> Users { get; set; } = null!;
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
