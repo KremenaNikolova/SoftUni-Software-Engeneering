@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using P01_StudentSystem.Data.Models.Enums;
 
 namespace P01_StudentSystem.Data.Models;
 

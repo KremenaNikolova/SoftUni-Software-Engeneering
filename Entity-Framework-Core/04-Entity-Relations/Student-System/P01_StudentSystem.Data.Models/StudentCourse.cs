@@ -5,18 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace P01_StudentSystem.Data.Models
+namespace P01_StudentSystem.Data.Models;
+
+public class StudentCourse
 {
-    public class StudentCourse
-    {
-        [ForeignKey(nameof(Student))]
-        public int StudentId { get; set; }
+    [ForeignKey(nameof(Student))]
+    public int StudentId { get; set; }
 
-        public Student Student { get; set; } = null!;
+    public Student Student { get; set; } = null!;
 
-        [ForeignKey(nameof(Course))]
-        public int CourseId { get; set; }
+    [ForeignKey(nameof(Course))]
+    public int CourseId { get; set; }
 
-        public virtual Course Course { get; set; } = null!;
-    }
+    public virtual Course Course { get; set; } = null!;
 }
