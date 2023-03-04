@@ -17,8 +17,11 @@ public class StartUp
 
         DbInitializer.ResetDatabase(context);
 
-        int producerId = 9;
-        Console.WriteLine(ExportAlbumsInfo(context, producerId));
+        //Problem 02  int producerId = 9;
+        //Problem 02  Console.WriteLine(ExportAlbumsInfo(context, producerId));
+
+        int songDuration = 4;
+        Console.WriteLine(ExportSongsAboveDuration(context, songDuration));
     }
 
     public static string ExportAlbumsInfo(MusicHubDbContext context, int producerId)
@@ -71,8 +74,49 @@ public class StartUp
         return sb.ToString().TrimEnd();
     }
 
-    public static string ExportSongsAboveDuration(MusicHubDbContext context, int duration)
+    public static string ExportSongsAboveDuration(MusicHubDbContext context, int songDuration)
     {
-        throw new NotImplementedException();
+        StringBuilder sb = new StringBuilder();
+
+        var songs = context.Songs
+            .ToArray()
+            .Where(s => s.Duration.TotalSeconds > songDuration)
+            .Select(s => new
+            {
+                s.Name,
+                PerformerFullName = s.SongPerformers
+                    .Select(sp => new
+                    {
+                        FullName = $"{sp.Performer.FirstName} {sp.Performer.LastName}"
+                    })
+                    .OrderBy(sp=>sp.FullName),
+                WriterName = s.Writer.Name,
+                AlbumProducer = s.Album!.Producer!.Name,
+                Duration = s.Duration.ToString("c")
+            })
+            .OrderBy(s => s.Name)
+            .ThenBy(s => s.WriterName);
+
+        int songNumber = 1;
+        foreach (var song in songs)
+        {
+            sb
+                .AppendLine($"-Song #{songNumber}")
+                .AppendLine($"---SongName: {song.Name}")
+                .AppendLine($"---Writer: {song.WriterName}");
+
+            foreach (var name in song.PerformerFullName)
+            {
+                sb.AppendLine($"---Performer: {name.FullName}");
+            }
+
+            sb
+                .AppendLine($"---AlbumProducer: {song.AlbumProducer}")
+                .AppendLine($"---Duration: {song.Duration}");
+
+            songNumber++;
+        }
+
+        return sb.ToString().TrimEnd();
     }
 }
