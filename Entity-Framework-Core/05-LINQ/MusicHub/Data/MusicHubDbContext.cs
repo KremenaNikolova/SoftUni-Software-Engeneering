@@ -18,7 +18,7 @@ public class MusicHubDbContext : DbContext
 
     public DbSet<Album> Albums { get; set; } = null!; 
 
-    public DbSet<Performer> Perfomers { get; set; } = null!;
+    public DbSet<Performer> Performers { get; set; } = null!;
 
     public DbSet<Producer> Producers { get; set; } = null!;
 
