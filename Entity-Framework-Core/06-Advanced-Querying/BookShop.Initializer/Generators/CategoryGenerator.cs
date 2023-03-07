@@ -1,49 +1,48 @@
-﻿namespace BookShop.Initializer.Generators
-{
-    using BookShop.Models;
+﻿namespace BookShop.Initializer.Generators;
 
-    internal class CategoryGenerator
+using BookShop.Models;
+
+internal class CategoryGenerator
+{
+    internal static Category[] CreateCategories()
     {
-        internal static Category[] CreateCategories()
+        string[] categoryNames = new string[]
         {
-            string[] categoryNames = new string[]
+            "Science Fiction",
+            "Drama",
+            "Action",
+            "Adventure",
+            "Romance",
+            "Mystery",
+            "Horror",
+            "Health",
+            "Travel",
+            "Children's",
+            "Science",
+            "History",
+            "Poetry",
+            "Comics",
+            "Art",
+            "Cookbooks",
+            "Journals",
+            "Biographies",
+            "Fantasy",
+        };
+
+        int categoryCount = categoryNames.Length;
+
+        Category[] categories = new Category[categoryCount];
+
+        for (int i = 0; i < categoryCount; i++)
+        {
+            Category category = new Category()
             {
-                "Science Fiction",
-                "Drama",
-                "Action",
-                "Adventure",
-                "Romance",
-                "Mystery",
-                "Horror",
-                "Health",
-                "Travel",
-                "Children's",
-                "Science",
-                "History",
-                "Poetry",
-                "Comics",
-                "Art",
-                "Cookbooks",
-                "Journals",
-                "Biographies",
-                "Fantasy",
+                Name = categoryNames[i],
             };
 
-            int categoryCount = categoryNames.Length;
-
-            Category[] categories = new Category[categoryCount];
-
-            for (int i = 0; i < categoryCount; i++)
-            {
-                Category category = new Category()
-                {
-                    Name = categoryNames[i],
-                };
-
-                categories[i] = category;
-            }
-
-            return categories;
+            categories[i] = category;
         }
+
+        return categories;
     }
 }

@@ -1,18 +1,17 @@
-﻿namespace BookShop.Models
+﻿namespace BookShop.Models;
+
+using System.Collections.Generic;
+
+public class Category
 {
-    using System.Collections.Generic;
-
-    public class Category
+    public Category()
     {
-        public Category()
-        {
-            this.CategoryBooks = new HashSet<BookCategory>();
-        }
-
-        public int CategoryId { get; set; }
-
-        public string Name { get; set; }
-
-        public ICollection<BookCategory> CategoryBooks { get; set; }
+        this.CategoryBooks = new HashSet<BookCategory>();
     }
+
+    public int CategoryId { get; set; }
+
+    public string Name { get; set; }
+
+    public ICollection<BookCategory> CategoryBooks { get; set; }
 }

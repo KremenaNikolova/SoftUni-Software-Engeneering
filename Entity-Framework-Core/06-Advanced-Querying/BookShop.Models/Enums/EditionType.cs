@@ -1,9 +1,8 @@
-﻿namespace BookShop.Models.Enums
+﻿namespace BookShop.Models.Enums;
+
+public enum EditionType
 {
-    public enum EditionType
-    {
-        Normal = 0,
-        Promo = 1,
-        Gold = 2
-    }
+    Normal = 0,
+    Promo = 1,
+    Gold = 2
 }

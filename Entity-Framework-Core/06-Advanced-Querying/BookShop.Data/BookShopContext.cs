@@ -1,43 +1,40 @@
-﻿using System.Reflection;
+﻿namespace BookShop.Data;
 
-namespace BookShop.Data
+using Microsoft.EntityFrameworkCore;
+
+using Models;
+using EntityConfiguration;
+using System.Collections.Generic;
+using System.Reflection.Emit;
+
+public class BookShopContext : DbContext
 {
-    using Microsoft.EntityFrameworkCore;
+    public BookShopContext() { }
 
-    using Models;
-    using EntityConfiguration;
-    using System.Collections.Generic;
-    using System.Reflection.Emit;
+    public BookShopContext(DbContextOptions options)
+    : base(options) { }
 
-    public class BookShopContext : DbContext
+    public DbSet<Book> Books { get; set; }
+
+    public DbSet<Category> Categories { get; set; }
+
+    public DbSet<Author> Authors { get; set; }
+
+    public DbSet<BookCategory> BooksCategories { get; set; }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        public BookShopContext() { }
-
-        public BookShopContext(DbContextOptions options)
-        : base(options) { }
-
-        public DbSet<Book> Books { get; set; }
-
-        public DbSet<Category> Categories { get; set; }
-
-        public DbSet<Author> Authors { get; set; }
-
-        public DbSet<BookCategory> BooksCategories { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        if (!optionsBuilder.IsConfigured)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer(Configuration.ConnectionString);
-            }
+            optionsBuilder.UseSqlServer(Configuration.ConnectionString);
         }
+    }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.ApplyConfiguration(new AuthorConfiguration());
-            modelBuilder.ApplyConfiguration(new BookCategoryConfiguration());
-            modelBuilder.ApplyConfiguration(new BookConfiguration());
-            modelBuilder.ApplyConfiguration(new CategoryConfiguration());
-        }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.ApplyConfiguration(new AuthorConfiguration());
+        modelBuilder.ApplyConfiguration(new BookCategoryConfiguration());
+        modelBuilder.ApplyConfiguration(new BookConfiguration());
+        modelBuilder.ApplyConfiguration(new CategoryConfiguration());
     }
 }
