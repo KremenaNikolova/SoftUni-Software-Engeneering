@@ -49,6 +49,14 @@ public class StartUp
         return string.Join(Environment.NewLine, goldenEditionBooksTitle);
     }
 
+
+    //04. Books by Price
+    public static string GetBooksByPrice(BookShopContext dbContext)
+    {
+        var booksTitleAndPrice = dbContext.Books
+
+    }
+
 }
 
 
