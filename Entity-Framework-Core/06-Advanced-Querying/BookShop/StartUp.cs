@@ -4,6 +4,7 @@ using BookShop.Models.Enums;
 using Data;
 using Initializer;
 using Microsoft.EntityFrameworkCore;
+using System.Text;
 
 public class StartUp
 {
@@ -15,8 +16,10 @@ public class StartUp
         //Problem 02 string input = Console.ReadLine()!;
         //Problem 02 string output = GetBooksByAgeRestriction(dbContext, input);
 
-        string output = GetGoldenBooks(dbContext);
+        //Problem 03 string output = GetGoldenBooks(dbContext);
 
+
+        string output = GetBooksByPrice(dbContext);
         Console.WriteLine(output);
     }
 
@@ -53,8 +56,25 @@ public class StartUp
     //04. Books by Price
     public static string GetBooksByPrice(BookShopContext dbContext)
     {
-        var booksTitleAndPrice = dbContext.Books
+        StringBuilder sb = new StringBuilder();
 
+        var booksTitleAndPrice = dbContext.Books
+            .Where(b => b.Price > 40)
+            .OrderByDescending(b => b.Price)
+            .Select(b => new
+            {
+                b.Title,
+                b.Price
+            })
+            .AsNoTracking()
+            .ToArray();
+
+        foreach (var book in booksTitleAndPrice)
+        {
+            sb.AppendLine($"{book.Title} - ${book.Price:f2}");
+        }
+
+        return sb.ToString().TrimEnd();
     }
 
 }
