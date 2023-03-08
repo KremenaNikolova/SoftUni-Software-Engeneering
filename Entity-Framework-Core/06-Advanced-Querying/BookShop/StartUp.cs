@@ -4,6 +4,8 @@ using BookShop.Models.Enums;
 using Data;
 using Initializer;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
+using System.Linq;
 using System.Text;
 
 public class StartUp
@@ -18,8 +20,10 @@ public class StartUp
 
         //Problem 03 string output = GetGoldenBooks(dbContext);
 
+        //Problem 04 string output = GetBooksByPrice(dbContext);
 
-        string output = GetBooksByPrice(dbContext);
+        int input = int.Parse(Console.ReadLine()!);
+        string output = GetBooksNotReleasedIn(dbContext, input);
         Console.WriteLine(output);
     }
 
@@ -75,6 +79,21 @@ public class StartUp
         }
 
         return sb.ToString().TrimEnd();
+    }
+
+
+    //05. Not Released In
+    public static string GetBooksNotReleasedIn(BookShopContext context, int year)
+    {
+
+        string[] notReleasedInThatYearBooksTitle = context.Books
+            .Where(b=>b.ReleaseDate!.Value.Year!=year)
+            .OrderBy(b=>b.BookId)
+            .Select(b=>b.Title)
+            .AsNoTracking()
+            .ToArray();
+
+        return string.Join(Environment.NewLine, notReleasedInThatYearBooksTitle);
     }
 
 }
