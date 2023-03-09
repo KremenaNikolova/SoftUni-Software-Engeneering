@@ -31,8 +31,11 @@ public class StartUp
         //Problem 07 string input = Console.ReadLine()!;
         //Problem 07 string output = GetBooksReleasedBefore(dbContext, input);
 
+        //Problem 08 string input = Console.ReadLine()!;
+        //Problem 08 string output = GetAuthorNamesEndingIn(dbContext, input);
+
         string input = Console.ReadLine()!;
-        string output = GetAuthorNamesEndingIn(dbContext, input);
+        string output = GetBookTitlesContaining(dbContext, input);
 
         Console.WriteLine(output);
     }
@@ -167,6 +170,19 @@ public class StartUp
             .ToArray();
 
         return string.Join(Environment.NewLine, authors);
+    }
+
+    //09. Book Search
+    public static string GetBookTitlesContaining(BookShopContext dbContext, string input)
+    {
+        string[] books = dbContext.Books
+            .Where(b=>b.Title.ToLower().Contains(input.ToLower()))
+            .Select(b=>b.Title)
+            .OrderBy(b=>b)
+            .AsNoTracking()
+            .ToArray();
+
+        return string.Join(Environment.NewLine, books); 
     }
 
 }
