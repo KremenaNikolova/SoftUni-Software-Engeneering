@@ -28,8 +28,11 @@ public class StartUp
         //Problem 06 string input = Console.ReadLine()!;
         //Problem 06 string output = GetBooksByCategory(dbContext, input);
 
+        //Problem 07 string input = Console.ReadLine()!;
+        //Problem 07 string output = GetBooksReleasedBefore(dbContext, input);
+
         string input = Console.ReadLine()!;
-        string output = GetBooksReleasedBefore(dbContext, input);
+        string output = GetAuthorNamesEndingIn(dbContext, input);
 
         Console.WriteLine(output);
     }
@@ -149,6 +152,21 @@ public class StartUp
         }
 
         return sb.ToString().TrimEnd();
+    }
+
+
+    //08. Author Search
+    public static string GetAuthorNamesEndingIn(BookShopContext context, string input)
+    {
+        string[] authors = context.Authors
+            .Where(a => a.FirstName.EndsWith(input))
+            .OrderBy(a => a.FirstName)
+            .ThenBy(a => a.LastName)
+            .Select(a => $"{a.FirstName} {a.LastName}")
+            .AsNoTracking()
+            .ToArray();
+
+        return string.Join(Environment.NewLine, authors);
     }
 
 }
