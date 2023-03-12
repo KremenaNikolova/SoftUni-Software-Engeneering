@@ -1,5 +1,6 @@
 ﻿namespace BookShop;
 
+using BookShop.Models;
 using BookShop.Models.Enums;
 using Data;
 using Initializer;
@@ -40,9 +41,12 @@ public class StartUp
         //Problem 10 string input = Console.ReadLine()!;
         //Problem 10 string output = GetBooksByAuthor(dbContext, input);
 
-        int input = int.Parse(Console.ReadLine()!);
-        int output = CountBooks(dbContext, input);
+        //Problem 11 int input = int.Parse(Console.ReadLine()!);
+        //Problem 11 int output = CountBooks(dbContext, input);
 
+        //Pronlem 12 string output = CountCopiesByAuthor(dbContext);
+
+        string output = GetTotalProfitByCategory(dbContext);
         Console.WriteLine(output);
     }
 
@@ -225,6 +229,55 @@ public class StartUp
             .Count();
 
         return booksCount;
+    }
+
+
+    //12. Total Book Copies
+    public static string CountCopiesByAuthor(BookShopContext dbContext)
+    {
+        StringBuilder sb = new StringBuilder();
+
+        var booksCopies = dbContext.Authors
+            .Select(a => new
+            {
+                AuthorName = $"{a.FirstName} {a.LastName}",
+                CopiesCount = a.Books.Sum(b => b.Copies)
+            })
+            .OrderByDescending(a => a.CopiesCount)
+            .AsNoTracking()
+            .ToArray();
+
+        foreach (var author in booksCopies)
+        {
+            sb.AppendLine($"{author.AuthorName} - {author.CopiesCount}");
+        }
+
+        return sb.ToString().TrimEnd();
+    }
+
+
+    //13. Profit by Category
+    public static string GetTotalProfitByCategory(BookShopContext dbContext)
+    {
+        StringBuilder sb = new StringBuilder();
+
+        var booksProfit = dbContext.Categories
+            .Select(c => new
+            {
+                CategoryName = c.Name,
+                TotalProfit = c.CategoryBooks.Sum(cb=>cb.Book.Price*cb.Book.Copies)
+            })
+            .OrderByDescending(c=>c.TotalProfit)
+            .ThenBy(c=>c.CategoryName)
+            .AsNoTracking()
+            .ToArray();
+
+        foreach (var book in booksProfit)
+        {
+            sb.AppendLine($"{book.CategoryName} ${book.TotalProfit:f2}");
+        }
+
+        return sb.ToString().TrimEnd();
     }
 
 }
