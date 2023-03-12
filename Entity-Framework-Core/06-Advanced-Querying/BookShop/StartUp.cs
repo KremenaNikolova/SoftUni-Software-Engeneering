@@ -13,7 +13,7 @@ public class StartUp
     public static void Main()
     {
         using var dbContext = new BookShopContext();
-        DbInitializer.ResetDatabase(dbContext);
+        //DbInitializer.ResetDatabase(dbContext);
 
         //Problem 02 string input = Console.ReadLine()!;
         //Problem 02 string output = GetBooksByAgeRestriction(dbContext, input);
@@ -34,8 +34,11 @@ public class StartUp
         //Problem 08 string input = Console.ReadLine()!;
         //Problem 08 string output = GetAuthorNamesEndingIn(dbContext, input);
 
+        //Problem 09 string input = Console.ReadLine()!;
+        //Problem 09 string output = GetBookTitlesContaining(dbContext, input);
+
         string input = Console.ReadLine()!;
-        string output = GetBookTitlesContaining(dbContext, input);
+        string output = GetBooksByAuthor(dbContext, input);
 
         Console.WriteLine(output);
     }
@@ -183,6 +186,31 @@ public class StartUp
             .ToArray();
 
         return string.Join(Environment.NewLine, books); 
+    }
+
+
+    //10. Book Search by Author
+    public static string GetBooksByAuthor(BookShopContext dbContext, string input)
+    {
+        StringBuilder sb = new StringBuilder();
+
+        var books = dbContext.Books
+            .Where(b => b.Author.LastName.ToLower().StartsWith(input.ToLower()))
+            .OrderBy(b => b.BookId)
+            .Select(b => new
+            {
+                b.Title,
+                AuthorName = $"{b.Author.FirstName} {b.Author.LastName}"
+            })
+            .AsNoTracking()
+            .ToArray();
+
+        foreach (var book in books)
+        {
+            sb.AppendLine($"{book.Title} ({book.AuthorName})");
+        }
+
+        return sb.ToString().TrimEnd();
     }
 
 }
