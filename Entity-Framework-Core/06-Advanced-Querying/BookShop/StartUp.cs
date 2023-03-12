@@ -47,6 +47,7 @@ public class StartUp
         //Pronlem 12 string output = CountCopiesByAuthor(dbContext);
 
         string output = GetTotalProfitByCategory(dbContext);
+
         Console.WriteLine(output);
     }
 
