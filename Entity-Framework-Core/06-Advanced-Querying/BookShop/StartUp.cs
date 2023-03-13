@@ -46,8 +46,9 @@ public class StartUp
 
         //Pronlem 12 string output = CountCopiesByAuthor(dbContext);
 
-        string output = GetTotalProfitByCategory(dbContext);
+        //Problem 13 string output = GetTotalProfitByCategory(dbContext);
 
+        string output = GetMostRecentBooks(dbContext);
         Console.WriteLine(output);
     }
 
@@ -280,6 +281,43 @@ public class StartUp
 
         return sb.ToString().TrimEnd();
     }
+
+
+    //14. Most Recent Books
+    public static string GetMostRecentBooks(BookShopContext dbContext)
+    {
+        StringBuilder sb = new StringBuilder();
+
+        var books = dbContext.Categories
+            .Select(c => new
+            {
+                c.Name,
+                Books = c.CategoryBooks.Select(cb => new
+                {
+                    BookTitle = cb.Book.Title,
+                    BookYearReleased = cb.Book.ReleaseDate
+                })
+                .OrderByDescending(b => b.BookYearReleased)
+                .Take(3)
+            })
+            .OrderBy(c => c.Name)
+            .AsNoTracking()
+            .ToArray();
+
+        foreach (var category in books)
+        {
+            sb.AppendLine($"--{category.Name}");
+            foreach (var book in category.Books)
+            {
+                sb.AppendLine($"{book.BookTitle} ({book.BookYearReleased!.Value.Year})");
+            }
+        }
+
+        return sb.ToString().TrimEnd();
+    }
+
+
+
 
 }
 
