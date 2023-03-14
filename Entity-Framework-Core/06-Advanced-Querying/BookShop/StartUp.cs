@@ -48,7 +48,9 @@ public class StartUp
 
         //Problem 13 string output = GetTotalProfitByCategory(dbContext);
 
-        string output = GetMostRecentBooks(dbContext);
+        //Problem 14 string output = GetMostRecentBooks(dbContext);
+
+        int output = RemoveBooks(dbContext);
         Console.WriteLine(output);
     }
 
@@ -314,6 +316,38 @@ public class StartUp
         }
 
         return sb.ToString().TrimEnd();
+    }
+
+
+    //15. Increase Prices
+    /*public static void IncreasePrices(BookShopContext dbContext)
+    {
+        Book[] books = dbContext.Books
+            .Where(b=>b.ReleaseDate.HasValue &&
+                    b.ReleaseDate.Value.Year<2010)
+            .ToArray();
+
+        foreach (var book in books)
+        {
+            book.Price += 5;
+        }
+
+        dbContext.SaveChanges();
+    }*/
+
+
+    //16. Remove Books
+    public static int RemoveBooks(BookShopContext dbContext)
+    {
+        var booksForRemove = dbContext.Books
+            .Where(b => b.Copies < 4200)
+            .ToArray();
+
+        int booksCount = booksForRemove.Count();
+        dbContext.RemoveRange(booksForRemove);
+
+        dbContext.SaveChanges();
+        return booksCount;
     }
 
 
