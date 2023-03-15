@@ -1,11 +1,10 @@
-﻿using AutoMapper;
+﻿namespace ProductShop;
 
-namespace ProductShop
+using AutoMapper;
+
+public class ProductShopProfile : Profile
 {
-    public class ProductShopProfile : Profile
+    public ProductShopProfile() 
     {
-        public ProductShopProfile() 
-        {
-        }
     }
 }

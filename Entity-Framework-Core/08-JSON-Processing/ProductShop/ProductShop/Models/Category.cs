@@ -1,18 +1,17 @@
-﻿namespace ProductShop.Models
+﻿namespace ProductShop.Models;
+
+using System.Collections.Generic;
+
+public class Category
 {
-    using System.Collections.Generic;
-
-    public class Category
+    public Category()
     {
-        public Category()
-        {
-            CategoriesProducts = new List<CategoryProduct>();
-        }
-
-        public int Id { get; set; }
-
-        public string Name { get; set; } = null!;
-
-        public virtual ICollection<CategoryProduct> CategoriesProducts { get; set; }
+        CategoriesProducts = new List<CategoryProduct>();
     }
+
+    public int Id { get; set; }
+
+    public string Name { get; set; } = null!;
+
+    public virtual ICollection<CategoryProduct> CategoriesProducts { get; set; }
 }
