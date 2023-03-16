@@ -1,9 +1,12 @@
 ﻿namespace ProductShop;
 
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using ProductShop.Data;
+using ProductShop.DTOs.Export;
 using ProductShop.DTOs.Import;
 using ProductShop.Models;
 using System.Reflection.Metadata.Ecma335;
@@ -15,16 +18,22 @@ public class StartUp
     {
         ProductShopContext context = new ProductShopContext();
 
+        //context.Database.EnsureDeleted();
+        //context.Database.EnsureCreated();
+
         //Problem 01 string inputJson = File.ReadAllText(@"../../../Datasets/users.json");
         //Problem 01 string result = ImportUsers(context, inputJson);
 
         //Problem 02 string inputJson = File.ReadAllText(@"../../../Datasets/products.json");
         //Problem 02 string result = ImportProducts(context, inputJson);
 
-        string inputJson = File.ReadAllText(@"../../../Datasets/categories.json");
-        string result = ImportCategories(context, inputJson);
+        //Problem 03 string inputJson = File.ReadAllText(@"../../../Datasets/categories.json");
+        //Problem 03 string result = ImportCategories(context, inputJson);
 
+        //Problem 04 string inputJson = File.ReadAllText(@"../../../Datasets/categories-products.json");
+        //Problem 04 string result = ImportCategoryProducts(context, inputJson);
 
+        string result = GetProductsInRange(context);
         Console.WriteLine(result);
     }
 
@@ -98,6 +107,51 @@ public class StartUp
         context.SaveChanges();
 
         return $"Successfully imported {categories.Count}";
+    }
+
+
+    //04. Import Categories and Products
+    public static string ImportCategoryProducts(ProductShopContext context, string inputJson)
+    {
+        IMapper mapper = CreateMapper();
+
+        ImportCategoryProductDto[]? categoriesProdyctDto = JsonConvert.DeserializeObject<ImportCategoryProductDto[]>(inputJson);
+
+        ICollection<CategoryProduct> categoryProducts = new HashSet<CategoryProduct>();
+
+        foreach (ImportCategoryProductDto pcategoryDto in categoriesProdyctDto!)
+        {
+            CategoryProduct categoryProduct = mapper.Map<CategoryProduct>(pcategoryDto);
+
+            categoryProducts.Add(categoryProduct);
+        }
+
+        context.CategoriesProducts.AddRange(categoryProducts);
+        context.SaveChanges();
+
+        return $"Successfully imported {categoryProducts.Count()}";
+    }
+
+
+    //05. Export Products In Range
+    public static string GetProductsInRange(ProductShopContext context)
+    {
+        //IMapper mapper = CreateMapper() need for "ProjectTo" in case when we not work with anonymous object
+
+        var products = context.Products
+            .Where(p=>p.Price>=500 && p.Price<=1000)
+            .OrderBy(p=>p.Price)
+            .Select(p=> new
+            {
+                name = p.Name,
+                price = p.Price,
+                seller = $"{p.Seller.FirstName} {p.Seller.LastName}"
+            })
+            .AsNoTracking()
+            //.ProjectTo<ExportProductInRangeDto>(mapper.ConfigurationProvider) - in case when we not work with anonymous object
+            .ToArray();
+
+        return JsonConvert.SerializeObject(products);
     }
 
 
