@@ -6,7 +6,7 @@ using System.Collections.Generic;
  {
      public Product()
      {
-         CategoriesProducts = new List<CategoryProduct>();
+         CategoriesProducts = new HashSet<CategoryProduct>();
      }
 
      public int Id { get; set; }
@@ -19,7 +19,7 @@ using System.Collections.Generic;
      public virtual User Seller { get; set; } = null!;
 
      public int? BuyerId { get; set; }
-     public virtual User Buyer { get; set; } = null!;
+     public virtual User? Buyer { get; set; }
 
      public virtual ICollection<CategoryProduct> CategoriesProducts { get; set; }
  }

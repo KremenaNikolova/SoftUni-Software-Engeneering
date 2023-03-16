@@ -15,9 +15,11 @@ public class StartUp
     {
         ProductShopContext context = new ProductShopContext();
 
-        string inputJson = File.ReadAllText(@"../../../Datasets/users.json");
+        //Problem 01 string inputJson = File.ReadAllText(@"../../../Datasets/users.json");
+        //Problem 01 string result = ImportUsers(context, inputJson);
 
-        string result = ImportUsers(context, inputJson);
+        string inputJson = File.ReadAllText(@"../../../Datasets/products.json");
+        string result = ImportProducts(context, inputJson);
 
         Console.WriteLine(result);
     }
@@ -29,8 +31,8 @@ public class StartUp
         IMapper mapper = CreateMapper();
         IContractResolver camelCaseConfiguration = CamelCaseNaming();
 
-        
-        ImportUserDto[]? userDtos = JsonConvert.DeserializeObject<ImportUserDto[]>(inputJson, new JsonSerializerSettings() 
+
+        ImportUserDto[]? userDtos = JsonConvert.DeserializeObject<ImportUserDto[]>(inputJson, new JsonSerializerSettings()
         {
             ContractResolver = camelCaseConfiguration
         });
@@ -51,6 +53,22 @@ public class StartUp
 
     }
 
+
+    //02. Import Products
+    public static string ImportProducts(ProductShopContext context, string inputJson)
+    {
+        IMapper mapper = CreateMapper();
+
+        ImportProductDto[]? validProducts = JsonConvert.DeserializeObject<ImportProductDto[]>(inputJson);
+        Product[] products = mapper.Map<Product[]>(validProducts);
+
+        context.Products.AddRange(products);
+        context.SaveChanges();
+
+        return $"Successfully imported {products.Count()}";
+    }
+
+
     //Mapper
     private static IMapper CreateMapper()
     {
@@ -60,12 +78,13 @@ public class StartUp
         }));
     }
 
+
     //CamelCaseConfiguration
     private static IContractResolver CamelCaseNaming()
     {
         return new DefaultContractResolver()
         {
-            NamingStrategy = new CamelCaseNamingStrategy(false, true) 
+            NamingStrategy = new CamelCaseNamingStrategy(false, true)
         };
     }
 
