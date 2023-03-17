@@ -5,7 +5,9 @@ using CarDealer.Models;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using System.Diagnostics;
 using System.Globalization;
+using System.Linq;
 
 namespace CarDealer
 {
@@ -39,7 +41,11 @@ namespace CarDealer
 
             //Problem 16 string result = GetLocalSuppliers(context);
 
-            string result = GetCarsWithTheirListOfParts(context);
+            //Problem 17 string result = GetCarsWithTheirListOfParts(context);
+
+            //Problem 18 string result = GetTotalSalesByCustomer(context);
+
+            string result = GetSalesWithAppliedDiscount(context);
             Console.WriteLine(result);
         }
 
@@ -75,11 +81,11 @@ namespace CarDealer
                 ContractResolver = contractResolver
             });
 
-            ICollection<Part> parts = new HashSet<Part>(); 
+            ICollection<Part> parts = new HashSet<Part>();
 
             foreach (var partDto in partDtos!)
             {
-                if (!context.Suppliers.Any(s=>s.Id == partDto.SupplierId))
+                if (!context.Suppliers.Any(s => s.Id == partDto.SupplierId))
                 {
                     continue;
                 }
@@ -100,9 +106,9 @@ namespace CarDealer
         {
             IContractResolver contractResolver = CammelCaseContractResolver();
 
-            List<ImportCarDto>? carDtos = JsonConvert.DeserializeObject<List<ImportCarDto>>(inputJson, new JsonSerializerSettings() 
-            { 
-                ContractResolver = contractResolver 
+            List<ImportCarDto>? carDtos = JsonConvert.DeserializeObject<List<ImportCarDto>>(inputJson, new JsonSerializerSettings()
+            {
+                ContractResolver = contractResolver
             });
 
             List<Car> cars = new List<Car>();
@@ -129,7 +135,7 @@ namespace CarDealer
 
                     partsCar.Add(partCar);
                 }
-                   
+
             }
 
             context.AddRange(cars);
@@ -185,9 +191,9 @@ namespace CarDealer
         public static string GetOrderedCustomers(CarDealerContext context)
         {
             var customers = context.Customers
-                .OrderBy(c=>c.BirthDate)
-                .ThenBy(c=>c.IsYoungDriver)
-                .Select(c=> new
+                .OrderBy(c => c.BirthDate)
+                .ThenBy(c => c.IsYoungDriver)
+                .Select(c => new
                 {
                     c.Name,
                     BirthDate = c.BirthDate.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
@@ -204,10 +210,10 @@ namespace CarDealer
         public static string GetCarsFromMakeToyota(CarDealerContext context)
         {
             var cars = context.Cars
-                .Where(c=>c.Make=="Toyota")
-                .OrderBy(c=>c.Model)
-                .ThenByDescending(c=>c.TraveledDistance)
-                .Select(c=> new
+                .Where(c => c.Make == "Toyota")
+                .OrderBy(c => c.Model)
+                .ThenByDescending(c => c.TraveledDistance)
+                .Select(c => new
                 {
                     c.Id,
                     c.Make,
@@ -227,15 +233,15 @@ namespace CarDealer
         public static string GetLocalSuppliers(CarDealerContext context)
         {
             var suppliers = context.Suppliers
-                .Where(s=>s.IsImporter==false)
-                .Select(s=> new
+                .Where(s => s.IsImporter == false)
+                .Select(s => new
                 {
                     s.Id,
                     s.Name,
                     PartsCount = s.Parts.Count
                 })
                 .AsNoTracking()
-                .ToArray(); 
+                .ToArray();
 
 
             return JsonConvert.SerializeObject(suppliers, Formatting.Indented);
@@ -245,29 +251,79 @@ namespace CarDealer
         //17. Export Cars With Their List Of Parts
         public static string GetCarsWithTheirListOfParts(CarDealerContext context)
         {
-          var cars = context.Cars
-              .Select(c=> new 
-              {
-                  car = new
-                  {
-                      c.Make,
-                      c.Model,
-                      c.TraveledDistance
-                  },
-                  parts = c.PartsCars.Select(pc=> new
-                  {
-                      pc.Part.Name,
-                      Price = pc.Part.Price.ToString("f2")
-                  })
-              })
-              .AsNoTracking()
-              .ToArray();
+            var cars = context.Cars
+                .Select(c => new
+                {
+                    car = new
+                    {
+                        c.Make,
+                        c.Model,
+                        c.TraveledDistance
+                    },
+                    parts = c.PartsCars.Select(pc => new
+                    {
+                        pc.Part.Name,
+                        Price = pc.Part.Price.ToString("f2")
+                    })
+                })
+                .AsNoTracking()
+                .ToArray();
 
 
             return JsonConvert.SerializeObject(cars, Formatting.Indented);
         }
 
 
+        //18. Export Total Sales By Customer
+        public static string GetTotalSalesByCustomer(CarDealerContext context)
+        {
+            IContractResolver contractResolver = CammelCaseContractResolver();
+
+            var customers = context.Customers
+                .Where(c => c.Sales.Count > 0)
+                .Select(c => new
+                {
+                    FullName = c.Name,
+                    BoughtCars = c.Sales.Count,
+                    SpentMoney = Math.Round(c.Sales.SelectMany(s => s.Car.PartsCars.Select(pc => pc.Part.Price)).Sum(), 2, MidpointRounding.AwayFromZero)
+                })
+                .AsNoTracking()
+                .ToArray()
+                .OrderByDescending(c => c.SpentMoney)
+                .ThenByDescending(c => c.BoughtCars);
+
+
+            return JsonConvert.SerializeObject(customers, Formatting.Indented, new JsonSerializerSettings()
+            {
+                ContractResolver = contractResolver
+            });
+        }
+
+
+        //19. Export Sales With Applied Discount
+        public static string GetSalesWithAppliedDiscount(CarDealerContext context)
+        {
+
+            var sales = context.Sales
+                .Take(10)
+                .Select(s => new
+                {
+                    car = new
+                    {
+                        s.Car.Make,
+                        s.Car.Model,
+                        s.Car.TraveledDistance
+                    },
+                    customerName = s.Customer.Name,
+                    discount = s.Discount.ToString("f2"),
+                    price = s.Car.PartsCars.Sum(pc => pc.Part.Price).ToString("f2"),
+                    priceWithDiscount = (s.Car.PartsCars.Sum(pc => pc.Part.Price) * (1 - s.Discount / 100)).ToString("f2")
+                })
+                .AsNoTracking()
+                .ToArray();
+
+            return JsonConvert.SerializeObject(sales, Formatting.Indented);
+        }
 
 
         //Mapper
