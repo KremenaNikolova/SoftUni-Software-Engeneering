@@ -33,7 +33,13 @@ public class StartUp
         //Problem 04 string inputJson = File.ReadAllText(@"../../../Datasets/categories-products.json");
         //Problem 04 string result = ImportCategoryProducts(context, inputJson);
 
-        string result = GetProductsInRange(context);
+        //Problem 05 string result = GetProductsInRange(context);
+
+        //Problem 06 string result = GetSoldProducts(context);
+
+        //Problem 07 string result = GetCategoriesByProductsCount(context);
+
+        string result = GetUsersWithProducts(context);
         Console.WriteLine(result);
     }
 
@@ -85,12 +91,12 @@ public class StartUp
     public static string ImportCategories(ProductShopContext context, string inputJson)
     {
         IMapper mapper = CreateMapper();
-        IContractResolver contractResolver= CamelCaseNaming();
+        IContractResolver contractResolver = CamelCaseNaming();
 
         ImportCategoryDto[]? categoriesDto = JsonConvert.DeserializeObject<ImportCategoryDto[]>(inputJson, new JsonSerializerSettings
         {
             ContractResolver = contractResolver
-        }) ;
+        });
 
         ICollection<Category> categories = new HashSet<Category>();
         foreach (var categoryDto in categoriesDto!)
@@ -139,9 +145,9 @@ public class StartUp
         //IMapper mapper = CreateMapper() need for "ProjectTo" in case when we not work with anonymous object
 
         var products = context.Products
-            .Where(p=>p.Price>=500 && p.Price<=1000)
-            .OrderBy(p=>p.Price)
-            .Select(p=> new
+            .Where(p => p.Price >= 500 && p.Price <= 1000)
+            .OrderBy(p => p.Price)
+            .Select(p => new
             {
                 name = p.Name,
                 price = p.Price,
@@ -151,7 +157,98 @@ public class StartUp
             //.ProjectTo<ExportProductInRangeDto>(mapper.ConfigurationProvider) - in case when we not work with anonymous object
             .ToArray();
 
-        return JsonConvert.SerializeObject(products);
+        return JsonConvert.SerializeObject(products, Formatting.Indented);
+    }
+
+
+    //06. Export Sold Products
+    public static string GetSoldProducts(ProductShopContext context)
+    {
+        var validUsers = context.Users
+            .Where(u => u.ProductsSold.Any(p => p.BuyerId != null))
+            .OrderBy(u => u.LastName)
+            .ThenBy(u => u.FirstName)
+            .Select(u => new
+            {
+                firstName = u.FirstName,
+                lastName = u.LastName,
+                soldProducts = u.ProductsSold
+                .Select(ps => new
+                {
+                    name = ps.Name,
+                    price = ps.Price,
+                    buyerFirstName = ps.Buyer.FirstName,
+                    buyerLastName = ps.Buyer!.LastName
+                })
+                .ToArray()
+            })
+            .AsNoTracking()
+            .ToArray();
+
+        return JsonConvert.SerializeObject(validUsers, Formatting.Indented);
+    }
+
+
+    //07. Export Categories By Products Count
+    public static string GetCategoriesByProductsCount(ProductShopContext context)
+    {
+        var validCategories = context.Categories
+            .OrderByDescending(c => c.CategoriesProducts.Count)
+            .Select(c => new
+            {
+                category = c.Name,
+                productsCount = c.CategoriesProducts.Count,
+                averagePrice = c.CategoriesProducts.Average(cp => cp.Product.Price).ToString("f2"),
+                totalRevenue = c.CategoriesProducts.Sum(cp => cp.Product.Price).ToString("f2")
+            })
+            .AsNoTracking()
+            .ToArray();
+
+        return JsonConvert.SerializeObject(validCategories, Formatting.Indented);
+    }
+
+
+    //08. Export Users and Products
+    public static string GetUsersWithProducts(ProductShopContext context)
+    {
+        IContractResolver contractResolver = CamelCaseNaming();
+
+        var validUsers = context.Users
+            .Where(u => u.ProductsSold.Any(ps => ps.Buyer != null))
+            .Select(u => new
+            {
+                u.FirstName,
+                u.LastName,
+                u.Age,
+                SoldProducts = new
+                {
+                    Count = u.ProductsSold.Count(p=>p.Buyer!=null),
+                    Products = u.ProductsSold
+                    .Where(ps=>ps.Buyer!=null)
+                   .Select(ps => new
+                   {
+                       ps.Name,
+                       ps.Price
+                   })
+                   .ToArray()
+                }
+            })
+            .OrderByDescending(u => u.SoldProducts.Count)
+            .AsNoTracking()
+            .ToArray();
+
+        var users = new
+        {
+            UsersCount = validUsers.Count(),
+            Users = validUsers
+        };
+
+        return JsonConvert.SerializeObject(users, Formatting.Indented, new JsonSerializerSettings()
+        {
+            ContractResolver = contractResolver,
+            NullValueHandling = NullValueHandling.Ignore
+        });
+
     }
 
 
