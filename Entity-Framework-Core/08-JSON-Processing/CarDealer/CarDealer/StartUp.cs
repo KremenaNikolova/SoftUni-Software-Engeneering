@@ -2,8 +2,10 @@
 using CarDealer.Data;
 using CarDealer.DTOs.Import;
 using CarDealer.Models;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using System.Globalization;
 
 namespace CarDealer
 {
@@ -25,9 +27,19 @@ namespace CarDealer
             //Problem 11 string inputJson = File.ReadAllText(@"../../../Datasets/cars.json");
             //Problem 11 string result = ImportCars(context, inputJson);
 
-            string inputJson = File.ReadAllText(@"../../../Datasets/customers.json");
-            string result = ImportCustomers(context, inputJson);
+            //Problem 12 string inputJson = File.ReadAllText(@"../../../Datasets/customers.json");
+            //Problem 12 string result = ImportCustomers(context, inputJson);
 
+            //Problem 13 string inputJson = File.ReadAllText(@"../../../Datasets/sales.json");
+            //Problem 13 string result = ImportSales(context, inputJson);
+
+            //Problem 14 string result = GetOrderedCustomers(context);
+
+            //Problem 15 string result = GetCarsFromMakeToyota(context);
+
+            //Problem 16 string result = GetLocalSuppliers(context);
+
+            string result = GetCarsWithTheirListOfParts(context);
             Console.WriteLine(result);
         }
 
@@ -102,7 +114,7 @@ namespace CarDealer
                 {
                     Make = carDto.Make,
                     Model = carDto.Model,
-                    TravelledDistance = carDto.TravelledDistance
+                    TraveledDistance = carDto.TraveledDistance
                 };
 
                 cars.Add(car);
@@ -146,6 +158,115 @@ namespace CarDealer
 
             return $"Successfully imported {customers.Count()}.";
         }
+
+
+        //13. Import Sales
+        public static string ImportSales(CarDealerContext context, string inputJson)
+        {
+            IMapper mapper = CreateMapper();
+            IContractResolver contractResolver = CammelCaseContractResolver();
+
+            ImportSaleDto[]? saleDtos = JsonConvert.DeserializeObject<ImportSaleDto[]>(inputJson, new JsonSerializerSettings()
+            {
+                ContractResolver = contractResolver
+            });
+
+            Sale[] sales = mapper.Map<Sale[]>(saleDtos);
+
+            context.Sales.AddRange(sales);
+            context.SaveChanges();
+
+            return $"Successfully imported {sales.Count()}.";
+
+        }
+
+
+        //14. Export Ordered Customers
+        public static string GetOrderedCustomers(CarDealerContext context)
+        {
+            var customers = context.Customers
+                .OrderBy(c=>c.BirthDate)
+                .ThenBy(c=>c.IsYoungDriver)
+                .Select(c=> new
+                {
+                    c.Name,
+                    BirthDate = c.BirthDate.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
+                    c.IsYoungDriver
+                })
+                .AsNoTracking()
+                .ToArray();
+
+            return JsonConvert.SerializeObject(customers, Formatting.Indented);
+        }
+
+
+        //15. Export Cars From Make Toyota
+        public static string GetCarsFromMakeToyota(CarDealerContext context)
+        {
+            var cars = context.Cars
+                .Where(c=>c.Make=="Toyota")
+                .OrderBy(c=>c.Model)
+                .ThenByDescending(c=>c.TraveledDistance)
+                .Select(c=> new
+                {
+                    c.Id,
+                    c.Make,
+                    c.Model,
+                    c.TraveledDistance
+                })
+                .AsNoTracking()
+                .ToArray();
+
+
+
+            return JsonConvert.SerializeObject(cars, Formatting.Indented);
+        }
+
+
+        //16. Export Local Suppliers
+        public static string GetLocalSuppliers(CarDealerContext context)
+        {
+            var suppliers = context.Suppliers
+                .Where(s=>s.IsImporter==false)
+                .Select(s=> new
+                {
+                    s.Id,
+                    s.Name,
+                    PartsCount = s.Parts.Count
+                })
+                .AsNoTracking()
+                .ToArray(); 
+
+
+            return JsonConvert.SerializeObject(suppliers, Formatting.Indented);
+        }
+
+
+        //17. Export Cars With Their List Of Parts
+        public static string GetCarsWithTheirListOfParts(CarDealerContext context)
+        {
+          var cars = context.Cars
+              .Select(c=> new 
+              {
+                  car = new
+                  {
+                      c.Make,
+                      c.Model,
+                      c.TraveledDistance
+                  },
+                  parts = c.PartsCars.Select(pc=> new
+                  {
+                      pc.Part.Name,
+                      Price = pc.Part.Price.ToString("f2")
+                  })
+              })
+              .AsNoTracking()
+              .ToArray();
+
+
+            return JsonConvert.SerializeObject(cars, Formatting.Indented);
+        }
+
 
 
 

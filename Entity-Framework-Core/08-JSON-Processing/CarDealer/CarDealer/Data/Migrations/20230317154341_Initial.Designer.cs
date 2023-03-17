@@ -40,7 +40,7 @@ namespace CarDealer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("TravelledDistance")
+                    b.Property<long>("TraveledDistance")
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
