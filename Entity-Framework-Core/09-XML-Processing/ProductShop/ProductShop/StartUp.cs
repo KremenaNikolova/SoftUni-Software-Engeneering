@@ -17,8 +17,14 @@ namespace ProductShop
             //Problem 01 string inputXml = File.ReadAllText(@"../../../Datasets/users.xml");
             //Problem 01 string result = ImportUsers(context, inputXml);
 
-            string inputXml = File.ReadAllText(@"../../../Datasets/products.xml");
-            string result = ImportProducts(context, inputXml);
+            //Problem 02 string inputXml = File.ReadAllText(@"../../../Datasets/products.xml");
+            //Problem 02 string result = ImportProducts(context, inputXml);
+
+            //Problem 03 string inputXml = File.ReadAllText(@"../../../Datasets/categories.xml");
+            //Problem 03 string result = ImportCategories(context, inputXml);
+
+            string inputXml = File.ReadAllText(@"../../../Datasets/categories-products.xml");
+            string result = ImportCategoryProducts(context, inputXml);
 
             Console.WriteLine(result);
 
@@ -90,6 +96,68 @@ namespace ProductShop
             return $"Successfully imported {products.Count}";
         }
 
+
+        //03. Import Categories
+        public static string ImportCategories(ProductShopContext context, string inputXml)
+        {
+            IMapper mapper = CreateMapper();
+
+            XmlRootAttribute xmlRoot = new XmlRootAttribute("Categories");
+
+            XmlSerializer serializer = new XmlSerializer(typeof(ImportCategoryDto[]), xmlRoot);
+            using StringReader reader = new StringReader(inputXml);
+
+            ImportCategoryDto[] categoryDtos = (ImportCategoryDto[])serializer.Deserialize(reader)!;
+
+            ICollection<Category> categories = new HashSet<Category>();
+            foreach (ImportCategoryDto categoryDto in categoryDtos)
+            {
+                if (string.IsNullOrEmpty(categoryDto.Name))
+                {
+                    continue;
+                }
+
+                Category category = mapper.Map<Category>(categoryDto);
+                categories.Add(category);
+            }
+
+            context.Categories.AddRange(categories);
+            context.SaveChanges();
+
+            return $"Successfully imported {categories.Count}";
+
+
+        }
+
+
+        //04. Import Categories and Products
+        public static string ImportCategoryProducts(ProductShopContext context, string inputXml)
+        {
+            IMapper mapper = CreateMapper();
+
+            XmlRootAttribute xmlRoot = new XmlRootAttribute("CategoryProducts");
+            XmlSerializer serializer = new XmlSerializer(typeof(ImportCategoryProductDto[]), xmlRoot);
+
+            using StringReader reader = new StringReader(inputXml);
+            ImportCategoryProductDto[] cateogryProductDtos = (ImportCategoryProductDto[])serializer.Deserialize(reader)!;
+
+            ICollection<CategoryProduct> categoryProducts = new HashSet<CategoryProduct>();
+            foreach (ImportCategoryProductDto cateogryProductDto in cateogryProductDtos)
+            {
+                if (cateogryProductDto?.ProductId == null || cateogryProductDto?.CategoryId == null)
+                {
+                    continue;
+                }
+
+                CategoryProduct categoryProduct = mapper.Map<CategoryProduct>(cateogryProductDto);
+                categoryProducts.Add(categoryProduct);
+            }
+
+            context.CategoryProducts.AddRange(categoryProducts);
+            context.SaveChanges();
+
+            return $"Successfully imported {categoryProducts.Count}";
+        }
 
 
 
