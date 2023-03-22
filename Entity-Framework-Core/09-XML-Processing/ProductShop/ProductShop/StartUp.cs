@@ -1,8 +1,12 @@
 ﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query.Internal;
 using ProductShop.Data;
+using ProductShop.DTOs.Export;
 using ProductShop.DTOs.Import;
 using ProductShop.Models;
+using System.Text;
 using System.Xml.Serialization;
 
 namespace ProductShop
@@ -23,8 +27,14 @@ namespace ProductShop
             //Problem 03 string inputXml = File.ReadAllText(@"../../../Datasets/categories.xml");
             //Problem 03 string result = ImportCategories(context, inputXml);
 
-            string inputXml = File.ReadAllText(@"../../../Datasets/categories-products.xml");
-            string result = ImportCategoryProducts(context, inputXml);
+            //Problem 04 string inputXml = File.ReadAllText(@"../../../Datasets/categories-products.xml");
+            //Problem 04 string result = ImportCategoryProducts(context, inputXml);
+
+            //Problem 05 string result = GetProductsInRange(context);
+            //Problem 05 File.WriteAllText(@"../../../Results/products-in-range.xml", result);
+
+            string result = GetSoldProducts(context);
+            //File.WriteAllText(@"../../../Results/sold-products.xml", result);
 
             Console.WriteLine(result);
 
@@ -159,6 +169,70 @@ namespace ProductShop
             return $"Successfully imported {categoryProducts.Count}";
         }
 
+
+        //05. Export Products In Range
+        public static string GetProductsInRange(ProductShopContext context)
+        {
+            IMapper mapper = CreateMapper();
+            StringBuilder sb = new StringBuilder();
+
+            ExportProductDto[] products = context.Products
+                .Where(p => p.Price >= 500 && p.Price <= 1000)
+                .OrderBy(p => p.Price)
+                .Take(10)
+                .ProjectTo<ExportProductDto>(mapper.ConfigurationProvider)
+                .AsNoTracking()
+                .ToArray();
+
+            XmlRootAttribute xmlRoot = new XmlRootAttribute("Products");
+            XmlSerializerNamespaces xmlNamespaces = new XmlSerializerNamespaces();
+            xmlNamespaces.Add(string.Empty, string.Empty);
+
+            XmlSerializer serializer = new XmlSerializer(typeof(ExportProductDto[]), xmlRoot);
+
+            using StringWriter writter = new StringWriter(sb);
+            serializer.Serialize(writter, products, xmlNamespaces);
+
+            return sb.ToString().TrimEnd();
+        }
+
+
+        //06. Export Sold Products
+        public static string GetSoldProducts(ProductShopContext context)
+        {
+            IMapper mapper = CreateMapper();
+            StringBuilder sb = new StringBuilder();
+
+            ExportSoldProductDto[] soldProducts = context.Users
+                .Where(u => u.ProductsSold.Any())
+                .OrderBy(u => u.LastName)
+                .ThenBy(u => u.FirstName)
+                .Take(5)
+                //.Select(u => new ExportSoldProductDto()
+                //{
+                //    FirstName = u.FirstName,
+                //    LastName = u.LastName,
+                //    ProductsSold = u.ProductsSold.Select(ps => new ProductDto()
+                //    {
+                //        Name = ps.Name,
+                //        Price = ps.Price,
+                //    }).ToArray()
+                //})
+                .ProjectTo<ExportSoldProductDto>(mapper.ConfigurationProvider)
+                .ToArray();
+
+            XmlRootAttribute xmlRoot = new XmlRootAttribute("Users");
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(ExportSoldProductDto[]),xmlRoot);
+
+            XmlSerializerNamespaces xmlNamespace = new XmlSerializerNamespaces();
+            xmlNamespace.Add(string.Empty, string.Empty);
+
+            using StringWriter writter = new StringWriter(sb);
+            xmlSerializer.Serialize(writter, soldProducts, xmlNamespace);
+
+            return sb.ToString().TrimEnd();
+
+        }
 
 
 
