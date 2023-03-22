@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-16"?>
+<Users>
+  <User>
+    <firstName>Almire</firstName>
+    <lastName>Ainslee</lastName>
+    <soldProducts>
+      <Product>
+        <name>Ampicillin</name>
+        <price>674.6300</price>
+      </Product>
+      <Product>
+        <name>Strattera</name>
+        <price>658.5400</price>
+      </Product>
+      <Product>
+        <name>Aspergillus repens</name>
+        <price>1231.4200</price>
+      </Product>
+    </soldProducts>
+  </User>
+  <User>
+    <firstName>Karena</firstName>
+    <lastName>Aldersea</lastName>
+    <soldProducts>
+      <Product>
+        <name>CHAMOMILLA</name>
+        <price>37.9700</price>
+      </Product>
+      <Product>
+        <name>No7 Protect and Perfect Foundation Sunscreen Broad Spectrum SPF 15 Cool Ivory</name>
+        <price>616.1900</price>
+      </Product>
+      <Product>
+        <name>Benazepril Hydrochloride and Hydrochlorothiazide</name>
+        <price>1187.2700</price>
+      </Product>
+      <Product>
+        <name>Ibuprofen</name>
+        <price>1305.9600</price>
+      </Product>
+    </soldProducts>
+  </User>
+  <User>
+    <firstName>Arden</firstName>
+    <lastName>Arboin</lastName>
+    <soldProducts>
+      <Product>
+        <name>GEMCITABINE</name>
+        <price>1468.1100</price>
+      </Product>
+    </soldProducts>
+  </User>
+  <User>
+    <firstName>Etta</firstName>
+    <lastName>Arnaudi</lastName>
+    <soldProducts>
+      <Product>
+        <name>Enalapril Maleate</name>
+        <price>72.7100</price>
+      </Product>
+      <Product>
+        <name>Leflunomide</name>
+        <price>312.8500</price>
+      </Product>
+      <Product>
+        <name>MEDI-FIRST Non-Aspirin</name>
+        <price>1301.2800</price>
+      </Product>
+      <Product>
+        <name>Echinacea Quartz Gum Support</name>
+        <price>570.0800</price>
+      </Product>
+    </soldProducts>
+  </User>
+  <User>
+    <firstName>Art</firstName>
+    <lastName>Bensusan</lastName>
+    <soldProducts>
+      <Product>
+        <name>SNORING HP</name>
+        <price>53.5900</price>
+      </Product>
+      <Product>
+        <name>Phenylephrine HCl</name>
+        <price>459.8900</price>
+      </Product>
+      <Product>
+        <name>Warfarin Sodium</name>
+        <price>770.0500</price>
+      </Product>
+      <Product>
+        <name>AVANDAMET</name>
+        <price>632.0800</price>
+      </Product>
+      <Product>
+        <name>DIPYRIDAMOLE</name>
+        <price>1150.6700</price>
+      </Product>
+    </soldProducts>
+  </User>
+</Users>

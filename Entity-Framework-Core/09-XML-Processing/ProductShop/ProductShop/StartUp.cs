@@ -33,8 +33,11 @@ namespace ProductShop
             //Problem 05 string result = GetProductsInRange(context);
             //Problem 05 File.WriteAllText(@"../../../Results/products-in-range.xml", result);
 
-            string result = GetSoldProducts(context);
-            //File.WriteAllText(@"../../../Results/sold-products.xml", result);
+            //Problem 06 string result = GetSoldProducts(context);
+            //Problem 06 File.WriteAllText(@"../../../Results/sold-products.xml", result);
+
+            string result = GetCategoriesByProductsCount(context);
+            File.WriteAllText(@"../../../Results/categories-by-products-count.xml",result);
 
             Console.WriteLine(result);
 
@@ -208,7 +211,7 @@ namespace ProductShop
                 .OrderBy(u => u.LastName)
                 .ThenBy(u => u.FirstName)
                 .Take(5)
-                //.Select(u => new ExportSoldProductDto()
+                //.Select(u => new ExportSoldProductDto() ----> without AutoMapper
                 //{
                 //    FirstName = u.FirstName,
                 //    LastName = u.LastName,
@@ -222,7 +225,7 @@ namespace ProductShop
                 .ToArray();
 
             XmlRootAttribute xmlRoot = new XmlRootAttribute("Users");
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(ExportSoldProductDto[]),xmlRoot);
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(ExportSoldProductDto[]), xmlRoot);
 
             XmlSerializerNamespaces xmlNamespace = new XmlSerializerNamespaces();
             xmlNamespace.Add(string.Empty, string.Empty);
@@ -232,6 +235,38 @@ namespace ProductShop
 
             return sb.ToString().TrimEnd();
 
+        }
+
+
+        //07. Export Categories By Products Count
+        public static string GetCategoriesByProductsCount(ProductShopContext context)
+        {
+            IMapper mapper = CreateMapper();
+            StringBuilder sb = new StringBuilder();
+
+            ExportCategoryByProductsDto[] categories = context.Categories
+                .OrderByDescending(c => c.CategoryProducts.Count)
+                .ThenBy(c => c.CategoryProducts.Sum(cp => cp.Product.Price))
+                //.Select(c => new ExportCategoryByProductsDto() ----> without AutoMapper
+                //{
+                //    Name= c.Name,
+                //    Count = c.CategoryProducts.Count,
+                //    AvaragePrice = c.CategoryProducts.Average(cp=>cp.Product.Price),
+                //    TotalRevenue = c.CategoryProducts.Sum(cp => cp.Product.Price)
+                //})
+                .ProjectTo<ExportCategoryByProductsDto>(mapper.ConfigurationProvider)
+                .ToArray();
+
+            XmlRootAttribute xmlRoot = new XmlRootAttribute("Categories");
+            XmlSerializerNamespaces namespaces = new XmlSerializerNamespaces();
+            namespaces.Add(string.Empty, string.Empty);
+
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(ExportCategoryByProductsDto[]), xmlRoot);
+
+            using StringWriter writer = new StringWriter(sb);
+            xmlSerializer.Serialize(writer, categories, namespaces);
+
+            return sb.ToString().TrimEnd();
         }
 
 

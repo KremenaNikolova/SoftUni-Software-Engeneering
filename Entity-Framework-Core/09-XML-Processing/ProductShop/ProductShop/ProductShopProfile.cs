@@ -22,6 +22,10 @@
 
             //Categiry
             this.CreateMap<ImportCategoryDto, Category>();
+            this.CreateMap<Category, ExportCategoryByProductsDto>()
+                .ForMember(dto=>dto.Count, opt=>opt.MapFrom(src=>src.CategoryProducts.Count))
+                .ForMember(dto=>dto.AvaragePrice, opt=>opt.MapFrom(src=>src.CategoryProducts.Average(cp=>cp.Product.Price)))
+                .ForMember(dto=>dto.TotalRevenue, opt=>opt.MapFrom(src=>src.CategoryProducts.Sum(cp=>cp.Product.Price)));
 
 
             //CategoryProduct
