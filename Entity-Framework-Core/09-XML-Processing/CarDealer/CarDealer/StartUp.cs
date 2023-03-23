@@ -36,8 +36,14 @@
             //Problem 15 string result = GetCarsFromMakeBmw(context);
             //Problem 15 File.WriteAllText(@"../../../Results/cars-model-BWM.xml", result);
 
-            string result = GetLocalSuppliers(context);
-            File.WriteAllText(@"../../../Results/local-suppliers.xml", result);
+            //Problem 16 string result = GetLocalSuppliers(context);
+            //Problem 16 File.WriteAllText(@"../../../Results/local-suppliers.xml", result);
+
+            //Problem 17 string result = GetCarsWithTheirListOfParts(context);
+            //Problem 17 File.WriteAllText(@"../../../Results/cars-with-their-parts.xml", result);
+
+            string result = GetTotalSalesByCustomer(context);
+            File.WriteAllText(@"../../../Results/total-sales-by-customers.xml", result);
 
             Console.WriteLine(result);
         }
@@ -265,6 +271,79 @@
             return sb.ToString().TrimEnd(); 
         }
 
+
+        //17. Export Cars With Their List Of Parts
+        public static string GetCarsWithTheirListOfParts(CarDealerContext context)
+        {
+            IMapper mapper = CreateMapper();
+            StringBuilder sb = new StringBuilder();
+
+            ExportCarWithPartsDto[] carWithPartsDtos = context.Cars
+                .OrderByDescending(c => c.TraveledDistance)
+                .ThenBy(c => c.Model)
+                .Take(5)
+                //.Select(c => new ExportCarWithPartsDto()  ----> if u dont use AutoMapper
+                //{
+                //    Make = c.Make,
+                //    Model= c.Model,
+                //    TraveledDistance= c.TraveledDistance,
+                //    CarParts = c.PartsCars.Select(pc=> new CarPartsDto()
+                //    {
+                //        Name = pc.Part.Name,
+                //        Price= pc.Part.Price
+                //    })
+                //    .OrderByDescending(pc=>pc.Price)
+                //    .ToArray()
+                //})
+                .ProjectTo<ExportCarWithPartsDto>(mapper.ConfigurationProvider)
+                .ToArray();
+
+            XmlRootAttribute xmlRoot = new XmlRootAttribute("cars");
+            XmlSerializerNamespaces namespaces= new XmlSerializerNamespaces();
+            namespaces.Add(string.Empty, string.Empty);
+
+            XmlSerializer serializer = new XmlSerializer(typeof(ExportCarWithPartsDto[]), xmlRoot);
+
+            using StringWriter writer = new StringWriter(sb);
+            serializer.Serialize(writer, carWithPartsDtos, namespaces);
+
+            return sb.ToString().TrimEnd();
+
+        }
+
+
+        //18. Export Total Sales By Customer
+        public static string GetTotalSalesByCustomer(CarDealerContext context)
+        {
+            IMapper mapper = CreateMapper();
+            StringBuilder sb = new StringBuilder();
+
+            ExportCustomerDto[] customerDtos = context.Sales
+                .Where(s=>s.Customer.Sales.Any())
+                .ToArray()
+                .Select(s=> new ExportCustomerDto()
+                {
+                    Name= s.Customer.Name,
+                    BoughtCars = s.Customer.Sales.Count,
+                    SpendMoney = s.Customer.IsYoungDriver 
+                    ? s.Car.PartsCars.Sum(pc => Math.Round(pc.Part.Price * 0.95m, 2))
+                    : s.Car.PartsCars.Sum(pc => Math.Round(pc.Part.Price, 2))
+
+                })
+                .OrderByDescending(pc=>pc.SpendMoney)
+                .ToArray();
+
+            XmlRootAttribute xmlRoot = new XmlRootAttribute("customers");
+            XmlSerializerNamespaces namespaces= new XmlSerializerNamespaces();
+            namespaces.Add(string.Empty, string.Empty);
+
+            XmlSerializer serializer = new XmlSerializer(typeof(ExportCustomerDto[]), xmlRoot);
+
+            using StringWriter writer = new StringWriter(sb);
+            serializer.Serialize(writer, customerDtos, namespaces);
+
+            return sb.ToString().TrimEnd(); 
+        }
 
 
         //Mapper
