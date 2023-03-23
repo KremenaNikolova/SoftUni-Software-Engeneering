@@ -33,8 +33,12 @@
             //Problem 14 string result = GetCarsWithDistance(context);
             //Problem 14 File.WriteAllText(@"../../../Results/cars-with-distance.xml", result);
 
-            string result = GetCarsFromMakeBmw(context);
-            File.WriteAllText(@"../../../Results/cars-model-BWM.xml", result);
+            //Problem 15 string result = GetCarsFromMakeBmw(context);
+            //Problem 15 File.WriteAllText(@"../../../Results/cars-model-BWM.xml", result);
+
+            string result = GetLocalSuppliers(context);
+            File.WriteAllText(@"../../../Results/local-suppliers.xml", result);
+
             Console.WriteLine(result);
         }
 
@@ -229,6 +233,36 @@
             serializer.Serialize(writer, cars, namespaces);
 
             return sb.ToString().TrimEnd();
+        }
+
+
+        //16. Export Local Suppliers
+        public static string GetLocalSuppliers(CarDealerContext context)
+        {
+            IMapper mapper = CreateMapper();
+            StringBuilder sb = new StringBuilder();
+
+            ExportLocalSupplierDto[] summplierDtos = context.Suppliers
+                .Where(s=>s.IsImporter==false)
+                //.Select(s=> new ExportLocalSupplierDto() ----> if u dont use AutoMapper
+                //{
+                //    Id = s.Id,
+                //    Name = s.Name,
+                //    PartsCount = s.Parts.Count   
+                //})
+                .ProjectTo<ExportLocalSupplierDto>(mapper.ConfigurationProvider)
+                .ToArray();
+
+            XmlRootAttribute xmlRoot = new XmlRootAttribute("suppliers");
+            XmlSerializerNamespaces namespaces = new XmlSerializerNamespaces();
+            namespaces.Add(string.Empty, string.Empty);
+
+            XmlSerializer serializer = new XmlSerializer(typeof(ExportLocalSupplierDto[]), xmlRoot);
+
+            using StringWriter writer= new StringWriter(sb);
+            serializer.Serialize(writer, summplierDtos, namespaces);
+
+            return sb.ToString().TrimEnd(); 
         }
 
 
