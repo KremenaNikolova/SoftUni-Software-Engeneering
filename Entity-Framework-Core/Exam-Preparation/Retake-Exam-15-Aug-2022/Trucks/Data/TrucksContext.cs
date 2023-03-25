@@ -38,6 +38,7 @@
             {
                 e.HasKey(cl => new { cl.ClientId, cl.TruckId});
             });
+
         }
     }
 }
