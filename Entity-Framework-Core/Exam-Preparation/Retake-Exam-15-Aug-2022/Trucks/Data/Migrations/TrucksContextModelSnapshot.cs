@@ -45,7 +45,7 @@ namespace Trucks.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Clients");
+                    b.ToTable("Clients", (string)null);
                 });
 
             modelBuilder.Entity("Trucks.Data.Models.ClientTruck", b =>
@@ -60,7 +60,7 @@ namespace Trucks.Migrations
 
                     b.HasIndex("TruckId");
 
-                    b.ToTable("ClientsTrucks");
+                    b.ToTable("ClientsTrucks", (string)null);
                 });
 
             modelBuilder.Entity("Trucks.Data.Models.Despatcher", b =>
@@ -81,7 +81,7 @@ namespace Trucks.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Despatchers");
+                    b.ToTable("Despatchers", (string)null);
                 });
 
             modelBuilder.Entity("Trucks.Data.Models.Truck", b =>
@@ -120,7 +120,7 @@ namespace Trucks.Migrations
 
                     b.HasIndex("DespatcherId");
 
-                    b.ToTable("Trucks");
+                    b.ToTable("Trucks", (string)null);
                 });
 
             modelBuilder.Entity("Trucks.Data.Models.ClientTruck", b =>
