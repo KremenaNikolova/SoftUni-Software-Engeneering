@@ -6,6 +6,11 @@ namespace Footballers.Data.Models
 {
     public class Footballer
     {
+        public Footballer()
+        {
+            TeamsFootballers = new HashSet<TeamFootballer>();
+        }
+
         [Key]
         public int Id { get; set; }
 

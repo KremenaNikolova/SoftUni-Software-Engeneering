@@ -4,12 +4,18 @@ namespace Footballers.Data.Models
 {
     public class Team
     {
+        public Team()
+        {
+            TeamsFootballers = new HashSet<TeamFootballer>();
+        }
+
         [Key]
         public int Id { get; set; }
 
         [Required]
         [MaxLength(40)]
         [MinLength(3)]
+        [RegularExpression(@"[a-zA-z.\-\d\s]+$")]
         public string Name { get; set; } = null!;
 
         [Required]
