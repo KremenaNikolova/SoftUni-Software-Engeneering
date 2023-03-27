@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Artillery", "Artillery\Artillery.csproj", "{A01CDA47-D81E-45CF-87F9-02E2A7E41FF5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Artillery", "Artillery\Artillery.csproj", "{A01CDA47-D81E-45CF-87F9-02E2A7E41FF5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject1", "TestProject1\TestProject1.csproj", "{B231A67C-DBE0-4292-991C-D86A6DC12A42}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{A01CDA47-D81E-45CF-87F9-02E2A7E41FF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A01CDA47-D81E-45CF-87F9-02E2A7E41FF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A01CDA47-D81E-45CF-87F9-02E2A7E41FF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B231A67C-DBE0-4292-991C-D86A6DC12A42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B231A67C-DBE0-4292-991C-D86A6DC12A42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B231A67C-DBE0-4292-991C-D86A6DC12A42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B231A67C-DBE0-4292-991C-D86A6DC12A42}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

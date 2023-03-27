@@ -35,7 +35,7 @@
             ICollection<Country> countries = new List<Country>();
             foreach (var countryDto in countryDtos)
             {
-                if (!IsValid(countryDto) || string.IsNullOrEmpty(countryDto.CountryName))
+                if (!IsValid(countryDto))
                 {
                     sb.AppendLine(ErrorMessage);
                     continue;
@@ -136,11 +136,10 @@
             StringBuilder sb = new StringBuilder();
             ImportGunDto[] gunDtos = JsonConvert.DeserializeObject<ImportGunDto[]>(jsonString)!;
 
-            List<Gun> guns = new List<Gun>();
+            ICollection<Gun> guns = new List<Gun>();
             foreach (var gunDto in gunDtos)
             {
-                GunType validGunType;
-                bool isValidType = Enum.TryParse<GunType>(gunDto.GunType, out validGunType);
+                bool isValidType = Enum.TryParse<GunType>(gunDto.GunType, out GunType validGunType);
                 if (!IsValid(gunDto) || !isValidType)
                 {
                     sb.AppendLine(ErrorMessage);
@@ -158,21 +157,21 @@
                     ShellId = gunDto.ShellId
                 };
 
+                
+
+                ICollection<CountryGun> countryGuns = new List<CountryGun>();
                 foreach (var countryId in gunDto.Countries)
                 {
-                    if (!context.Countries.Any(c => c.Id == countryId.Id))
-                    {
-                        sb.AppendLine(ErrorMessage);
-                        continue;
-                    }
-
                     CountryGun countryGun = new CountryGun()
                     {
                         CountryId = countryId.Id,
                         Gun = gun
                     };
-                    gun.CountriesGuns.Add(countryGun);
+
+                    countryGuns.Add(countryGun);
                 }
+
+                gun.CountriesGuns = countryGuns;
                 guns.Add(gun);
 
                 sb.AppendLine(string.Format(SuccessfulImportGun, gun.GunType, gun.GunWeight, gun.BarrelLength));
