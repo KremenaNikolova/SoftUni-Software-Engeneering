@@ -13,12 +13,10 @@ namespace Artillery.Data.Models
         public int Id { get; set; }
 
         [Required]
-        [Range(2, 1680)]
         public double ShellWeight { get; set; }
 
         [Required]
         [MaxLength(30)]
-        [MinLength(4)]
         public string Caliber { get; set; } = null!;
 
         public virtual ICollection<Gun> Guns { get; set; } = null!;

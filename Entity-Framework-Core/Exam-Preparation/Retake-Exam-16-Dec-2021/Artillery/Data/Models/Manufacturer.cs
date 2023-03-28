@@ -14,12 +14,10 @@ namespace Artillery.Data.Models
 
         [Required]
         [MaxLength(40)]
-        [MinLength(4)]
         public string ManufacturerName { get; set; } = null!; 
 
         [Required]
         [MaxLength(100)]
-        [MinLength(10)]
         public string Founded { get; set; } = null!;
 
         public virtual ICollection<Gun> Guns { get; set; } = null!;

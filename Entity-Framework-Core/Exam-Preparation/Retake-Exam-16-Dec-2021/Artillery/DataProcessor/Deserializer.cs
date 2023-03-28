@@ -4,9 +4,9 @@
     using Artillery.Data.Models;
     using Artillery.Data.Models.Enums;
     using Artillery.DataProcessor.ImportDto;
+
     using Newtonsoft.Json;
     using System.ComponentModel.DataAnnotations;
-    using System.Runtime.CompilerServices;
     using System.Text;
     using System.Xml.Serialization;
 

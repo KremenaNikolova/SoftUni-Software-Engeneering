@@ -14,11 +14,9 @@ namespace Artillery.Data.Models
 
         [Required]
         [MaxLength(60)]
-        [MinLength(4)]
         public string CountryName { get; set; } = null!;
 
         [Required]
-        [Range(50000, 10000000)]
         public int ArmySize { get; set; }
 
         public virtual ICollection<CountryGun> CountriesGuns { get; set; } = null!;
