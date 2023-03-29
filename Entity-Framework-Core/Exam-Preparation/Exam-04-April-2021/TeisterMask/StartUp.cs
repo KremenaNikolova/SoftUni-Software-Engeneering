@@ -19,16 +19,16 @@
 
             ResetDatabase(context, shouldDropDatabase: true);
 
-            //var projectDir = GetProjectDirectory();
-            //
-            //ImportEntities(context, projectDir + @"Datasets/", projectDir + @"ImportResults/");
-            //
-            //ExportEntities(context, projectDir + @"ExportResults/");
-            //
-            //using (var transaction = context.Database.BeginTransaction())
-            //{
-            //    transaction.Rollback();
-            //}
+            var projectDir = GetProjectDirectory();
+            
+            ImportEntities(context, projectDir + @"Datasets/", projectDir + @"ImportResults/");
+            
+            ExportEntities(context, projectDir + @"ExportResults/");
+            
+            using (var transaction = context.Database.BeginTransaction())
+            {
+                transaction.Rollback();
+            }
         }
 
         private static void ImportEntities(TeisterMaskContext context, string baseDir, string exportDir)
@@ -42,7 +42,7 @@
             var employees =
              DataProcessor.Deserializer.ImportEmployees(context,
                  File.ReadAllText(baseDir + "employees.json"));
-
+            
             PrintAndExportEntityToFile(employees, exportDir + "Actual Result - ImportEmployees.txt");
         }
 

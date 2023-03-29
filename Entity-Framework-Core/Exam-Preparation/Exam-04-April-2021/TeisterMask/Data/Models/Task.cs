@@ -22,8 +22,10 @@ namespace TeisterMask.Data.Models
 
         public DateTime DueDate { get; set; }
 
+        [Range(0, 3)]
         public ExecutionType ExecutionType { get; set; }
 
+        [Range(0, 4)]
         public LabelType LabelType { get; set; }
 
         [ForeignKey(nameof(Project))]

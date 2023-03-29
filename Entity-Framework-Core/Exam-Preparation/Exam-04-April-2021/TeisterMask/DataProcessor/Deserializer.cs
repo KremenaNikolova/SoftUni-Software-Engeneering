@@ -6,6 +6,14 @@ namespace TeisterMask.DataProcessor
     using ValidationContext = System.ComponentModel.DataAnnotations.ValidationContext;
 
     using Data;
+    using System.Text;
+    using System.Xml.Serialization;
+    using TeisterMask.DataProcessor.ImportDto;
+    using TeisterMask.Data.Models;
+    using Microsoft.Data.SqlClient.Server;
+    using System.Globalization;
+    using TeisterMask.Data.Models.Enums;
+    using Newtonsoft.Json;
 
     public class Deserializer
     {
@@ -19,12 +27,114 @@ namespace TeisterMask.DataProcessor
 
         public static string ImportProjects(TeisterMaskContext context, string xmlString)
         {
-            throw new NotImplementedException();
+            StringBuilder sb = new StringBuilder();
+            XmlRootAttribute xmlRoot = new XmlRootAttribute("Projects");
+            XmlSerializer serializer = new XmlSerializer(typeof(ImportProjectDto[]), xmlRoot);
+
+            using StringReader reader = new StringReader(xmlString);
+            ImportProjectDto[] projectDtos = (ImportProjectDto[])serializer.Deserialize(reader)!;
+
+            ICollection<Project> projects = new List<Project>();
+
+            foreach (var projectDto in projectDtos)
+            {
+                if (!IsValid(projectDto))
+                {
+                    sb.AppendLine(ErrorMessage);
+                    continue;
+                }
+
+                bool isEmtyDate = DateTime.TryParseExact(projectDto.DueDate, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime validDueDate);
+
+                Project project = new Project()
+                {
+                    Name = projectDto.Name,
+                    OpenDate = DateTime.ParseExact(projectDto.OpenDate, "dd/MM/yyyy", CultureInfo.InvariantCulture),
+                    DueDate = isEmtyDate
+                        ? validDueDate
+                        : null
+                };
+
+                foreach (var taskDto in projectDto.Tasks)
+                {
+                    DateTime taskOpenDate = DateTime.ParseExact(taskDto.OpenDate, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+
+                    DateTime taskDueDate = DateTime.ParseExact(taskDto.DueDate, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+
+                    if (!IsValid(taskDto) || taskOpenDate<project.OpenDate || taskDueDate>project.DueDate)
+                    {
+                        sb.AppendLine(ErrorMessage);
+                        continue;
+                    }
+
+                    project.Tasks.Add(new Task()
+                    {
+                        Name = taskDto.Name,
+                        OpenDate = taskOpenDate,
+                        DueDate = taskDueDate,
+                        ExecutionType = (ExecutionType)taskDto.ExecutionType,
+                        LabelType = (LabelType)taskDto.LabelType
+                    });
+                }
+
+                projects.Add(project);
+
+                sb.AppendLine(string.Format(SuccessfullyImportedProject, project.Name, project.Tasks.Count));
+            }
+
+            context.Projects.AddRange(projects);
+            context.SaveChanges();
+
+            return sb.ToString().TrimEnd();
         }
 
         public static string ImportEmployees(TeisterMaskContext context, string jsonString)
         {
-            throw new NotImplementedException();
+            StringBuilder sb = new StringBuilder();
+            ImportEmployeeDto[] employeeDtos = JsonConvert.DeserializeObject<ImportEmployeeDto[]>(jsonString)!;
+
+            ICollection<Employee> employees = new List<Employee>();
+
+            foreach (var employeeDto in employeeDtos)
+            {
+                if (!IsValid(employeeDto))
+                {
+                    sb.AppendLine(ErrorMessage);
+                    continue;
+                }
+
+                Employee employee= new Employee()
+                {
+                    Username= employeeDto.Username,
+                    Email= employeeDto.Email,
+                    Phone= employeeDto.Phone
+                };
+
+                foreach (var taskId in employeeDto.Tasks.Distinct())
+                {
+                    if (!context.Tasks.Any(t=>t.Id== taskId))
+                    {
+                        sb.AppendLine(ErrorMessage);
+                        continue;
+                    }
+
+                    employee.EmployeesTasks.Add(new EmployeeTask()
+                    {
+                        Employee = employee,
+                        TaskId = taskId
+                    });
+                }
+
+                employees.Add(employee);
+
+                sb.AppendLine(string.Format(SuccessfullyImportedEmployee, employee.Username, employee.EmployeesTasks.Count));
+            }
+
+            context.Employees.AddRange(employees);
+            context.SaveChanges();
+
+            return sb.ToString().TrimEnd();
+            
         }
 
         private static bool IsValid(object dto)

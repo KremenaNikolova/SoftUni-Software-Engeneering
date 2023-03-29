@@ -7,7 +7,7 @@ namespace TeisterMask.Data.Models
     {
         public Project()
         {
-            Tasks = new HashSet<Task>();
+            Tasks = new HashSet<Task>();    
         }
 
         [Key]
@@ -19,8 +19,8 @@ namespace TeisterMask.Data.Models
 
         public DateTime OpenDate { get; set; }
 
-        [AllowNull]
-        public DateTime? DueDate { get; set; }
+        [MaybeNull]
+        public DateTime? DueDate { get; set; } = null;
 
         public virtual ICollection<Task> Tasks { get; set; }
     }
