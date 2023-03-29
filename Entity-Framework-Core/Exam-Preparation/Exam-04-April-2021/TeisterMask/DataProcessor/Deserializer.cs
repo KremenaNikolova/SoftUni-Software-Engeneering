@@ -38,30 +38,39 @@ namespace TeisterMask.DataProcessor
 
             foreach (var projectDto in projectDtos)
             {
-                if (!IsValid(projectDto))
+                bool isValidProjectOpenDate = DateTime.TryParseExact(projectDto.OpenDate, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime validProjectOpenDate);
+
+                bool isEmtyProjectDueDate = DateTime.TryParseExact(projectDto.DueDate, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime validProjectDueDate);
+
+                if (!IsValid(projectDto)
+                    || !isValidProjectOpenDate)
                 {
                     sb.AppendLine(ErrorMessage);
                     continue;
                 }
 
-                bool isEmtyDate = DateTime.TryParseExact(projectDto.DueDate, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime validDueDate);
 
                 Project project = new Project()
                 {
                     Name = projectDto.Name,
-                    OpenDate = DateTime.ParseExact(projectDto.OpenDate, "dd/MM/yyyy", CultureInfo.InvariantCulture),
-                    DueDate = isEmtyDate
-                        ? validDueDate
+                    OpenDate = validProjectOpenDate,
+                    DueDate = isEmtyProjectDueDate
+                        ? validProjectDueDate
                         : null
                 };
 
                 foreach (var taskDto in projectDto.Tasks)
                 {
-                    DateTime taskOpenDate = DateTime.ParseExact(taskDto.OpenDate, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    bool isValidTaskOpenDate = DateTime.TryParseExact(taskDto.OpenDate, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime taskOpenDate);
 
-                    DateTime taskDueDate = DateTime.ParseExact(taskDto.DueDate, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    bool isValidTaskDueDate = DateTime.TryParseExact(taskDto.DueDate, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime taskDueDate);
 
-                    if (!IsValid(taskDto) || taskOpenDate<project.OpenDate || taskDueDate>project.DueDate)
+
+                    if (!IsValid(taskDto)
+                        || taskOpenDate < validProjectOpenDate
+                        || (isEmtyProjectDueDate && taskDueDate > validProjectDueDate)
+                        || !isValidTaskDueDate
+                        || !isValidTaskOpenDate)
                     {
                         sb.AppendLine(ErrorMessage);
                         continue;
@@ -103,16 +112,16 @@ namespace TeisterMask.DataProcessor
                     continue;
                 }
 
-                Employee employee= new Employee()
+                Employee employee = new Employee()
                 {
-                    Username= employeeDto.Username,
-                    Email= employeeDto.Email,
-                    Phone= employeeDto.Phone
+                    Username = employeeDto.Username,
+                    Email = employeeDto.Email,
+                    Phone = employeeDto.Phone
                 };
 
                 foreach (var taskId in employeeDto.Tasks.Distinct())
                 {
-                    if (!context.Tasks.Any(t=>t.Id== taskId))
+                    if (!context.Tasks.Any(t => t.Id == taskId))
                     {
                         sb.AppendLine(ErrorMessage);
                         continue;
@@ -134,7 +143,7 @@ namespace TeisterMask.DataProcessor
             context.SaveChanges();
 
             return sb.ToString().TrimEnd();
-            
+
         }
 
         private static bool IsValid(object dto)
