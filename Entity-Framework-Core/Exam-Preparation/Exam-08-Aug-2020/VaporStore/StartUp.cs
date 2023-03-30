@@ -17,9 +17,9 @@
 
             ResetDatabase(context, shouldDropDatabase: true);
 
-            //var projectDir = GetProjectDirectory();
-            //
-            //ImportEntities(context, projectDir + @"Datasets/", projectDir + @"ImportResults/");
+            var projectDir = GetProjectDirectory();
+            
+            ImportEntities(context, projectDir + @"Datasets/", projectDir + @"ImportResults/");
             //ExportEntities(context, projectDir + @"ExportResults/");
             //
             //using (var transaction = context.Database.BeginTransaction())
@@ -44,7 +44,7 @@
 
             var users = Deserializer.ImportUsers(context, File.ReadAllText(baseDir + "users.json"));
             PrintAndExportEntityToFile(users, exportDir + "ImportUsers.txt");
-
+            
             var purchases = Deserializer.ImportPurchases(context, File.ReadAllText(baseDir + "purchases.xml"));
             PrintAndExportEntityToFile(purchases, exportDir + "ImportPurchases.txt");
         }
