@@ -19,12 +19,12 @@
             var projectDir = GetProjectDirectory();
             
             ImportEntities(context, projectDir + @"Datasets/", projectDir + @"ImportResults/");
-            //ExportEntities(context, projectDir + @"ExportResults/");
-            //
-            //using (var transaction = context.Database.BeginTransaction())
-            //{
-            //    transaction.Rollback();
-            //}
+            ExportEntities(context, projectDir + @"ExportResults/");
+            
+            using (var transaction = context.Database.BeginTransaction())
+            {
+                transaction.Rollback();
+            }
         }
 
         private static void ImportEntities(SoftJailDbContext context, string baseDir, string exportDir)
@@ -49,7 +49,7 @@
             Console.WriteLine(jsonOutput);
             File.WriteAllText(exportDir + "PrisonersByCells.json", jsonOutput);
 
-            var xmlOutput = DataProcessor.Serializer.ExportPrisonersInbox(context, "Melanie Simonich,Diana Ebbs,Binni Cornhill");
+            var xmlOutput = DataProcessor.Serializer.ExportPrisonersInbox(context, "Melanie Simonich,Diana Ebbs,BinniCornhill");
             Console.WriteLine(xmlOutput);
             File.WriteAllText(exportDir + "PrisonersInbox.xml", xmlOutput);
         }
