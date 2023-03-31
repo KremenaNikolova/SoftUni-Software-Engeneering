@@ -16,9 +16,9 @@
 
             ResetDatabase(context, shouldDropDatabase: false);
 
-            //var projectDir = GetProjectDirectory();
-            //
-            //ImportEntities(context, projectDir + @"Datasets/", projectDir + @"ImportResults/");
+            var projectDir = GetProjectDirectory();
+            
+            ImportEntities(context, projectDir + @"Datasets/", projectDir + @"ImportResults/");
             //ExportEntities(context, projectDir + @"ExportResults/");
             //
             //using (var transaction = context.Database.BeginTransaction())
@@ -38,7 +38,7 @@
                 DataProcessor.Deserializer.ImportPrisonersMails(context,
                     File.ReadAllText(baseDir + "ImportPrisonersMails.json"));
             PrintAndExportEntityToFile(prisonersMails, exportDir + "ImportPrisonersMails.txt");
-
+            
             var officersPrisoners = DataProcessor.Deserializer.ImportOfficersPrisoners(context, File.ReadAllText(baseDir + "ImportOfficersPrisoners.xml"));
             PrintAndExportEntityToFile(officersPrisoners, exportDir + "ImportOfficersPrisoners.txt");
         }
