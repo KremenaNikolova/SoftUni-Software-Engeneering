@@ -428,7 +428,7 @@
         </Game>
       </Purchase>
     </Purchases>
-    <TotalSpent>0</TotalSpent>
+    <TotalSpent>0.00</TotalSpent>
   </User>
   <User username="ehellard">
     <Purchases>
@@ -442,7 +442,7 @@
         </Game>
       </Purchase>
     </Purchases>
-    <TotalSpent>0</TotalSpent>
+    <TotalSpent>0.00</TotalSpent>
   </User>
   <User username="fdedam">
     <Purchases>
@@ -465,7 +465,7 @@
         </Game>
       </Purchase>
     </Purchases>
-    <TotalSpent>0</TotalSpent>
+    <TotalSpent>0.00</TotalSpent>
   </User>
   <User username="fstoter">
     <Purchases>
@@ -479,7 +479,7 @@
         </Game>
       </Purchase>
     </Purchases>
-    <TotalSpent>0</TotalSpent>
+    <TotalSpent>0.00</TotalSpent>
   </User>
   <User username="mdickson">
     <Purchases>
@@ -493,7 +493,7 @@
         </Game>
       </Purchase>
     </Purchases>
-    <TotalSpent>0</TotalSpent>
+    <TotalSpent>0.00</TotalSpent>
   </User>
   <User username="rabbison">
     <Purchases>
@@ -516,6 +516,6 @@
         </Game>
       </Purchase>
     </Purchases>
-    <TotalSpent>0</TotalSpent>
+    <TotalSpent>0.00</TotalSpent>
   </User>
 </Users>
