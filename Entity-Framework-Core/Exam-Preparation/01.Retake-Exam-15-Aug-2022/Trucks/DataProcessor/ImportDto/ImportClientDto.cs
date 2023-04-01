@@ -1,6 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using Trucks.Data.Models;
 
 namespace Trucks.DataProcessor.ImportDto
 {
@@ -19,8 +17,6 @@ namespace Trucks.DataProcessor.ImportDto
         [Required]
         public string Type { get; set; } = null!;
 
-        public int[]? Trucks { get; set; } 
-
+        public int[] Trucks { get; set; }
     }
-
 }

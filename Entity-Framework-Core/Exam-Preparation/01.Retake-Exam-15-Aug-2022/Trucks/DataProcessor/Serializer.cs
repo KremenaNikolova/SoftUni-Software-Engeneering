@@ -1,6 +1,5 @@
 ﻿namespace Trucks.DataProcessor
 {
-    using AutoMapper;
     using Data;
     using Newtonsoft.Json;
     using System.Text;
@@ -14,33 +13,31 @@
         {
             StringBuilder sb = new StringBuilder();
 
-            ExortDespatcherDto[] despatchers = context.Despatchers
-                .Where(d => d.Trucks.Any())
-                .ToArray()
-                .Select(d => new ExortDespatcherDto()
+            var despatchers = context.Despatchers
+                .Where(d=>d.Trucks.Any())
+                .Select(d=> new ExportDespatcherDto()
                 {
-                    TruckCount = d.Trucks.Count(),
+                    TrucksCount = d.Trucks.Count,
                     DespatcherName = d.Name,
-                    Trucks = d.Trucks.Select(t => new ExportDespatcherTrucksDto()
+                    Trucks = d.Trucks.Select(t=>new ExportTruckDto()
                     {
-                        RegistrationNumber = t.RegistrationNumber,
-                        MakeType = (MakeType)Enum.ToObject(typeof(MakeType), t.MakeType)
+                        RegistrationNumber = t.RegistrationNumber!,
+                        Make = t.MakeType.ToString()
                     })
                     .OrderBy(t => t.RegistrationNumber)
                     .ToArray()
-
                 })
-                .OrderByDescending(d=>d.TruckCount)
+                .OrderByDescending(d=>d.TrucksCount)
                 .ThenBy(d=>d.DespatcherName)
                 .ToArray();
 
             XmlRootAttribute xmlRoot = new XmlRootAttribute("Despatchers");
-            XmlSerializerNamespaces namespaces = new XmlSerializerNamespaces();
+            XmlSerializerNamespaces namespaces= new XmlSerializerNamespaces();
             namespaces.Add(string.Empty, string.Empty);
 
-            XmlSerializer serializer = new XmlSerializer(typeof(ExortDespatcherDto[]), xmlRoot);
+            XmlSerializer serializer = new XmlSerializer(typeof(ExportDespatcherDto[]), xmlRoot);
 
-            using StringWriter writer = new StringWriter(sb);
+            using StringWriter writer= new StringWriter(sb);
             serializer.Serialize(writer, despatchers, namespaces);
 
             return sb.ToString().TrimEnd();
@@ -48,26 +45,26 @@
 
         public static string ExportClientsWithMostTrucks(TrucksContext context, int capacity)
         {
-            var clients = context.Clients
-                .Where(c => c.ClientsTrucks.Any(ct => ct.Truck.TankCapacity >= capacity))
+            var trucks = context.Clients
+                .Where(c=>c.ClientsTrucks.Any() 
+                    && c.ClientsTrucks.Any(ct=>ct.Truck.TankCapacity>=capacity))
                 .ToArray()
-                .Select(c => new
+                .Select(c=> new
                 {
-                    c.Name,
+                    Name = c.Name,
                     Trucks = c.ClientsTrucks
-                    .Where(cl => cl.Truck.TankCapacity >= capacity)
-                    .Select(cl => new
+                    .Where(ct=>ct.Truck.TankCapacity>=capacity)
+                    .Select(ct=> new
                     {
-                        TruckRegistrationNumber = cl.Truck.RegistrationNumber,
-                        cl.Truck.VinNumber,
-                        cl.Truck.TankCapacity,
-                        cl.Truck.CargoCapacity,
-                        CategoryType = cl.Truck.CategoryType.ToString(),
-                        MakeType = cl.Truck.MakeType.ToString(),
+                        TruckRegistrationNumber = ct.Truck.RegistrationNumber,
+                        VinNumber = ct.Truck.VinNumber,
+                        TankCapacity = ct.Truck.TankCapacity,
+                        CargoCapacity = ct.Truck.CargoCapacity,
+                        CategoryType = ct.Truck.CategoryType.ToString(),
+                        MakeType = ct.Truck.MakeType.ToString()
                     })
-                    
-                    .OrderBy(cl => cl.MakeType)
-                    .ThenByDescending(cl=>cl.CargoCapacity)
+                    .OrderBy(ct=>ct.MakeType)
+                    .ThenByDescending(ct=>ct.CargoCapacity)
                     .ToArray()
                 })
                 .OrderByDescending(c=>c.Trucks.Count())
@@ -75,7 +72,7 @@
                 .Take(10)
                 .ToArray();
 
-            return JsonConvert.SerializeObject(clients, Formatting.Indented);
+            return JsonConvert.SerializeObject(trucks, Formatting.Indented);
         }
     }
 }

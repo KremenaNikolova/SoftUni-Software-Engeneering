@@ -6,12 +6,12 @@
     public class TrucksContext : DbContext
     {
         public TrucksContext()
-        { 
+        {
         }
 
         public TrucksContext(DbContextOptions options)
-            : base(options) 
-        { 
+            : base(options)
+        {
         }
 
         public DbSet<Client> Clients { get; set; } = null!;
@@ -36,9 +36,8 @@
         {
             modelBuilder.Entity<ClientTruck>(e =>
             {
-                e.HasKey(cl => new { cl.ClientId, cl.TruckId});
+                e.HasKey(ct => new { ct.TruckId, ct.ClientId });
             });
-
         }
     }
 }

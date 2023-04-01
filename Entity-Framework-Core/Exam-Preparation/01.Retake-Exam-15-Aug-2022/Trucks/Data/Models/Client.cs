@@ -14,17 +14,15 @@ namespace Trucks.Data.Models
 
         [Required]
         [MaxLength(40)]
-        [MinLength(3)]
         public string Name { get; set; } = null!;
 
         [Required]
         [MaxLength(40)]
-        [MinLength(2)]
-        public string Nationality  { get; set; } = null!;
+        public string Nationality { get; set; } = null!;
 
         [Required]
         public string Type { get; set; } = null!;
 
-        public virtual ICollection<ClientTruck> ClientsTrucks { get; set; } = null!;
+        public virtual ICollection<ClientTruck> ClientsTrucks { get; set; }
     }
 }

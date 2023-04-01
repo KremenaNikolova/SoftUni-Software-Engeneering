@@ -18,11 +18,11 @@
             ResetDatabase(context, shouldDropDatabase: false);
 
             var projectDir = GetProjectDirectory();
-
+            
             ImportEntities(context, projectDir + @"Datasets/", projectDir + @"ImportResults/");
-
+            
             ExportEntities(context, projectDir + @"ExportResults/");
-
+            
             using (var transaction = context.Database.BeginTransaction())
             {
                 transaction.Rollback();
@@ -40,7 +40,7 @@
             var clients =
              DataProcessor.Deserializer.ImportClient(context,
                  File.ReadAllText(baseDir + "clients.json"));
-
+            
             PrintAndExportEntityToFile(clients, exportDir + "Actual Result - ImportClients.txt");
         }
 
