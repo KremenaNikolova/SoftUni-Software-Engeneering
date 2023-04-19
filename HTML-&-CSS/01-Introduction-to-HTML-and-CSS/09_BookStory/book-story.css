@@ -1,0 +1,19 @@
+#wrapper{
+    width: 400px;
+    background-color: #dddddd;
+    border: 1px solid #000000;
+    margin-left: 20px;
+    padding: 10px;
+}
+
+#title{
+    text-align: center;
+}
+
+.firstP{
+    font-size: 18px;
+}
+
+.secondP{
+    font-size: 18px;
+}
