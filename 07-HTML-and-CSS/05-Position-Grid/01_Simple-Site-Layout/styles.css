@@ -1,0 +1,73 @@
+body{
+    border-radius: 3px;
+    /* background: rgb(181, 216, 255); */
+    padding: 5px 10px;
+    margin: 3px 0px;
+
+    display: grid;
+
+    grid-template-columns: 1fr 6fr;
+
+    grid-template-areas:
+    "welcome welcome"
+    "aside main"
+    "footer footer";
+
+    gap: 10px
+}
+
+header{
+    grid-area: welcome;
+}
+
+header h1{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+aside{
+    grid-area: aside;
+}
+
+
+aside ul{
+    list-style: none;
+    margin: 0px;
+    padding: 5px;
+}
+
+aside ul a{
+    display: block;
+    padding: 5px 0px;
+    color: rgb(86, 40, 129);
+    text-decoration: none;
+}
+
+main{
+    grid-area: main;
+
+}
+
+main h1{
+    padding: 0px 5px;
+}
+
+main a{
+    text-decoration: none;
+    color: black;
+}
+
+footer{
+    grid-area: footer;
+}
+
+header,
+aside,
+main,
+footer{
+    border-radius: 3px;
+    background-color: rgb(181, 216, 255);
+    padding: 5px;
+}
+
+
