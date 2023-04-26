@@ -1,0 +1,151 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(238, 238, 238);
+
+    margin: 15px 35px;
+}
+
+.main-header{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 1.3px solid black;
+
+    width: 90%;
+}
+
+.title{
+    font-size: 18px;
+    font-weight: 600;
+    position: relative;
+    top: 15px;
+}
+
+.navigation-bar{
+    display: inline-block;
+    list-style: none;
+    text-align: right;
+    word-spacing: 10px;
+}
+
+.nav-property{
+    display: inline-block;
+    color: rgb(0, 102, 0);
+    font-size: 10px;
+}
+
+.article-title{
+    font-weight: 500;
+}
+
+.steps-image{
+   float: right;
+   margin-bottom: 15px;
+   border: 1.4px solid black;
+   padding: 6px;
+   width: 20%;
+}
+
+.first-article{
+    margin-bottom: 30px;
+}
+
+.second-article h2{
+    margin-bottom: 0;
+}
+
+.article-section p{
+    font-size: 12px;
+}
+
+.second-section{
+    display: grid;
+
+    grid-template-areas: 
+    "firstP firstP"
+    "secondP blockquotes"
+    "thirdP thirdP";
+}
+
+.firstP{
+    grid-area: firstP;
+}
+
+.before-blockquote{
+    grid-area: secondP;
+}
+
+blockquote{
+    position: relative;
+
+    grid-area: blockquotes;
+    border-left: 3px solid rgb(205, 202, 202);
+    font-style: italic;
+    color: gray;
+    padding: 0 20px;
+    margin-top: 0;
+
+}
+
+blockquote .author{
+    text-align: right;
+}
+
+.thirdP{
+    grid-area: thirdP;
+}
+
+.forest-image{
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    border: 1.4px solid black;
+    padding: 4px;
+    width: 20%;
+}
+
+
+img{
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgba(0, 0, 0, 0.25);
+}
+
+blockquote{
+    font-family: Georgia, serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+    font-family: Georgia, serif;
+    font-size: 1.2em;
+}
+
+main{
+    display: inline-block;
+    width: 73%;
+}
+
+aside{
+    margin-left: 30px;
+    display: inline-block;
+    width: 20%;
+    font-size: 11px;
+    position: absolute;
+}
+
+aside h3{
+    margin-left: 19px;
+}
+
+aside nav{
+    margin-bottom: 25px;
+}
+
+.aside-navigation a{
+    color: rgb(13, 202, 13);
+    text-decoration: none;
+    line-height: 15px;
+}
