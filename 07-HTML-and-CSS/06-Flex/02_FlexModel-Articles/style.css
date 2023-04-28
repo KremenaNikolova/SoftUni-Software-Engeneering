@@ -1,0 +1,23 @@
+*{
+    box-sizing: border-box;
+
+    font-family: Helvetica, sans-serif;
+    line-height: 1.5;
+}
+
+.section{
+    display: flex;
+    justify-content: space-between;
+    max-width: 70vw;
+
+    border: 1px solid black;
+}
+
+article{
+    max-width: 240px;
+}
+
+.title{
+    font-family: Georgia, serif;
+    line-height: 1.2;
+}
