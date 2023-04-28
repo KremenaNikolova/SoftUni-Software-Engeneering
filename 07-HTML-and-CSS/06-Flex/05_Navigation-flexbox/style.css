@@ -1,0 +1,32 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    margin: 36px 54px;
+}
+
+.header{
+    display: flex;
+
+    border-bottom: 2px solid rgb(0,0,0)
+}
+
+.header .title{
+    text-transform:uppercase;
+    width: 80%
+}
+
+.header .navigation .list{
+    list-style: none;
+    display: flex;
+    align-items: end;
+    width: 20%;
+}
+
+.header .navigation .nav-btn{
+    text-decoration: none;
+    color: rgb(0, 153, 0);
+    flex-direction: column;
+    align-items: end;
+    margin-right: 1.5rem;
+}
