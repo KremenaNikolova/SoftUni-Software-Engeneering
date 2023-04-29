@@ -1,0 +1,41 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    background-color: rgb(238, 238, 238);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    width: 1024px;
+    height: 640px;
+    border: 2px solid black;
+}
+
+.container{
+    display: flex;
+    gap: 16px;
+}
+
+.container .picture{
+    border-radius: 8px;
+    box-shadow: 0 0 20px gray;
+    
+    height: 320px;
+}
+
+.container .picture:nth-child(1),
+.container .picture:nth-child(3),
+.container .picture:nth-child(4){
+    width: 80px;
+    /* overflow: hidden; */
+    object-fit:cover;
+}
+
+.container .picture:nth-child(2){
+    width: 520px;
+    object-fit: contain;
+    background-color: black;
+}

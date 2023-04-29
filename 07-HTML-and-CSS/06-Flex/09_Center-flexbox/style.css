@@ -1,0 +1,26 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    background-color: rgb(238, 238, 238);
+    height: 80vh;
+    border: 2px solid black;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.card{
+    background-color: rgb(255, 255, 255);
+
+    width: 380px;
+    padding: 6px 18px;
+
+    box-shadow: 0 0 20px #a2a1a1;
+}
+
+.card .title{
+    line-height: 0.1;
+}
