@@ -1,0 +1,50 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(238, 238, 238);
+    height: 100vh;
+    font-family: Helvetica, sans-serif ;
+    /* margin-left: 30px; */
+    
+}
+
+/* HEADER */
+
+.header{
+    border-bottom: 2px solid black;
+    width: 100%;
+    padding-left: 28px;
+}
+
+.header .header-title{
+    font-size: 32px;
+    text-transform: uppercase;
+    font-weight: 600;
+    line-height: 0;
+}
+
+/* MAIN */
+
+.main{
+    padding-top: 24px;
+    padding-left: 28px;
+}
+
+.main .title{
+    font-weight: 500;
+}
+
+/* FOOTER */
+
+.footer{
+    color: rgb(255, 255, 255);
+    background-color: rgb(102, 102, 102);
+}
+
+.footer .text{
+    padding-left: 24px;
+}
