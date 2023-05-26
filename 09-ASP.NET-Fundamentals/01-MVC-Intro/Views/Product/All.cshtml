@@ -1,0 +1,24 @@
+﻿@using _01_MVC_Intro.Models.Product;
+@model IEnumerable<ProductViewModel>
+
+@{
+    ViewBag.Title = "All Products";
+}
+
+<div class="card" style="width: 18rem">
+    <div class="card-header">@ViewBag.Title</div>
+    <ul class="list-group list-group-flush">
+        @{
+            int counter = 0;
+         }
+        @foreach(ProductViewModel product in Model)
+        {
+            counter++;
+            <li class="list-group-item">
+                <a asp-controller="Product" asp-action="ById" asp-route-id="@product.Id">
+                    @counter. @product.Name - @product.Price lv.
+                </a>
+            </li>
+        }
+    </ul>
+</div>
