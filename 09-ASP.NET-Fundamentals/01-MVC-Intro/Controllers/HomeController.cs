@@ -36,6 +36,12 @@ namespace _01_MVC_Intro.Controllers
             return View();
         }
 
+        public IActionResult NumbersToN(int count = 3)
+        {
+            ViewBag.Count = count;
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
