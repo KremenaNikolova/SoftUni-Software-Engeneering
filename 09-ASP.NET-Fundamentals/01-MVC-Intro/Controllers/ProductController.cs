@@ -1,20 +1,37 @@
 ﻿namespace _01_MVC_Intro.Controllers
 {
-    using _01_MVC_Intro.Models.Product;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Net.Http.Headers;
     using System.IO.Pipes;
     using System.Text;
     using System.Text.Json;
+
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Net.Http.Headers;
+
+    using _01_MVC_Intro.Models.Product;
     using static _01_MVC_Intro.Seeding.ProductsData;
 
     public class ProductController : Controller
     {
+        //[ActionName("My-Products")]
+        //public IActionResult All()
+        //{
+        //    return View(Products);
+        //}
+
         [ActionName("My-Products")]
-        public IActionResult All()
+        public IActionResult All(string keyword)
         {
-            return View(Products);
+            if (string.IsNullOrWhiteSpace(keyword))
+            {
+                return View(Products);
+            }
+
+            IEnumerable<ProductViewModel> productSearch = Products
+                .Where(p => p.Name.ToLower().Contains(keyword.ToLower()))
+                .ToArray();
+            return View(productSearch);
         }
+
 
         public IActionResult ById(Guid id)
         {
@@ -58,7 +75,7 @@
                 sb.AppendLine($"Product {counter}: {product.Name} - {product.Price} lv.");
             }
 
-            Response.Headers.Add(HeaderNames.ContentDisposition, @"attachment;file=product.txt");
+            Response.Headers.Add(HeaderNames.ContentDisposition, @"attachment;file=productSearch.txt");
 
             return File(Encoding.UTF8.GetBytes(sb.ToString().TrimEnd()), "text/plain");
         }
