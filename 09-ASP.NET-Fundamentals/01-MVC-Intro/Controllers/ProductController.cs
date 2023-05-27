@@ -10,6 +10,7 @@
 
     public class ProductController : Controller
     {
+        [ActionName("My-Products")]
         public IActionResult All()
         {
             return View(Products);
