@@ -2,6 +2,8 @@
 {
     using _01_MVC_Intro.Models.Product;
     using Microsoft.AspNetCore.Mvc;
+    using System.IO.Pipes;
+    using System.Text;
     using System.Text.Json;
     using static _01_MVC_Intro.Seeding.ProductsData;
 
@@ -27,6 +29,20 @@
             {
                 WriteIndented = true
             });
+        }
+
+        public IActionResult AllAsText()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            int counter = 0;
+            foreach (var product in Products)
+            {
+                counter++;
+                sb.AppendLine($"Product {counter}: {product.Name} - {product.Price} lv.");
+            }
+
+            return Content(sb.ToString());
         }
     }
 
