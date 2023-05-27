@@ -1,6 +1,13 @@
-﻿using _01_MVC_Intro.Models;
+﻿using System.Diagnostics;
+using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
+
+using _01_MVC_Intro.Models;
+using _01_MVC_Intro.Models.Product;
+using _01_MVC_Intro.Seeding;
+
+using static _01_MVC_Intro.Seeding.ProductsData;
+
 
 namespace _01_MVC_Intro.Controllers
 {
@@ -41,6 +48,8 @@ namespace _01_MVC_Intro.Controllers
             ViewBag.Count = count;
             return View();
         }
+
+       
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

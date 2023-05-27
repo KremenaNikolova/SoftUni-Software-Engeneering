@@ -2,7 +2,7 @@
 {
     using _01_MVC_Intro.Models.Product;
     using Microsoft.AspNetCore.Mvc;
-
+    using System.Text.Json;
     using static _01_MVC_Intro.Seeding.ProductsData;
 
     public class ProductController : Controller
@@ -20,6 +20,13 @@
                 return BadRequest();
             }
             return View(product);
+        }
+        public IActionResult AllAsJson()
+        {
+            return Json(Products, new JsonSerializerOptions()
+            {
+                WriteIndented = true
+            });
         }
     }
 
