@@ -1,0 +1,41 @@
+﻿@using ChatApp.Models.Chat;
+@model ChatViewModel;
+
+<h3>Messages:</h3>
+
+@if(Model.Messages !=null)
+{
+   foreach (var item in Model.Messages)
+    {
+        <div class="card .bg-light col-6">
+            <div class="card-body">
+                <bockquote class="blockquote mb-0">
+                    <p>@item.MessageText</p>
+                    <footer class="blockquote-footer">@item.Sender</footer>
+                </bockquote>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <p>No messages yet!</p>
+}
+
+<p></p>
+<form asp-controller="Chat" asp-action="Send" method="post">
+    <div class="form-group card-header row">
+        <div class="col-12">
+            <h5>Send a new message</h5>
+        </div>
+        <div class="col-8">
+            <label>Message: </label>
+            <textarea asp-for="CurrentMessage.MessageText" class="form-control" rows="3"></textarea>
+        </div>
+        <div class="col-4">
+            <label>Sender Name: </label>
+            <input asp-for="CurrentMessage.Sender" class="form-control"/>
+            <input class="btn btn-primary mt-2 float-lg-end" type="submit" value="Send"/>
+        </div>
+    </div>
+</form>
