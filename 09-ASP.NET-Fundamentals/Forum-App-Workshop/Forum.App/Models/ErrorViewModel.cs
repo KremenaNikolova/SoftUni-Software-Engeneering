@@ -1,4 +1,4 @@
-namespace ForumApp.Models
+namespace Forum.App.Models
 {
     public class ErrorViewModel
     {
