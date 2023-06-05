@@ -1,4 +1,4 @@
-﻿using Forum.App.Models;
+﻿using Forum.ViewModels; 
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -6,13 +6,6 @@ namespace Forum.App.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
-
         public IActionResult Index()
         {
             return View();
