@@ -5,5 +5,7 @@ namespace Forum.Services.Interfaces
     public interface IPostService
     {
         Task<IEnumerable<PostListViewModel>> ListAllAsync();
+
+        Task AddPostAsync(PostFormModel model);
     }
 }
