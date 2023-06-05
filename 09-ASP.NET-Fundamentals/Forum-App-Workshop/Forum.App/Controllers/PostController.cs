@@ -2,7 +2,6 @@
 using Forum.ViewModels.Post;
 using Microsoft.AspNetCore.Mvc;
 using Forum.Common;
-using Forum.Common.Validations;
 
 namespace Forum.App.Controllers
 {
@@ -46,7 +45,45 @@ namespace Forum.App.Controllers
                 return View(inputModel);
             }
 
-            return RedirectToAction("All");
+            return RedirectToAction("All", "Post");
         }
+
+        public async Task<IActionResult> Edit(string id)
+        {
+            try
+            {
+                PostFormModel post = await this.postService.GetForEditByIdAsync(id);
+
+                return View(post);
+            }
+            catch(Exception)
+            {
+                return this.RedirectToAction("All");
+            }
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(string id, PostFormModel editModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(editModel);
+            }
+
+            try
+            {
+                await this.postService.EditByIdAsync(id, editModel);
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError(string.Empty, ErrorMessages.InvalidUpdateAction);
+
+                return View(editModel);
+            }
+
+            return RedirectToAction("All", "Post");
+        }
+
     }
 }

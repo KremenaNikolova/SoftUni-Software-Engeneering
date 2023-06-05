@@ -43,5 +43,32 @@ namespace Forum.Services
             await dbContext.Posts.AddAsync(newPost);
             await dbContext.SaveChangesAsync();
         }
+
+        
+        public async Task<PostFormModel> GetForEditByIdAsync(string id)
+        {
+            Post postToEdit = await this.dbContext
+                .Posts
+                .FirstAsync(p => p.Id.ToString() == id);
+
+            return new PostFormModel()
+            {
+                Title = postToEdit.Title,
+                Content = postToEdit.Content
+            };
+
+        }
+
+        public async Task EditByIdAsync(string id, PostFormModel model)
+        {
+            Post postToEdit = await this.dbContext
+                .Posts
+                .FirstAsync(p=>p.Id.ToString()==id);
+
+            postToEdit.Title = model.Title;
+            postToEdit.Content = model.Content;
+
+            this.dbContext.SaveChangesAsync();
+        }
     }
 }

@@ -7,5 +7,9 @@ namespace Forum.Services.Interfaces
         Task<IEnumerable<PostListViewModel>> ListAllAsync();
 
         Task AddPostAsync(PostFormModel model);
+
+        Task<PostFormModel> GetForEditByIdAsync(string id);
+
+        Task EditByIdAsync(string id,  PostFormModel model);
     }
 }
