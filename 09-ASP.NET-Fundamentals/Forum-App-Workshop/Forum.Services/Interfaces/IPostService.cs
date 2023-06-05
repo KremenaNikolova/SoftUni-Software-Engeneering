@@ -11,5 +11,7 @@ namespace Forum.Services.Interfaces
         Task<PostFormModel> GetForEditByIdAsync(string id);
 
         Task EditByIdAsync(string id,  PostFormModel model);
+
+        Task DeleteByIdAsync(string id);
     }
 }

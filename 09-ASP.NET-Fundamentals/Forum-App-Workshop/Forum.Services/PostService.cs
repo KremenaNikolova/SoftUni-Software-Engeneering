@@ -68,7 +68,17 @@ namespace Forum.Services
             postToEdit.Title = model.Title;
             postToEdit.Content = model.Content;
 
-            this.dbContext.SaveChangesAsync();
+            await this.dbContext.SaveChangesAsync();
+        }
+
+        public async Task DeleteByIdAsync(string id)
+        {
+            Post postForDelete = await this.dbContext
+                .Posts
+                .FirstAsync(p => p.Id.ToString() == id);
+
+            this.dbContext.Posts.Remove(postForDelete);
+            await this.dbContext.SaveChangesAsync();
         }
     }
 }

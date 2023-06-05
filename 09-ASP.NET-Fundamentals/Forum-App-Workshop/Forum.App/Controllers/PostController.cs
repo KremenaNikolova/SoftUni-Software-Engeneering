@@ -58,7 +58,7 @@ namespace Forum.App.Controllers
             }
             catch(Exception)
             {
-                return this.RedirectToAction("All");
+                return this.RedirectToAction("All", "Post");
             }
 
         }
@@ -81,6 +81,18 @@ namespace Forum.App.Controllers
 
                 return View(editModel);
             }
+
+            return RedirectToAction("All", "Post");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(string id)
+        {
+            try
+            {
+                await this.postService.DeleteByIdAsync(id);
+            }
+            catch(Exception) { }
 
             return RedirectToAction("All", "Post");
         }
