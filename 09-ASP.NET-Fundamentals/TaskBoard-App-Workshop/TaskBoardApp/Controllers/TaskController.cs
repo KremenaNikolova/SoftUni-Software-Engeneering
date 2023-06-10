@@ -85,6 +85,65 @@ namespace TaskBoardApp.Controllers
             return View(task);
         }
 
+        public async Task<IActionResult> Edit(int id)
+        {
+            var task = await dbContext
+                .Tasks
+                .FindAsync(id);
+
+            if(task == null)
+            {
+                return BadRequest();
+            }
+
+            string currendUserId = GetUserId();
+            if (currendUserId != task.OwnerId)
+            {
+                return Unauthorized();
+            }
+
+            TaskFormModel taskModel = new TaskFormModel
+            {
+                Title = task.Title,
+                Description = task.Description,
+                BoardId = task.BoardId,
+                Boards = GetBoards()
+            };
+
+            return View(taskModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, TaskFormModel taskModel)
+        {
+            var task = await dbContext.Tasks.FindAsync(id);
+
+            if (task == null)
+            {
+                return BadRequest();
+            }
+
+            string currentUserId = GetUserId();
+            if (currentUserId != task.OwnerId)
+            {
+                return Unauthorized();
+            }
+
+            if(!ModelState.IsValid)
+            {
+                taskModel.Boards = GetBoards();
+
+                return View(taskModel);
+            }
+
+            task.Title = taskModel.Title;
+            task.Description = taskModel.Description;
+            task.BoardId = taskModel.BoardId;
+
+            await dbContext.SaveChangesAsync();
+            return RedirectToAction("All", "Board");
+        }
+
 
         private IEnumerable<TaskBoardModel> GetBoards()
         {
