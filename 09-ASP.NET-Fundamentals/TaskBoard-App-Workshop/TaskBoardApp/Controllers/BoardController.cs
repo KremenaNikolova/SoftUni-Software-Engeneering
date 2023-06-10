@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+
 using TaskBoardApp.Data;
 using TaskBoardApp.ViewModels.Board;
 using TaskBoardApp.ViewModels.Task;
@@ -19,14 +20,15 @@ namespace TaskBoardApp.Controllers
         {
             var boards = await dbContex
                 .Boards
-                .Select(b=> new BoardViewModel()
+                .Select(b => new BoardViewModel()
                 {
                     Id = b.Id,
                     Name = b.Name,
                     Tasks = b.Tasks!
-                        .Select(t=> new TaskViewModel()
+                        .Where(t => t.BoardId == b.Id)
+                        .Select(t => new TaskViewModel()
                         {
-                            Id= t.Id,
+                            Id = t.Id,
                             Title = t.Title,
                             Description = t.Description,
                             Owner = t.Owner.UserName

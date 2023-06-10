@@ -59,6 +59,8 @@ namespace TaskBoardApp.Controllers
             return RedirectToAction("All", "Board");
         }
 
+
+        [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
             var task = await dbContext
@@ -91,7 +93,8 @@ namespace TaskBoardApp.Controllers
                 {
                     Id = b.Id,
                     Name = b.Name,
-                });
+                })
+                .ToList();
         }
 
         private string GetUserId()
