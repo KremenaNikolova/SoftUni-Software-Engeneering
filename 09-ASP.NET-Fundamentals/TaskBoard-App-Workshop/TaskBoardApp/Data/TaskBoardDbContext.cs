@@ -6,7 +6,7 @@ using Task = TaskBoardApp.Data.Models.Task;
 
 namespace TaskBoardApp.Data
 {
-    public class TaskBoardDbContext : IdentityDbContext
+    public class TaskBoardDbContext : IdentityDbContext<IdentityUser>
     {
         private IdentityUser TestUser { get; set; } = null!;
 
@@ -38,10 +38,6 @@ namespace TaskBoardApp.Data
                 .HasForeignKey(t => t.BoardId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder
-                .Entity<Task>()
-                .HasData(GenerateTask());
-
             SeedUser();
             builder
                 .Entity<IdentityUser>()
@@ -52,6 +48,10 @@ namespace TaskBoardApp.Data
                 .Entity<Board>()
                 .HasData(OpenBoard, InProgressBoard, DoneBoard);
 
+
+            builder
+                .Entity<Task>()
+                .HasData(GenerateTask());
 
             base.OnModelCreating(builder);
         }
