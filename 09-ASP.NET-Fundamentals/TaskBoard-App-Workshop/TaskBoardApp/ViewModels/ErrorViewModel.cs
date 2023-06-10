@@ -1,4 +1,4 @@
-namespace TaskBoardApp.Models
+namespace TaskBoardApp.ViewModels
 {
     public class ErrorViewModel
     {
