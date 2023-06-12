@@ -12,8 +12,10 @@ namespace TaskBoardApp
 
             // Add services to the container.
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+
             builder.Services.AddDbContext<TaskBoardDbContext>(options =>
                 options.UseSqlServer(connectionString));
+
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             builder.Services.AddDefaultIdentity<IdentityUser>(options =>
@@ -27,6 +29,12 @@ namespace TaskBoardApp
                 .AddEntityFrameworkStores<TaskBoardDbContext>();
 
             builder.Services.AddControllersWithViews();
+
+
+            builder.Services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/Identity/Account/Login";
+            });
 
             var app = builder.Build();
 
