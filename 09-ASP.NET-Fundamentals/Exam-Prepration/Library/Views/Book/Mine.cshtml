@@ -1,4 +1,6 @@
-﻿@*@{
+﻿@model IEnumerable<MineBookViewModel>
+
+@{
     ViewBag.Title = "My Books";
 }
 
@@ -7,7 +9,7 @@
 
 
 <div class="text-center row">
-    @foreach (var book in Model.Books)
+    @foreach (var book in Model)
     {
         <div class="card col-4" style="width: 20rem; ">
             <img class="card-img-top" style="width: 18rem;"
@@ -26,4 +28,4 @@
         </div>
     }
 </div>
-*@
+
