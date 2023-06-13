@@ -1,10 +1,12 @@
 ﻿using Library.Contracts;
 using Library.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
 namespace Library.Controllers
 {
+    [Authorize]
     public class BookController : Controller
     {
         private readonly IBookService bookService;
@@ -59,7 +61,7 @@ namespace Library.Controllers
         [HttpPost]
         public async Task<IActionResult> AddToCollection(BookViewModel bookModel)
         {
-            var book = bookService
+            var book = await bookService
                 .GetBookByIdAsync(bookModel.Id);
 
             if(book == null)
@@ -69,11 +71,42 @@ namespace Library.Controllers
 
             var userId = GetUserId();
 
-            await bookService.AddBookToCollectionAsync(userId, bookModel);
-
+            try
+            {
+                await bookService.AddBookToCollectionAsync(userId, bookModel);
+            }
+            catch
+            {
+                BadRequest();
+            }
 
             return RedirectToAction("All", "Book");
 
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RemoveFromCollection(BookViewModel bookModel)
+        {
+            var book = await bookService
+                .GetBookByIdAsync(bookModel.Id);
+
+            if (book == null)
+            {
+                return RedirectToAction("Mine", "Book");
+            }
+
+            var userId = GetUserId();
+            try
+            {
+                await bookService.RemoveBookFromCollectionAsync(userId, bookModel);
+            }
+            catch
+            {
+                BadRequest();
+            }
+            
+
+            return RedirectToAction("Mine", "Book");
         }
 
         private string GetUserId()

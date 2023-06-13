@@ -12,6 +12,12 @@ builder.Services.AddDbContext<LibraryDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = "/Identity/Account/Login";
+});
+
 builder.Services.AddDefaultIdentity<IdentityUser>(options =>
 {
     options.SignIn.RequireConfirmedAccount = false;
@@ -20,9 +26,11 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
     options.Password.RequireUppercase = false;
 })
     .AddEntityFrameworkStores<LibraryDbContext>();
+
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IBookService, BookService>();
+
 
 var app = builder.Build();
 

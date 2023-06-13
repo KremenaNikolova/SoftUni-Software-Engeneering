@@ -125,5 +125,19 @@ namespace Library.Services
 
             return myBooks;
         }
+
+        public async Task RemoveBookFromCollectionAsync(string userId, BookViewModel bookModel)
+        {
+            var userBook = await dbContext
+                .UserBooks
+                .AsNoTracking()
+                .FirstOrDefaultAsync(ub=> ub.CollectorId == userId && ub.BookId == bookModel.Id);
+
+            if (userBook != null)
+            {
+                dbContext.UserBooks.Remove(userBook);
+                await dbContext.SaveChangesAsync();
+            }
+        }
     }
 }

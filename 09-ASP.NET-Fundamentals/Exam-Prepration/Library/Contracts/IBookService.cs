@@ -15,5 +15,7 @@ namespace Library.Contracts
         Task<BookViewModel?> GetBookByIdAsync(int id);
 
         Task AddBookToCollectionAsync(string userId, BookViewModel bookModel);
+
+        Task RemoveBookFromCollectionAsync(string userId, BookViewModel bookModel);
     }
 }

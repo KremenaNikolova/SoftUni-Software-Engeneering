@@ -2,7 +2,6 @@
 
 using static Library.Commons.Validations.BookValiadtions;
 using static Library.Commons.ErrorMessages.BookErrorMessages;
-using Library.Data.Models;
 
 namespace Library.Models
 {
