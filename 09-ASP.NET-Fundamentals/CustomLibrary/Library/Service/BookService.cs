@@ -196,5 +196,44 @@ namespace Library.Service
             return book;
         }
 
+        public async Task<IEnumerable<BookFormViewModel>> SearchBookAsync(string keyword)
+        {
+            var productSearch = await dbContext
+                .Books
+                .Where(b=> b.Title.ToLower().Contains(keyword.ToLower()))
+                .Select(b=> new BookFormViewModel()
+                {
+                    Id = b.Id,
+                    Title=b.Title,
+                    Author=b.Author,
+                    Description=b.Description,
+                    ImageUrl = b.ImageUrl,
+                    Rating = b.Rating,
+                    Category = b.Category.Name
+                })
+                .ToArrayAsync();
+
+            return productSearch;
+        }
+
+        public async Task<IEnumerable<BookFormViewModel>> SortBooksByTitleAsync()
+        {
+            var books = await dbContext
+                .Books
+                .Select(b => new BookFormViewModel()
+                {
+                    Id = b.Id,
+                    Title = b.Title,
+                    Author = b.Author,
+                    Description = b.Description,
+                    ImageUrl= b.ImageUrl,
+                    Rating = b.Rating,
+                    Category = b.Category.Name
+                })
+                .OrderBy(b=>b.Title)
+                .ToListAsync();
+
+            return books;
+        }
     }
 }

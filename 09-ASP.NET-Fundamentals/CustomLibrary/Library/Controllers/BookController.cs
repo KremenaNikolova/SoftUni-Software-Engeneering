@@ -16,11 +16,19 @@ namespace Library.Controllers
             this.bookService = bookService;
         }
 
-        public async Task<IActionResult> All()
+        public async Task<IActionResult> All(string keyword)
         {
-            var showBooks = await bookService.GetBooksAsync();
+            if (string.IsNullOrWhiteSpace(keyword))
+            {
+                var showBooks = await bookService.GetBooksAsync();
 
-            return View(showBooks);
+                return View(showBooks);
+            }
+
+            var book = await bookService
+                .SearchBookAsync(keyword);
+
+            return View(book);
         }
 
         public async Task<IActionResult> Mine()
@@ -135,6 +143,13 @@ namespace Library.Controllers
             await bookService.EditBookAsync(id, bookModel);
 
             return RedirectToAction("All", "Book");
+        }
+
+        public async Task<IActionResult> SortByName()
+        {
+            var sortedBooks = await bookService.SortBooksByTitleAsync();
+
+            return View(sortedBooks);
         }
 
         private string GetUserId()

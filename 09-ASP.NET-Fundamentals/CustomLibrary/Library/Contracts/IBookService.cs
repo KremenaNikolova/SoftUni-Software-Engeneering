@@ -23,7 +23,11 @@ namespace Library.Contracts
 
         public Task RemoveFromMyBooks(string userId, int bookId);
 
+        public Task<IEnumerable<BookFormViewModel>> SearchBookAsync(string keyword);
 
-        
+        public Task<IEnumerable<BookFormViewModel>> SortBooksByTitleAsync();
+
+
+
     }
 }
