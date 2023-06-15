@@ -27,6 +27,12 @@ namespace Library.Contracts
 
         public Task<IEnumerable<BookFormViewModel>> SortBooksByTitleAsync();
 
+        public Task<IEnumerable<BookFormViewModel>> SortBooksByRatingAsync();
+
+        public Task<IEnumerable<BookFormViewModel>> SortBooksByCategoryAsync();
+
+        public Task<IEnumerable<BookFormViewModel>> SortBooksByIdDescendingAsync();
+
 
 
     }

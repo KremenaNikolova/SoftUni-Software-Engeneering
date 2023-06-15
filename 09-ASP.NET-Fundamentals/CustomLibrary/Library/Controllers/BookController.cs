@@ -152,6 +152,27 @@ namespace Library.Controllers
             return View(sortedBooks);
         }
 
+        public async Task<IActionResult> SortByRating()
+        {
+            var sortedBooks = await bookService.SortBooksByRatingAsync();
+
+            return View(sortedBooks);
+        }
+
+        public async Task<IActionResult> SortByCategory()
+        {
+            var sortedBooks = await bookService.SortBooksByCategoryAsync();
+
+            return View(sortedBooks);
+        }
+
+        public async Task<IActionResult> SortByNewest()
+        {
+            var sortedBooks = await bookService.SortBooksByIdDescendingAsync();
+
+            return View(sortedBooks);
+        }
+
         private string GetUserId()
         {
             return User.FindFirstValue(ClaimTypes.NameIdentifier);

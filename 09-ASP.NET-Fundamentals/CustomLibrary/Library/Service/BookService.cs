@@ -218,7 +218,7 @@ namespace Library.Service
 
         public async Task<IEnumerable<BookFormViewModel>> SortBooksByTitleAsync()
         {
-            var books = await dbContext
+            var booksByTitle = await dbContext
                 .Books
                 .Select(b => new BookFormViewModel()
                 {
@@ -233,7 +233,67 @@ namespace Library.Service
                 .OrderBy(b=>b.Title)
                 .ToListAsync();
 
-            return books;
+            return booksByTitle;
+        }
+
+        public async Task<IEnumerable<BookFormViewModel>> SortBooksByRatingAsync()
+        {
+            var booksByRating = await dbContext
+                .Books
+                .Select(b => new BookFormViewModel()
+                {
+                    Id = b.Id,
+                    Title = b.Title,
+                    Author = b.Author,
+                    Description = b.Description,
+                    ImageUrl = b.ImageUrl,
+                    Rating = b.Rating,
+                    Category = b.Category.Name
+                })
+                .OrderByDescending(b => b.Rating)
+                .ToListAsync();
+
+            return booksByRating;
+        }
+
+        public async Task<IEnumerable<BookFormViewModel>> SortBooksByCategoryAsync()
+        {
+            var booksByCategory = await dbContext
+               .Books
+               .OrderBy(b => b.Category.Name)
+               .Select(b => new BookFormViewModel()
+               {
+                   Id = b.Id,
+                   Title = b.Title,
+                   Author = b.Author,
+                   Description = b.Description,
+                   ImageUrl = b.ImageUrl,
+                   Rating = b.Rating,
+                   Category = b.Category.Name
+               })
+               .ToListAsync();
+
+            return booksByCategory;
+        }
+
+        public async Task<IEnumerable<BookFormViewModel>> SortBooksByIdDescendingAsync()
+        {
+            var booksById = await dbContext
+                .Books
+                .Select(b => new BookFormViewModel()
+                {
+                    Id = b.Id,
+                    Title = b.Title,
+                    Author = b.Author,
+                    Description = b.Description,
+                    ImageUrl = b.ImageUrl,
+                    Rating = b.Rating,
+                    Category = b.Category.Name
+                })
+                .OrderByDescending(b => b.Id)
+                .ToListAsync();
+
+            return booksById;
         }
     }
 }
