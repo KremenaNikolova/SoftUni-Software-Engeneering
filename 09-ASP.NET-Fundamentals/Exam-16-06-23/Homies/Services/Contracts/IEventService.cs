@@ -1,4 +1,5 @@
 ﻿using Homies.Models.EventModels;
+using Homies.Models.TypeModels;
 
 namespace Homies.Services.Contracts
 {
@@ -7,5 +8,9 @@ namespace Homies.Services.Contracts
         public Task<IEnumerable<AllEventsViewModel>> GetAllEventsAsync();
 
         public Task<IEnumerable<AllEventsViewModel>> GetAllJoinedEventsAsync(string userId);
+
+        public Task<IEnumerable<TypeViewModel>> GetTypesAsync();
+
+        public Task AddNewEventAsync(AddEventViewModel newEvent);
     }
 }

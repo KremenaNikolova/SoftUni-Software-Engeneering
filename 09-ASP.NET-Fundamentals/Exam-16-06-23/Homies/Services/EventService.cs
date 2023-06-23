@@ -1,5 +1,7 @@
 ﻿using Homies.Data;
+using Homies.Data.Models;
 using Homies.Models.EventModels;
+using Homies.Models.TypeModels;
 using Homies.Services.Contracts;
 using Microsoft.EntityFrameworkCore;
 
@@ -48,5 +50,44 @@ namespace Homies.Services
 
             return joinedEvents;
         }
+
+        public async Task<IEnumerable<TypeViewModel>> GetTypesAsync()
+        {
+            var types = await dbContext
+                .Types
+                .Select(t=> new TypeViewModel
+                {
+                    Id= t.Id,
+                    Name = t.Name,
+                })
+                .ToListAsync();
+
+            return types;
+        }
+
+        public async Task AddNewEventAsync(AddEventViewModel newEvent)
+        {
+            var currType = await dbContext
+                .Types
+                .Where(t=> t.Id==newEvent.TypeId)
+                .FirstOrDefaultAsync();
+
+
+            var addEvent = new Event()
+            {
+                Name = newEvent.Name,
+                Description = newEvent.Description,
+                Start = newEvent.Start,
+                End = newEvent.End,
+                TypeId = newEvent.TypeId,
+                Type = currType!,
+                OrganiserId = newEvent.OrganiserId
+            };
+
+            await dbContext.Events.AddAsync(addEvent);
+            await dbContext.SaveChangesAsync();
+
+        }
+
     }
 }
