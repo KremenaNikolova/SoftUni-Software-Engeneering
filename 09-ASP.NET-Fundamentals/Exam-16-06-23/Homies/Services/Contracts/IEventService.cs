@@ -12,5 +12,9 @@ namespace Homies.Services.Contracts
         public Task<IEnumerable<TypeViewModel>> GetTypesAsync();
 
         public Task AddNewEventAsync(AddEventViewModel newEvent);
+
+        public Task<EditEventViewModel?> GetEventByIdAsync(int id);
+
+        public Task EditEventAsync(int id, EditEventViewModel eventModel);
     }
 }

@@ -4,6 +4,7 @@ using Homies.Models.EventModels;
 using Homies.Models.TypeModels;
 using Homies.Services.Contracts;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace Homies.Services
 {
@@ -87,6 +88,52 @@ namespace Homies.Services
             await dbContext.Events.AddAsync(addEvent);
             await dbContext.SaveChangesAsync();
 
+        }
+
+        public async Task<EditEventViewModel?> GetEventByIdAsync(int id)
+        {
+            var types = await dbContext
+                .Types
+                .Select(t => new TypeViewModel
+                {
+                    Id = t.Id,
+                    Name = t.Name,
+                })
+                .ToListAsync();
+
+            EditEventViewModel? currEvent = await dbContext
+                .Events
+                .Where(e=>e.Id==id)
+                .Select(e=> new EditEventViewModel
+                {
+                    Name=e.Name,
+                    Description=e.Description,
+                    Start = e.Start,
+                    End = e.End,
+                    TypeId = e.TypeId,
+                    Types = types
+                })
+                .FirstOrDefaultAsync();
+
+            return currEvent;
+        }
+
+        public async Task EditEventAsync(int id, EditEventViewModel eventModel)
+        {
+            var currEvent = await dbContext
+                .Events
+                .FindAsync(id);
+
+            if (currEvent != null)
+            {
+                currEvent.Name = eventModel.Name;
+                currEvent.Description = eventModel.Description;
+                currEvent.Start = eventModel.Start;
+                currEvent.End = eventModel.End;
+                currEvent.TypeId = eventModel.TypeId;
+
+                await dbContext.SaveChangesAsync();
+            }
         }
 
     }

@@ -69,6 +69,39 @@ namespace Homies.Controllers
 
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var currEvent = await eventService.GetEventByIdAsync(id);
+
+            if (currEvent == null)
+            {
+                return RedirectToAction("All", "Event");
+            }
+
+            return View(currEvent);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, EditEventViewModel editModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("Edit", "Event");
+            }
+
+            try
+            {
+                await eventService.EditEventAsync(id, editModel);
+            }
+            catch
+            {
+                return RedirectToAction("Edit", "Event");
+            }
+
+            return RedirectToAction("All", "Event");
+        }
+
         private string GetUserId()
         {
             return User.FindFirstValue(ClaimTypes.NameIdentifier);
