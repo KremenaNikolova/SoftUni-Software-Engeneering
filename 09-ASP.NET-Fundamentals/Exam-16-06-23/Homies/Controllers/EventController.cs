@@ -1,11 +1,13 @@
 ﻿using Homies.Models.EventModels;
 using Homies.Services.Contracts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics.Eventing.Reader;
 using System.Security.Claims;
 
 namespace Homies.Controllers
 {
+
+    [Authorize]
     public class EventController : Controller
     {
         private readonly IEventService eventService;
