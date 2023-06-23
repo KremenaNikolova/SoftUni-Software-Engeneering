@@ -19,6 +19,8 @@ namespace Homies.Models.EventModels
         [Required]
         public string OrganiserId { get; set; } = null!;
 
+        public DateTime CreatedOn { get; set; }
+
         public DateTime Start { get; set; }
 
         public DateTime End { get; set; }

@@ -134,6 +134,17 @@ namespace Homies.Controllers
             return RedirectToAction("All", "Event");
         }
 
+        public async Task<IActionResult> Details(int id)
+        {
+            var currEvent = await eventService.GetDetailsEventByIdAsync(id);
+            if(currEvent != null)
+            {
+                return View(currEvent);
+            }
+
+            return RedirectToAction("All", "Event");
+        }
+
         private string GetUserId()
         {
             return User.FindFirstValue(ClaimTypes.NameIdentifier);

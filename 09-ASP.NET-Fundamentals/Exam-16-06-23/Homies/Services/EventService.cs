@@ -82,7 +82,8 @@ namespace Homies.Services
                 End = newEvent.End,
                 TypeId = newEvent.TypeId,
                 Type = currType!,
-                OrganiserId = newEvent.OrganiserId
+                OrganiserId = newEvent.OrganiserId,
+                CreateOn = DateTime.UtcNow
             };
 
             await dbContext.Events.AddAsync(addEvent);
@@ -171,6 +172,27 @@ namespace Homies.Services
                 dbContext.EventsParticipants.Remove(currEvent);
                 await dbContext.SaveChangesAsync();
             }
+        }
+
+        public async Task<DetailsEventViewModel?> GetDetailsEventByIdAsync(int id)
+        {
+            var currEvent = await dbContext
+                .Events
+                .Where(e => e.Id == id)
+                .Select(e=> new DetailsEventViewModel()
+                {
+                    Id = e.Id,
+                    Name = e.Name,
+                    Description = e.Description,
+                    Start = e.Start.ToString("yyyy-MM-dd H:mm"),
+                    End = e.End.ToString("yyyy-MM-dd H:mm"),
+                    Organiser = e.Organiser.UserName,
+                    CreatedOn = e.CreateOn.ToString("yyyy-MM-dd H:mm"),
+                    Type = e.Type.Name
+                })
+                .FirstOrDefaultAsync();
+
+            return currEvent;
         }
 
     }

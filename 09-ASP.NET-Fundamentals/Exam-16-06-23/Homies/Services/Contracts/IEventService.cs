@@ -21,5 +21,6 @@ namespace Homies.Services.Contracts
 
         public Task RemoveFromJoinedEventsAsync(string userId, int id);
 
+        public Task<DetailsEventViewModel?> GetDetailsEventByIdAsync(int id);
     }
 }
