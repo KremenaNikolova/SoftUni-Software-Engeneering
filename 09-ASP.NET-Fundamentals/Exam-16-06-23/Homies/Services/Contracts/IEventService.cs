@@ -16,5 +16,10 @@ namespace Homies.Services.Contracts
         public Task<EditEventViewModel?> GetEventByIdAsync(int id);
 
         public Task EditEventAsync(int id, EditEventViewModel eventModel);
+
+        public Task AddToJoinedEventsAsync(string userId, int id);
+
+        public Task RemoveFromJoinedEventsAsync(string userId, int id);
+
     }
 }

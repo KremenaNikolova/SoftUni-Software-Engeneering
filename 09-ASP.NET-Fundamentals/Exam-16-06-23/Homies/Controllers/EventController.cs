@@ -102,6 +102,38 @@ namespace Homies.Controllers
             return RedirectToAction("All", "Event");
         }
 
+        public async Task<IActionResult> Join(int id)
+        {
+            string userId = GetUserId();
+
+            try
+            {
+                await eventService.AddToJoinedEventsAsync(userId, id);
+            }
+            catch
+            {
+                return RedirectToAction("All", "Event");
+            }
+
+            return RedirectToAction("Joined", "Event");
+        }
+
+        public async Task<IActionResult> Leave(int id)
+        {
+            string userId = GetUserId();
+
+            try
+            {
+                await eventService.RemoveFromJoinedEventsAsync(userId, id);
+            }
+            catch
+            {
+                return RedirectToAction("Joined", "Event");
+            }
+
+            return RedirectToAction("All", "Event");
+        }
+
         private string GetUserId()
         {
             return User.FindFirstValue(ClaimTypes.NameIdentifier);

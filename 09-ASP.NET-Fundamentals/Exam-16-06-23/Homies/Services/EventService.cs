@@ -38,8 +38,8 @@ namespace Homies.Services
         {
             var joinedEvents = await dbContext
                 .EventsParticipants
-                .Where(ep=>ep.HelperId == userId)
-                .Select(ep=> new AllEventsViewModel
+                .Where(ep => ep.HelperId == userId)
+                .Select(ep => new AllEventsViewModel
                 {
                     Id = ep.Event.Id,
                     Name = ep.Event.Name,
@@ -56,9 +56,9 @@ namespace Homies.Services
         {
             var types = await dbContext
                 .Types
-                .Select(t=> new TypeViewModel
+                .Select(t => new TypeViewModel
                 {
-                    Id= t.Id,
+                    Id = t.Id,
                     Name = t.Name,
                 })
                 .ToListAsync();
@@ -70,7 +70,7 @@ namespace Homies.Services
         {
             var currType = await dbContext
                 .Types
-                .Where(t=> t.Id==newEvent.TypeId)
+                .Where(t => t.Id == newEvent.TypeId)
                 .FirstOrDefaultAsync();
 
 
@@ -103,11 +103,11 @@ namespace Homies.Services
 
             EditEventViewModel? currEvent = await dbContext
                 .Events
-                .Where(e=>e.Id==id)
-                .Select(e=> new EditEventViewModel
+                .Where(e => e.Id == id)
+                .Select(e => new EditEventViewModel
                 {
-                    Name=e.Name,
-                    Description=e.Description,
+                    Name = e.Name,
+                    Description = e.Description,
                     Start = e.Start,
                     End = e.End,
                     TypeId = e.TypeId,
@@ -132,6 +132,43 @@ namespace Homies.Services
                 currEvent.End = eventModel.End;
                 currEvent.TypeId = eventModel.TypeId;
 
+                await dbContext.SaveChangesAsync();
+            }
+        }
+
+        public async Task AddToJoinedEventsAsync(string userId, int id)
+        {
+            var eventModel = new EventParticipant()
+            {
+                EventId = id,
+                HelperId = userId
+            };
+
+            bool isAlreadyAdded = await dbContext
+                .EventsParticipants
+                .AnyAsync(ep => ep.EventId == id);
+
+            if (!isAlreadyAdded)
+            {
+                await dbContext.EventsParticipants.AddAsync(eventModel);
+                await dbContext.SaveChangesAsync();
+            }
+            else
+            {
+                throw new Exception();
+            }
+        }
+
+        public async Task RemoveFromJoinedEventsAsync(string userId, int id)
+        {
+            var currEvent = await dbContext
+                .EventsParticipants
+                .Where(ep => ep.EventId == id && ep.HelperId==userId)
+                .FirstOrDefaultAsync();
+
+            if (currEvent != null)
+            {
+                dbContext.EventsParticipants.Remove(currEvent);
                 await dbContext.SaveChangesAsync();
             }
         }
