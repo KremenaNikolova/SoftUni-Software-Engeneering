@@ -1,3 +1,7 @@
+button:active{
+  background-color: blue;
+}
+
 .joinBtn {
     width: 10em;
     height: 5ex;
