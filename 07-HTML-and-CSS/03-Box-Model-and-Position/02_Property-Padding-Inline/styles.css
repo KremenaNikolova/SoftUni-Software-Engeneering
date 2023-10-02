@@ -1,4 +1,6 @@
 p {
   font-weight: bold;
   background-color: coral;
+
+  padding-inline: 30%;
 }
