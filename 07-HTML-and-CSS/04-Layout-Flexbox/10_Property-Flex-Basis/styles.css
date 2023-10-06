@@ -10,3 +10,16 @@
   padding: 20px;
   font-size: 30px;
 }
+
+.flex-container #box1 {
+  flex-basis: 120px;
+ }
+ 
+ .flex-container #box2 {
+  flex-basis: 120px;
+ }
+ 
+ .flex-container #box3 {
+  flex-basis: 120px;
+ }
+ 
