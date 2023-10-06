@@ -4,6 +4,7 @@
   width: 220px;
   height: 260px;
   flex-wrap: wrap;
+  gap: 70px;
 }
 
 .flex-container > div {

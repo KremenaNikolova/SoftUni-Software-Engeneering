@@ -11,3 +11,15 @@
   padding: 20px;
   font-size: 30px;
 }
+
+.flex-container #one {
+  flex-grow: 1;
+}
+
+.flex-container #two {
+  flex-grow: 2;
+}
+
+.flex-container #three {
+  flex-grow: 3;
+}
