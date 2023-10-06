@@ -8,6 +8,7 @@
 
 #box2 {
   background-color: pink;
+  align-self: center;
 }
 
 .flex-container > div {
