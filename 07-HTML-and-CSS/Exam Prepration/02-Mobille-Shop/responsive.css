@@ -1,0 +1,30 @@
+@media screen and (max-width: 600px) {
+    .home-container {
+        margin: 0;
+        padding-top: 0;
+    }
+
+    .home-navbar {
+        margin: 0;
+        padding: 0;
+        border-bottom: 0.2em solid white;
+    }
+
+    .home-header{
+        margin: 0;
+        padding: 1em;
+    }
+
+    
+    .navbar-link,  .home-container01{
+        display: none;
+      }
+
+
+    .navbar-logo-title {
+        margin-left: 0;
+        font-size: 1.6em;
+        display: block;
+      }
+  }
+  
