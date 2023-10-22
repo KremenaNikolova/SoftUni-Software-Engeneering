@@ -1,0 +1,83 @@
+@import url(https://fonts.googleapis.com/css?family=PT+Serif);
+
+@import url(https://fonts.googleapis.com/css?family=PT+Sans:400,700);
+
+html {
+    font-family: "PT Serif", "PT Sans", sans-serif;
+    font-size: 16px;
+}
+
+.main-nav a {
+    font-family:"PT sans", sans-serif;
+    font-size: 1.1em;
+    text-transform: uppercase;
+}
+
+.section-hero-banner .hero-title {
+    color: #fff;
+    font-size: 4.2em;
+}
+
+.section-hero-banner .hero-content-text {
+    color: #fff;
+    font-size: 1.5em;
+    
+}
+
+.section-features h2 {
+    font-size: 3.6em;
+    font-weight: 400;
+}
+
+.section-features p {
+    font-size: 1.2em;
+    line-height: 2em;
+    margin-top: 1em;
+}
+
+.section-features .features-btn {
+    color: #AF7E54;
+    font-size: 1.2em;
+    font-weight: 600;
+    font-family:"PT sans", sans-serif;
+}
+
+.section-sponsors h2,
+.section-parners h2{
+    color: #AF7E54;
+    font-size: 3.7em;
+    font-weight: 400;
+    text-align: center;
+}
+
+.section-sponsors p,
+.section-parners p{
+    font-family: "PT Sans", sans-serif;
+    font-size: 1.25em;
+    opacity: 70%;
+    font-weight: 100;
+    line-height: 1.7em;
+}
+
+footer h4 {
+    color: #fff;
+    font-size: 1.5em;
+    font-weight: 400;
+}
+
+footer li,
+footer a {
+    color: #b2b2b2;
+    text-decoration: none;
+    list-style: none;
+    text-transform: uppercase;
+    line-height: 3rem;
+    font-family: "PT Sans", sans-serif;
+}
+
+footer .copyright{
+    color: #b2b2b2;
+    padding: 1.3em;
+    padding-left: 13em;
+    font-family: "PT Sans", sans-serif;
+}

@@ -1,0 +1,23 @@
+footer {
+    background-color: #171720;
+}
+
+
+footer .copyright {
+    border-top: 1px solid #3B3B42;
+
+}
+
+.section-footer {
+    display: flex;
+    justify-content: space-between;
+
+    padding-top: 4em;
+    padding-bottom: 5em;
+    padding-left: 13em;
+    padding-right: 20em;
+}
+
+.section-footer ul {
+    padding-top: 2em;
+}

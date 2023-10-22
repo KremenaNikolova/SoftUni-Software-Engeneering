@@ -1,0 +1,40 @@
+hr {
+    border: 1px solid #CBCBCB;
+}
+
+.main-top-section {
+    background-image: url("../images/background.jpg");
+    background-size: cover;
+}
+
+.section-hero-banner{
+    padding: 1.5em 13em;
+    padding-bottom: 20em;
+}
+
+.section-hero-banner .hero-content-text {
+    padding-top: 1em;
+    line-height: 1.7em;
+    width: 55%;
+}
+
+.section-features {
+    display: flex;
+    justify-content: space-between;
+    margin: 10em 13em;
+}
+
+.section-features article {
+    flex: 0 0 50%;
+    padding-right: 1em;
+}
+
+.section-features .btn {
+    margin-top: 3.5em;
+}
+
+.section-features .features-btn {
+    text-decoration: none;
+    border: 2px solid #AF7E54;
+    padding: 0.6em 1.5em;
+}

@@ -1,0 +1,32 @@
+.section-header {
+    display: flex;
+    justify-content: space-between;
+
+    color: #fff;
+
+    padding: 2.4em 4em 2em 2.8em;
+}
+
+.section-header a {
+    color: #fff;
+}
+
+.section-header img {
+    width: 7em;
+}
+
+.main-nav ul {
+    display: flex;
+}
+
+.main-nav li,
+.main-nav a {
+    display: block;
+}
+
+.main-nav a {
+    padding: 1em;
+    
+    text-decoration: none;
+    
+}
