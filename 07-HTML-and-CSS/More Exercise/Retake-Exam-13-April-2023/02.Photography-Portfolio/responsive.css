@@ -60,7 +60,6 @@
 
     .home-text13 {
         padding-top: 2em;
-        display: block;
     }
 
     .home-text13:first-child {
@@ -77,7 +76,7 @@
 
     .home-subscribe-container {
         margin-top: 2em;
-        display: block;
+        width: 100%;
     }
 
     .button-primary.button {
