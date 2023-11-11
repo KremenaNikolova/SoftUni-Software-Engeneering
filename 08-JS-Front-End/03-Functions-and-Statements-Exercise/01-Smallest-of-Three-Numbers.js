@@ -1,22 +1,7 @@
 function smallestNumber(numOne, numTwo, numThree){
-    let smallestNumber = Number.MAX_SAFE_INTEGER;
-    if (smallestNumber > numOne 
-        && numOne < numTwo 
-        && numOne < numThree) {
-        smallestNumber = numOne
-    } else if (smallestNumber > numTwo 
-        && numTwo < numOne 
-        && numTwo < numThree) {
-        smallestNumber = numTwo
-    } else if (smallestNumber > numThree 
-        && numThree < numOne 
-        && numThree < numTwo) {
-        smallestNumber = numThree
-    } else {
-        smallestNumber = numOne;
-    }
+    const smallestNum = Math.min(numOne, numTwo, numThree);
 
-    console.log(smallestNumber);
+    console.log(smallestNum);
 }
 
 smallestNumber(
