@@ -10,7 +10,6 @@ namespace _09_Fruit_or_Vegetable
 
             switch (product)
             {
-                //banana, apple, kiwi, cherry, lemon и grapes
                 case "banana":
                 case "apple":
                 case "kiwi":
@@ -19,7 +18,6 @@ namespace _09_Fruit_or_Vegetable
                 case "grapes":
                     Console.WriteLine("fruit");
                     break;
-                // tomato, cucumber, pepper и carrot
                 case "tomato":
                 case "cucumber":
                 case "pepper":

@@ -20,7 +20,6 @@ namespace _11_Fruit_Shop
                 case "Friday":
                     switch (product)
                     {
-                        //(banana / apple / orange / grapefruit / kiwi / pineapple / grapes)
                         case "banana":
                             price = 2.50;
                             break;
@@ -31,7 +30,7 @@ namespace _11_Fruit_Shop
                             price = 0.85;
                             break;
                         case "grapefruit":
-                            price = 1.40;
+                            price = 1.45;
                             break;
                         case "kiwi":
                             price = 2.70;
@@ -95,11 +94,11 @@ namespace _11_Fruit_Shop
                         Console.WriteLine();
                     }
                     break;
-                  
+
                 default:
                     Console.WriteLine("error");
                     break;
-            }//Резултатът да се отпечата закръглен с 2 цифри след десетичната точка. При невалиден ден от седмицата или невалидно име на плод да се отпечата "error". 
+            }
         }
     }
 }

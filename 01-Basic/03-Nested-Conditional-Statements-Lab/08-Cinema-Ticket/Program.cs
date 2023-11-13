@@ -6,8 +6,6 @@ namespace _08_Cinema_Ticket
     {
         static void Main(string[] args)
         {
-            //Да се напише програма която чете ден от седмицата (текст) – въведен от потребителя и принтира на конзолата цената на билет за кино според деня от седмицата:
-
             string day = Console.ReadLine();
             double price = 0;
 
