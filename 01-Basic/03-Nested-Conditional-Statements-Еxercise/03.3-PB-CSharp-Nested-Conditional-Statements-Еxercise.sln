@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32002.261
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01-Cinema", "01-Cinema\01-Cinema.csproj", "{7A2DB502-B3FE-40DB-BBEE-C26436764713}"
 EndProject
@@ -20,8 +20,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "08-On-Time-for-the-Exam", "08-On-Time-for-the-Exam\08-On-Time-for-the-Exam.csproj", "{42B75E79-7F71-4455-9563-226FDB013A71}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "09-Ski-Trip", "09-Ski-Trip\09-Ski-Trip.csproj", "{1696BBD5-3089-466F-A5B7-1274699F9C42}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo", "Demo\Demo.csproj", "{6DCF1B77-F40C-4D2E-BF4F-2C1E86AAC222}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,10 +63,6 @@ Global
 		{1696BBD5-3089-466F-A5B7-1274699F9C42}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1696BBD5-3089-466F-A5B7-1274699F9C42}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1696BBD5-3089-466F-A5B7-1274699F9C42}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6DCF1B77-F40C-4D2E-BF4F-2C1E86AAC222}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6DCF1B77-F40C-4D2E-BF4F-2C1E86AAC222}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6DCF1B77-F40C-4D2E-BF4F-2C1E86AAC222}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6DCF1B77-F40C-4D2E-BF4F-2C1E86AAC222}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

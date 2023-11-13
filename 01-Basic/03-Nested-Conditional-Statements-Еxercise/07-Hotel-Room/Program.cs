@@ -6,22 +6,10 @@ namespace _07_Hotel_Room
     {
         static void Main(string[] args)
         {
-            //Входът се чете от конзолата и съдържа точно 2 реда, въведени от потребителя:
-            //•	На първия ред е месецът – May, June, July, August, September или October
             string month = Console.ReadLine();
-            //•	На втория ред е броят на нощувките – цяло число в интервала[0... 200]
             int numNights = int.Parse(Console.ReadLine());
             double priceStuido = 0.0;
             double priceApartment = 0.0;
-
-            //•	За студио, при повече от 7 нощувки през май и октомври: 5 % намаление.
-            //•	За студио, при повече от 14 нощувки през май и октомври: 30 % намаление.
-            //•	За студио, при повече от 14 нощувки през юни и септември: 20 % намаление.
-            //•	За апартамент, при повече от 14 нощувки, без значение от месеца : 10 % намаление.
-
-            //       Май и октомври          Юни и септември          Юли и август
-            //       Студио – 50 лв          Студио – 75.20 лв.       Студио – 76 лв./ нощувка
-            //       Апартамент – 65 лв.     Апартамент – 68.70 лв.   Апартамент – 77 лв./ нощувка
 
             switch (month)
             {
@@ -31,12 +19,12 @@ namespace _07_Hotel_Room
                     priceApartment = 65;
                     if (numNights > 14)
                     {
-                        priceStuido = priceStuido - priceStuido * 0.3;
-                        priceApartment = priceApartment - priceApartment * 0.1;
+                        priceStuido -= priceStuido * 0.3;
+                        priceApartment -= priceApartment * 0.1;
                     }
                     else if (14 > numNights && numNights > 7)
                     {
-                        priceStuido = priceStuido - priceStuido * 0.05;
+                        priceStuido -= priceStuido * 0.05;
                     }
                     break;
                 case "June":
@@ -45,8 +33,8 @@ namespace _07_Hotel_Room
                     priceApartment = 68.70;
                     if (numNights > 14)
                     {
-                        priceStuido = priceStuido - priceStuido * 0.2;
-                        priceApartment = priceApartment - priceApartment * 0.1;
+                        priceStuido -= priceStuido * 0.2;
+                        priceApartment -= priceApartment * 0.1;
                     }
                     break;
                 case "July":
@@ -55,7 +43,7 @@ namespace _07_Hotel_Room
                     priceApartment = 77;
                     if (numNights > 14)
                     {
-                        priceApartment = priceApartment - priceApartment * 0.1;
+                        priceApartment -= priceApartment * 0.1;
                     }
                     break;
             }
@@ -65,10 +53,4 @@ namespace _07_Hotel_Room
         }
     }
 }
-//Да се отпечатат на конзолата 2 реда:
-//•	На първия ред: “Apartment: { цена за целият престой}
-//lv.”
-//•	На втория ред: “Studio: { цена за целият престой}
-//lv.“
-//Цената за целия престой форматирана с точност до два знака след десетичната запетая.
 
