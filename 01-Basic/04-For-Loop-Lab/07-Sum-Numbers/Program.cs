@@ -12,7 +12,7 @@ namespace _07_Sum_Numbers
             for (int i = 0; i < numbers; i++)
             {
                 int num = int.Parse(Console.ReadLine());
-                sum+=num;
+                sum += num;
             }
             Console.WriteLine(sum);
         }

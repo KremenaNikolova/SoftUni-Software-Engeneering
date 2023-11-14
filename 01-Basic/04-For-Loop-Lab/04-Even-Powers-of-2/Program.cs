@@ -8,7 +8,7 @@ namespace _04_Even_Powers_of_2
         {
             int n = int.Parse(Console.ReadLine());
 
-            for (int stepen = 0; stepen <=n; stepen++)
+            for (int stepen = 0; stepen <= n; stepen++)
             {
                 if (stepen % 2 == 0)
                 {

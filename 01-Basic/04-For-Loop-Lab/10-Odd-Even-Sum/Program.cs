@@ -15,11 +15,11 @@ namespace _10_Odd_Even_Sum
                 int num = int.Parse(Console.ReadLine());
                 if (i % 2 == 0)
                 {
-                    sum = sum + num;
+                    sum += num;
                 }
                 else
                 {
-                    sum2 = sum2 + num;
+                    sum2 += num;
                 }
             }
             if (sum == sum2)
@@ -30,7 +30,7 @@ namespace _10_Odd_Even_Sum
             else
             {
                 Console.WriteLine("No");
-                Console.WriteLine($"Diff = {Math.Abs(sum-sum2)}");
+                Console.WriteLine($"Diff = {Math.Abs(sum - sum2)}");
             }
         }
     }

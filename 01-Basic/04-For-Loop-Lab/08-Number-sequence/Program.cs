@@ -15,7 +15,7 @@ namespace _08_Number_sequence
                 int num = int.Parse(Console.ReadLine());
                 if (num > sumMax)
                 {
-                    sumMax = num;                
+                    sumMax = num;
                 }
                 if (num < sumMin)
                 {
