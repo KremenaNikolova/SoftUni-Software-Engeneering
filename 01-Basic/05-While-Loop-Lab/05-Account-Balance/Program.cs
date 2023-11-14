@@ -10,9 +10,9 @@ namespace _05_Account_Balance
 
             double sum = 0;
 
-            while (moneyIvest!="NoMoreMoney")
+            while (moneyIvest != "NoMoreMoney")
             {
-                
+
                 if (double.Parse(moneyIvest) < 0)
                 {
                     Console.WriteLine("Invalid operation!");

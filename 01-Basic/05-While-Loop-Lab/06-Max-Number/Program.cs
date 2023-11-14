@@ -10,7 +10,7 @@ namespace _06_Max_Number
             int number = 0;
             int biggestNumber = int.MinValue;
 
-            while (num!="Stop")
+            while (num != "Stop")
             {
                 number = int.Parse(num);
                 if (number > biggestNumber)
@@ -21,7 +21,7 @@ namespace _06_Max_Number
             }
             Console.WriteLine(biggestNumber);
         }
-        
+
 
     }
 }

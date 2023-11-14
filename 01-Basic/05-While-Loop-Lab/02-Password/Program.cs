@@ -20,7 +20,7 @@ namespace _02_Password
             {
                 Console.WriteLine($"Welcome {name}!");
             }
-                
+
         }
     }
 }

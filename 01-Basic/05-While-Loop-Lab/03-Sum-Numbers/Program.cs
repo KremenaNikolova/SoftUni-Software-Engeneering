@@ -9,7 +9,7 @@ namespace _03_Sum_Numbers
             int num = int.Parse(Console.ReadLine());
             int sum = 0;
 
-            while (num>sum)
+            while (num > sum)
             {
                 int input = int.Parse(Console.ReadLine());
                 sum += input;

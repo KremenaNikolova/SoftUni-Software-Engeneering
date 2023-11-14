@@ -8,7 +8,7 @@ namespace _08_Graduation
         {
             string name = Console.ReadLine();
             int grade = 1;
-          
+
             int examFailed = 0;
             double sum = 0;
 

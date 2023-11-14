@@ -8,7 +8,7 @@ namespace _01_Read_Text
         {
             string name = Console.ReadLine();
 
-            while (name !="Stop")
+            while (name != "Stop")
             {
                 Console.WriteLine(name);
                 name = Console.ReadLine();
