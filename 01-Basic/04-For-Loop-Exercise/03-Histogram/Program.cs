@@ -20,23 +20,23 @@ namespace _03_Histogram
 
                 if (numbersTwo <= 199)
                 {
-                    numberP1=numberP1+1;
+                    numberP1 += 1;
                 }
-                else if (numbersTwo >=200 && numbersTwo <= 399)
+                else if (numbersTwo >= 200 && numbersTwo <= 399)
                 {
-                    numberP2=numberP2+1;
+                    numberP2 += 1;
                 }
-                else if (numbersTwo>=400 && numbersTwo <= 599)
+                else if (numbersTwo >= 400 && numbersTwo <= 599)
                 {
-                    numberP3=numberP3+1;
+                    numberP3 += 1;
                 }
-                else if (numbersTwo>=600 && numbersTwo <= 799)
+                else if (numbersTwo >= 600 && numbersTwo <= 799)
                 {
-                    numberP4=numberP4+1;
+                    numberP4 += 1;
                 }
                 else if (numbersTwo >= 800)
                 {
-                    numberP5=numberP5+1;
+                    numberP5 += 1;
                 }
             }
             double percentP1 = numberP1 / numbers * 100;

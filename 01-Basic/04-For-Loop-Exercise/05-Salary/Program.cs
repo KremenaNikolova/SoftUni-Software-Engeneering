@@ -6,26 +6,24 @@ namespace _05_Salary
     {
         static void Main(string[] args)
         {
-            //Брой отворени табове в браузъра n -цяло число в интервала[1...10]
             int tabs = int.Parse(Console.ReadLine());
-            //Заплата - число в интервала[500...1500]
             double salary = double.Parse(Console.ReadLine());
-         
-            for (int i = 0; i <=tabs; i++)
+
+            for (int i = 0; i <= tabs; i++)
             {
                 string name = Console.ReadLine();
 
                 switch (name)
                 {
                     case "Facebook":
-                        salary = salary - 150;
+                        salary -= 150;
                         break;
-                        
+
                     case "Instagram":
-                        salary = salary - 100;
+                        salary -= 100;
                         break;
                     case "Reddit":
-                        salary = salary - 50;
+                        salary -= 50;
                         break;
                 }
             }
@@ -40,6 +38,3 @@ namespace _05_Salary
         }
     }
 }
-//"Facebook " -> 150 лв.
-//"Instagram"-> 100 лв.
-//"Reddit"-> 50 лв.

@@ -6,9 +6,9 @@ namespace _01_Numbers_Ending_in_7
     {
         static void Main(string[] args)
         {
-           
 
-            for (int i = 7; i <=997; i+=10)
+
+            for (int i = 7; i <= 997; i += 10)
             {
                 Console.WriteLine(i);
             }
