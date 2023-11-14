@@ -10,10 +10,10 @@ namespace _02_Exam_Preparation
             string lastName = "";
             string end = "";
             int counter = 0;
-            int counterEvaluation=0;
+            int counterEvaluation = 0;
             double sum = 0;
 
-            while (end!="Enough")
+            while (end != "Enough")
             {
                 string nameExam = Console.ReadLine();
 
@@ -37,7 +37,7 @@ namespace _02_Exam_Preparation
                         break;
                     }
                 }
-                
+
             }
         }
     }

@@ -11,7 +11,7 @@ namespace _04_Walking
             int endSteps = 0;
             string command = string.Empty;
 
-            while (dailyGoal>=stepsEveryDay)
+            while (dailyGoal >= stepsEveryDay)
             {
 
                 command = Console.ReadLine();
@@ -38,8 +38,8 @@ namespace _04_Walking
                     Console.WriteLine($"{stepsEveryDay - dailyGoal} steps over the goal!");
                 }
             }
-            
-            
+
+
         }
     }
 }

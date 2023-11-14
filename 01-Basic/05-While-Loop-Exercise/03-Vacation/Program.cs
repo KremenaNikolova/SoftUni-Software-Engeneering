@@ -16,16 +16,16 @@ namespace _03_Vacation
                 string saveOrSpend = Console.ReadLine();
                 double money = double.Parse(Console.ReadLine());
 
-               if (saveOrSpend == "spend")
+                if (saveOrSpend == "spend")
                 {
-                    moneyWeGot = moneyWeGot - money;
-                    if (moneyWeGot<0)
+                    moneyWeGot -= money;
+                    if (moneyWeGot < 0)
                     {
                         moneyWeGot = 0;
                     }
                     spendingDays++;
                 }
-                else if(saveOrSpend == "save")
+                else if (saveOrSpend == "save")
                 {
                     moneyWeGot += money;
                     spendingDays = 0;
@@ -42,7 +42,7 @@ namespace _03_Vacation
             {
                 Console.WriteLine("You can't save the money.");
                 Console.WriteLine($"{days}");
-            }                
+            }
         }
     }
 }

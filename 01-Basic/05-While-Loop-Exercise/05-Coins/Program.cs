@@ -6,11 +6,11 @@ namespace _05_Coins
     {
         static void Main(string[] args)
         {
-            double recieve = 100*double.Parse(Console.ReadLine());
+            double recieve = 100 * double.Parse(Console.ReadLine());
             int counter = 0;
 
 
-            while (recieve>0)
+            while (recieve > 0)
             {
                 if (recieve >= 200)
                 {
