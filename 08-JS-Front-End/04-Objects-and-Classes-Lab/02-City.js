@@ -1,24 +1,22 @@
 function cityInfo(input) {
-    let entries = Object.entries(input);
+  let entries = Object.entries(input);
 
-    for (const [key, value] of entries) {
-        console.log(`${key} -> ${value}`);
-    }
+  for (const [key, value] of entries) {
+    console.log(`${key} -> ${value}`);
+  }
 }
 
 cityInfo({
-    name: "Sofia",
-    area: 492,
-    population: 1238438,
-    country: "Bulgaria",
-    postCode: "1000"
-}
-);
+  name: "Sofia",
+  area: 492,
+  population: 1238438,
+  country: "Bulgaria",
+  postCode: "1000",
+});
 cityInfo({
-    name: "Plovdiv",
-    area: 389,
-    population: 1162358,
-    country: "Bulgaria",
-    postCode: "4000"
-}
-);
+  name: "Plovdiv",
+  area: 389,
+  population: 1162358,
+  country: "Bulgaria",
+  postCode: "4000",
+});

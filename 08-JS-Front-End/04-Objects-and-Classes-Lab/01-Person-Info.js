@@ -1,9 +1,5 @@
 function personInfo(firstName, lastName, age) {
-    
-    return { firstName, lastName, age };
+  return { firstName, lastName, age };
 }
 
-personInfo("Peter",
-    "Pan",
-    "20"
-);
+personInfo("Peter", "Pan", "20");
