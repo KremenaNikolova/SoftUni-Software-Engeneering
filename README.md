@@ -5,9 +5,9 @@
 <br/>
 <br/>
 
-<a href="https://softuni.bg/trainings/courses" rel="Courses"> ![SoftUni logo][logo] </a>
-
-[logo]: https://cdn.discordapp.com/attachments/979101848361377914/1077188522320072704/SoftUni-Logo-Flat.png "Logo Title Text 2"
+<p align="center">
+<a href="https://softuni.bg/trainings/courses"><img src="https://upload.wikimedia.org/wikipedia/commons/7/76/Logo_Software_University_%28SoftUni%29_-_blue.png"  width="30%"></a>
+</p>
 
 <br/>
 <br/>
