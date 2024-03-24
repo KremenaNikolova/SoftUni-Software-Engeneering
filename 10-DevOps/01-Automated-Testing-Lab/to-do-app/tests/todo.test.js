@@ -26,8 +26,23 @@ test("user can delete a task", async ({ page }) => {
 
   await page.click(".task .delete-task"); //add a line that click te [Delete] button of the task. The task should be removed from the list
 
-  const task = await page.$$eval(".task", (task) =>   //check that the text of the first task doesn't include 'Test Task' anymore.
-    task.map((task) => task.textContent)
+  const task = await page.$$eval(
+    ".task",
+    (
+      task //check that the text of the first task doesn't include 'Test Task' anymore.
+    ) => task.map((task) => task.textContent)
   );
   expect(task).not.toContain("Test Task");
+});
+
+test("user can mark a task as complete", async ({ page }) => {
+  await page.goto("http://localhost:5500/");
+  await page.fill("#task-input", "Test Task");
+  await page.click("#add-task");
+
+  await page.click(".task .task-complete"); //add a line that clicks on the [Complete] button of the tas. Th task should be marked as complete
+
+  const completedTask = await page.$(".task.completed"); //write a line that finds the first element with the class .task.completed
+
+  expect(completedTask).not.toBeNull(); //check that completedTask is not null
 });
