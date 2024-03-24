@@ -18,3 +18,16 @@ test("user can add a task", async ({ page }) => {
 
   expect(taskText).toContain("Test Task"); //it checks that the next of the added task includes 'Test Task'. If it does, the test passes. If it doesn't, the test fails;
 });
+
+test("user can delete a task", async ({ page }) => {
+  await page.goto("http://localhost:5500/");
+  await page.fill("#task-input", "Test Task");
+  await page.click("#add-task");
+
+  await page.click(".task .delete-task"); //add a line that click te [Delete] button of the task. The task should be removed from the list
+
+  const task = await page.$$eval(".task", (task) =>   //check that the text of the first task doesn't include 'Test Task' anymore.
+    task.map((task) => task.textContent)
+  );
+  expect(task).not.toContain("Test Task");
+});
