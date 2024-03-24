@@ -46,3 +46,17 @@ test("user can mark a task as complete", async ({ page }) => {
 
   expect(completedTask).not.toBeNull(); //check that completedTask is not null
 });
+
+test('user can filter tasks', async ({ page }) => {
+  await page.goto("http://localhost:5500/");
+  await page.fill("#task-input", "Test Task");
+  await page.click("#add-task");
+
+  await page.click('.task', '.task-complete') //change the selected option of the filter to 'Completed' so list will show only completed tasks
+
+  await page.selectOption('#filter', 'Completed'); //find first task that is not marked as complete
+
+  const incompleteTask = await page.$('.task:not(.completed)'); //check that incompleteTask is null
+  expect(incompleteTask).toBeNull();
+
+});
