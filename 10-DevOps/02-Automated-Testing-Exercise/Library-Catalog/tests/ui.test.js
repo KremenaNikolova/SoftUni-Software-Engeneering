@@ -35,3 +35,63 @@ test('Verify "Register" link is visible', async ({ page }) => {
 
   expect(isRegisterButtonVisible).toBe(true);
 });
+
+//Navigation Bar for Logged-In Users tests
+
+test('Verify "All Books" link is visible after user login', async ({
+  page,
+}) => {
+  await page.goto(baseUrl + "/login");
+
+  await page.fill('input[name="email"]', "peter@abv.bg");
+  await page.fill('input[name="password"]', "123456");
+  await page.click('input[type="submit"]');
+
+  const allBooksLink = await page.$('a[href="/catalog"]');
+  const isAllBooksLinkVisible = await allBooksLink.isVisible();
+
+  expect(isAllBooksLinkVisible).toBe(true);
+});
+
+test('Verify "My Books" link is visible after user login', async ({ page }) => {
+  await page.goto(baseUrl + "/login");
+
+  await page.fill('input[name="email"]', "peter@abv.bg");
+  await page.fill('input[name="password"]', "123456");
+  await page.click('input[type="submit"]');
+
+  const myBooksLink = await page.$('a[href="/profile"]');
+  const isMyBooksLinkVisible = await myBooksLink.isVisible();
+
+  expect(isMyBooksLinkVisible).toBe(true);
+});
+
+test('Verify "Add Books" link is visible after user login', async ({
+  page,
+}) => {
+  await page.goto(baseUrl + "/login");
+
+  await page.fill('input[name="email"]', "peter@abv.bg");
+  await page.fill('input[name="password"]', "123456");
+  await page.click('input[type="submit"]');
+
+  const addBooksLink = await page.$('a[href="/create"]');
+  const isAddLinkVisible = await addBooksLink.isVisible();
+
+  expect(isAddLinkVisible).toBe(true);
+});
+
+test("Verify User Email Address is visible after user login", async ({
+  page,
+}) => {
+  await page.goto(baseUrl + "/login");
+
+  await page.fill('input[name="email"]', "peter@abv.bg");
+  await page.fill('input[name="password"]', "123456");
+  await page.click('input[type="submit"]');
+
+  const userEmail = await page.$("#user > span");
+  const isuserEmailVisible = await userEmail.isVisible();
+
+  expect(isuserEmailVisible).toBe(true);
+});
