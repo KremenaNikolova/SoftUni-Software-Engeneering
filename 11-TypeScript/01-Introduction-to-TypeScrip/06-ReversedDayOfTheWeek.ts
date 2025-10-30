@@ -9,13 +9,15 @@ function ConvertWeekToNumber(weekDay: string) {
     Sunday = 7,
   }
 
-  const stringKeys = Object.keys(DaysOfTheWeek).filter((v) => isNaN(Number(v)));
+  // const stringKeys = Object.keys(DaysOfTheWeek).filter((v) => isNaN(Number(v)));
 
-  let result: number | string = 0;
-  stringKeys.forEach((key, index) => {
-    if (key === weekDay) result = index + 1;
-    else if (result === 0) result = "error";
-  });
+  // let result: number | string = 0;
+  // stringKeys.forEach((key, index) => {
+  //   if (key === weekDay) result = index + 1;
+  //   else if (result === 0) result = "error";
+  // });
+
+  let result = DaysOfTheWeek[weekDay as keyof typeof DaysOfTheWeek] || "error";
     
   return console.log(result);
 }
